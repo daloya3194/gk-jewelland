@@ -62,6 +62,12 @@
 
     </style>
 
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+        href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet"
+    />
+
 </head>
 
 <body style="background-color: #e5e7eb">
@@ -88,10 +94,49 @@
 
 </div>
 
-
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+
+<script>
+    // Register the plugin
+    FilePond.registerPlugin(FilePondPluginImagePreview);
+
+    // Get a reference to the file input element
+    const inputElement = document.querySelector('input[id="avatar"]');
+
+    // Create a FilePond instance
+    const pond = FilePond.create(inputElement);
+
+    FilePond.setOptions({
+        server: {
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            process: {
+                url: '/upload',
+                method: 'POST',
+                onload: function (responce) {
+                    console.log(responce)
+                    return responce // added
+                },
+            },
+            revert: (uniqueFileId) => {
+                // window.href = '/delete/' + uniqueFileId
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", '/delete', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+                xhr.send(JSON.stringify({
+                    path: uniqueFileId
+                }));
+            },
+            // url: '/upload',
+        }
+    });
+</script>
 {{--<script>
     {
         const d_none = "d-none";
@@ -120,6 +165,8 @@
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.js"></script>--}}
 
 <script src="/js/script.js"></script>
+
+
 
 </body>
 </html>

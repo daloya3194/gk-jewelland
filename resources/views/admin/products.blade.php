@@ -7,7 +7,9 @@
 
             <div class="row justify-content-between px-3 align-items-center">
                 <div class="col-12 col-sm-5 col-md-3 h3 ps-0">Products</div>
-                <div class="col-12 col-sm-5 col-md-3 col-xxl-2 fs-6 px-3 bg-white pointer text-dark rounded-4 text-center pt-2 pb-2 fw-bolder shadow-sm">New Product</div>
+                <div class="col-12 col-sm-5 col-md-3 col-xxl-2 fs-6 px-3 bg-white pointer text-dark rounded-4 text-center pt-2 pb-2 fw-bolder shadow-sm"
+                     onclick="window.location.href='{{ route('admin.products.create', app()->getLocale()) }}'"
+                >New Product</div>
             </div>
 
             <div class="bg-white shadow-sm px-3 pt-4 rounded-4 mt-4 overflow-auto col-12">
