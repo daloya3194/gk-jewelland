@@ -41,19 +41,30 @@
                     </div>
                     <div class="col-md-4">
                         <div class="p-3 border shadow-sm bg-white rounded-4">
+
                             <div class="mb-3">
                                 <label for="price" class="form-label">Price<span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" id="price" name="price" required>
                             </div>
-                            <div>
+
+                            <div class="mb-3">
                                 <label for="category" class="form-label">Select Category<span class="text-danger">*</span></label>
-                                <select class="form-select" aria-label="Default select example" id="category" name="category">
+                                <select class="form-select" aria-label="Default select example" id="category" name="category_id" required>
                                     <option selected disabled>Please select a category...</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
                             </div>
+
+                            <div>
+                                <label for="label" class="form-label">Select Label</label>
+                                <select class="form-select" aria-label="Default select example" id="label" name="label_id">
+                                    <option selected disabled>Please select a Label...</option>
+                                    <option value="1">New</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
                 </div>

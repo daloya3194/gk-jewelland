@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +21,8 @@ Route::redirect('/', 'en');
 
 Route::group(['prefix' => '{language}'], function () {
 
-    Route::get('/', function () {
-
-        return view('welcome');
-
-    })->name('welcome');
+    Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+    Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.product');
 
 
     Route::group(['prefix' => 'admin'], function () {
@@ -33,10 +31,10 @@ Route::group(['prefix' => '{language}'], function () {
         Route::post('/login', [LoginController::class, 'authenticate'])->name('admin.login');
         Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
-        Route::get('/', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
-        Route::get('/products', [DashboardController::class, 'products'])->name('admin.products');
-        Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
-        Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::get('/', [DashboardController::class, 'dashboard'])->middleware(['admin'])->name('admin.dashboard');
+        Route::get('/products', [DashboardController::class, 'products'])->middleware(['admin'])->name('admin.products');
+        Route::get('/products/create', [ProductController::class, 'create'])->middleware(['admin'])->name('admin.products.create');
+        Route::post('/products/store', [ProductController::class, 'store'])->middleware(['admin'])->name('admin.products.store');
 
     });
 

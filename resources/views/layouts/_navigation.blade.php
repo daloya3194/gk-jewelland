@@ -1,6 +1,6 @@
-<nav class="bg-white">
-    <div class="container mx-auto">
-        <div class="py-6 flex justify-between mx-5 grid grid-cols-3 items-center md:py-8">
+<nav class="bg-yellow-200 bg-opacity-10">
+    <div class="container max-w-7xl mx-auto">
+        <div class="py-6 flex justify-between mx-5 md:grid md:grid-cols-3 items-center md:py-8">
             <div class="hidden md:block md:text-left">
                 <form class="flex items-center">
                     <input id="search" class="border-2 border-gray-400 focus:border-yellow-600 focus:ring-yellow-600 rounded-md pl-3 pr-11 w-5/12 h-10" type="text" placeholder="Search">
@@ -17,20 +17,20 @@
                 </a>
             </div>
             <div class="block flex justify-end items-center md:gap-5">
-                <form class="">
+                {{--<form class="">
                     <select class="h-10 md:h-full border-none focus:border-none focus:ring-0">
                         <option>EN</option>
                         <option>FR</option>
                         <option>DE</option>
                     </select>
-                </form>
+                </form>--}}
                 <a class="text-center text-gray-600 hover:text-yellow-600 md:-space-y-1" href="#">
-                    <div>
+                    <div class="hidden md:block">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                         </svg>
                     </div>
-                    <div class="hidden md:block">
+                    <div class="mr-2 font-bold md:mr-0 md:font-normal">
                         <small class="">EN</small>
                     </div>
                 </a>
@@ -55,14 +55,13 @@
                     </div>
                 </a>
             </div>
-
         </div>
     </div>
 </nav>
-<div class="text-center bg-white flex justify-center border-t-2 gap-10 sticky top-0  py-2 md:py-4">
-    <a class="hover:border-b-2 border-yellow-600">Chaines</a>
-    <a class="hover:border-b-2 border-yellow-600">Bracelets</a>
-    <a class="hover:border-b-2 border-yellow-600">Bagues</a>
+<div class="text-center bg-white flex justify-center border-t-2 gap-10 sticky z-10 block top-0 py-2 md:py-4">
+    <a class="hover:border-b-2 border-yellow-600">Chains</a>
+    <a class="hover:border-b-2 border-yellow-600">Wristbands</a>
+    <a class="hover:border-b-2 border-yellow-600">Rings</a>
 </div>
 
 
