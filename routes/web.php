@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,8 @@ Route::redirect('/', 'en');
 Route::group(['prefix' => '{language}'], function () {
 
     Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-    Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.product');
+    Route::get('/product/{slug}', [ProductController::class, 'show'])->name('show.product');
+    Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('show.category');
 
 
     Route::group(['prefix' => 'admin'], function () {

@@ -12,7 +12,7 @@
                 </form>
             </div>
             <div class="md:text-center">
-                <a href="#">
+                <a href="/">
                     <img class="h-12 w-12 md:h-24 md:w-24 md:mx-auto" src="/img/gk_logo.png" alt="GK">
                 </a>
             </div>
@@ -58,10 +58,15 @@
         </div>
     </div>
 </nav>
-<div class="text-center bg-white flex justify-center border-t-2 gap-10 sticky z-10 block top-0 py-2 md:py-4">
-    <a class="hover:border-b-2 border-yellow-600">Chains</a>
-    <a class="hover:border-b-2 border-yellow-600">Wristbands</a>
-    <a class="hover:border-b-2 border-yellow-600">Rings</a>
+<div class="text-center bg-white flex justify-center border-t-2 gap-10 sticky z-10 block top-0 py-2 md:py-4 uppercase font-bold">
+    @foreach(\App\Models\Category::all() as $category)
+        <a href="{{ route('show.category', [app()->getLocale(), $category->slug]) }}"
+           class="hover:border-b-2 border-yellow-600"
+        >{{ $category->name }}</a>
+    @endforeach
+
+    {{--<a class="hover:border-b-2 border-yellow-600">Wristbands</a>
+    <a class="hover:border-b-2 border-yellow-600">Rings</a>--}}
 </div>
 
 

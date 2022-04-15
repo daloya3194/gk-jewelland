@@ -11,10 +11,14 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
 
-    public function show($language, $id)
+    public function show($language, $slug)
     {
+        $product = Product::with(['pictures', 'category'])->where('slug', $slug)->first();
+
+//        dd($product);
+
         return view('product', [
-            'product' => Product::find($id)
+            'product' => $product
         ]);
     }
 

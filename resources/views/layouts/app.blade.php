@@ -8,8 +8,14 @@
     <title>GK-Jewelland | Home</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body class="bg-gray-100">
+<body class="">
 
 <!-- Navigation-->
 @include('layouts._navigation')
@@ -18,5 +24,7 @@
 
 @include('layouts._footer')
 
+<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+{{--<script src="/node_modules/tw-elements/dist/js/index.min.js"></script>--}}
 </body>
 </html>
