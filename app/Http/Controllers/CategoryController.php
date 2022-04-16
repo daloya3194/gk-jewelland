@@ -17,7 +17,8 @@ class CategoryController extends Controller
 //        dd($category->products, $products);
 
         return view('category', [
-            'category' => $category
+            'category' => $category,
+            'navigation' => $category->slug
         ]);
     }
 }

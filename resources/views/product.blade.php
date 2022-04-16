@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <div class="bg-gray-100 mb-5 py-3 px-4 sticky z-10 top-12">
+    <div class="bg-gray-100 mb-5 py-3 px-4 sticky z-10 top-16">
         <div class="max-w-7xl mx-auto font-semibold">
-            <a href="/">Home</a> /
-            <a href="#">{{ $product->category->name }}</a> /
-            <a href="#">{{ $product->name }}</a>
+            <a href="/" class="hover:underline">Home</a> /
+            <a href="{{ route('show.category', [app()->getLocale(), $product->category->slug]) }}" class="hover:underline">{{ $product->category->name }}</a> /
+            <a href="#" class="hover:underline">{{ $product->name }}</a>
         </div>
     </div>
 
@@ -33,16 +33,16 @@
                     @endisset
                 </div>
             </div>
-            <div class="py-10 px-4">
+            <div class="py-10 px-4 text-center md:text-left">
                 <div class="align-middle text-5xl font-bold">{{ $product->name }}</div>
                 <div class="text-6xl font-light mt-2">{{ $product->price }}€</div>
 
-                <div class="mt-12 text-xl border-b-2 font-bold">Description</div>
+                <div class="mt-12 text-xl border-b-2 font-bold pb-1">Description</div>
                 <div class="mt-2 text-lg">{{ $product->description }}</div>
 
                 <div class="mt-20">
                     <a href="#"
-                       class="border border-yellow-600 bg-yellow-500 px-20 py-4 rounded-lg"
+                       class="border border-yellow-600 bg-yellow-500 hover:bg-yellow-600 px-20 py-4 rounded-lg font-semibold"
                     >Add To Card</a>
                 </div>
             </div>

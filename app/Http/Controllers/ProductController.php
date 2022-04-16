@@ -18,7 +18,8 @@ class ProductController extends Controller
 //        dd($product);
 
         return view('product', [
-            'product' => $product
+            'product' => $product,
+            'navigation' => $product->category->slug
         ]);
     }
 
