@@ -44,14 +44,14 @@
                         <small class="mx-auto">Account</small>
                     </div>
                 </a>
-                <a class="text-center text-gray-600 hover:text-yellow-600 md:-space-y-1" href="#">
+                <a class="text-center text-gray-600 hover:text-yellow-600 md:-space-y-1 @if(isset($navigation) && $navigation == 'cart') text-yellow-600 @endif" href="{{ route('cart', app()->getLocale()) }}">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                         </svg>
                     </div>
                     <div class="hidden md:block">
-                        <small class="">Cart</small>
+                        <small class="cursor-pointer">Cart</small>
                     </div>
                 </a>
             </div>

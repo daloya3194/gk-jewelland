@@ -13,18 +13,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
+    @livewireStyles
 </head>
 <body class="">
 
-<!-- Navigation-->
-@include('layouts._navigation')
+    <!-- Navigation-->
+    @include('layouts._navigation')
 
-@yield('content')
+    @yield('content')
 
-@include('layouts._footer')
+    @include('layouts._footer')
 
-<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-{{--<script src="/node_modules/tw-elements/dist/js/index.min.js"></script>--}}
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+    {{--<script src="/node_modules/tw-elements/dist/js/index.min.js"></script>--}}
 </body>
 </html>

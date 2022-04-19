@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="bg-gray-100 mb-5 py-3 px-4 sticky z-10 top-16">
+    <div class="bg-gray-100 mb-5 py-3 px-4">
         <div class="max-w-7xl mx-auto font-semibold">
             <a href="/" class="hover:underline">Home</a> /
             <a href="#" class="hover:underline">{{ $category->name }}</a>

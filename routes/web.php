@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
@@ -25,6 +26,8 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
     Route::get('/product/{slug}', [ProductController::class, 'show'])->name('show.product');
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('show.category');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 
     Route::group(['prefix' => 'admin'], function () {
