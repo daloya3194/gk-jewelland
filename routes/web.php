@@ -28,6 +28,7 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('show.category');
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/add/{product_id}', [CartController::class, 'add'])->name('cart.add');
 
 
     Route::group(['prefix' => 'admin'], function () {

@@ -33,18 +33,26 @@
                     @endisset
                 </div>
             </div>
-            <div class="py-10 px-4 text-center md:text-left">
+            <div class="py-2 px-4 text-center md:text-left">
                 <div class="align-middle text-5xl font-bold">{{ $product->name }}</div>
                 <div class="text-6xl font-light mt-2">{{ $product->price }}€</div>
 
-                <div class="mt-12 text-xl border-b-2 font-bold pb-1">Description</div>
-                <div class="mt-2 text-lg">{{ $product->description }}</div>
+                <div class="mt-5 text-xl border-b-2 font-bold pb-1">Description</div>
+                <div class="mt-2 text-lg border-b-2 pb-1">{{ $product->description }}</div>
 
-                <div class="mt-20">
-                    <a href="#"
-                       class="border border-yellow-600 bg-yellow-500 hover:bg-yellow-600 px-20 py-4 rounded-lg font-semibold"
-                    >Add To Card</a>
-                </div>
+                <form action="{{ route('cart.add', [app()->getLocale(), $product->id]) }}" method="POST">
+                    @csrf
+                    <div class="mt-5">
+                        <label for="quantity" class="text-xl font-semibold">Quantity</label>
+                        <input id="quantity" class="w-20 block mt-2 mx-auto md:mx-0" type="number" name="quantity" value="1" min="1" max="50">
+                    </div>
+
+                    <div class="mt-10">
+                        <button class="border border-yellow-600 bg-yellow-500 hover:bg-yellow-600 px-20 py-4 rounded-lg font-semibold"
+                                type="submit"
+                        >Add To Card</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
