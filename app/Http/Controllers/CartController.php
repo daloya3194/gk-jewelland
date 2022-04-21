@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\CartService;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
     public function index()
     {
-        dd(session('cart'));
+        $cart = Session::has('cart') ? Session::get('cart') : null;
 
         return view('cart', [
+            'cart' => $cart,
             'navigation' => 'cart'
         ]);
     }
@@ -22,36 +25,48 @@ class CartController extends Controller
     {
         $data = $this->validator($request->all())->validate();
 
-        $product = Product::find($product_id);
+        $product = Product::with(['pictures'])->find($product_id);
 
-        $cart = Cart::where('product_id', $product_id)->first();
+        $old_cart = Session::has('cart') ? Session::get('cart') : null;
 
-        if (isset($cart)) {
+        $cart = new CartService($old_cart);
+        $cart->add($product, $product_id, $data['quantity']);
 
-            $cart->user_id = \Auth::id() ?? null;
-            $cart->quantity = $cart->quantity + $data['quantity'];
-            $cart->price = $product->price * $cart->quantity;
-            $cart->save();
-
-        } else {
-
-            $cart = Cart::create([
-                'user_id' => \Auth::id() ?? null,
-                'product_id' => $product_id,
-                'quantity' => $data['quantity'],
-                'price' => $product->price * $data['quantity'],
-            ]);
-        }
-
-        session()->put('cart', Cart::all());
+        Session::put('cart', $cart);
 
         return redirect(route('show.product', [$language, $product->slug]));
+    }
+
+    public function remove($language, $product_id) {
+
+        $old_cart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new CartService($old_cart);
+        $cart->remove($product_id);
+
+        $cart = $cart->total_price > 0 ? $cart : null;
+
+        Session::put('cart', $cart);
+
+        return redirect(route('cart', $language));
+    }
+
+    public function updateQuantity(Request $request, $language, $product_id)
+    {
+        $data = $this->validator($request->all())->validate();
+
+        $old_cart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new CartService($old_cart);
+        $cart->updateQuantity($product_id, $data['quantity']);
+
+        Session::put('cart', $cart);
+
+        return redirect(route('cart', $language));
     }
 
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'quantity' => 'required|numeric',
+            'quantity' => 'required|numeric|min:1|max:50',
         ]);
     }
 }
