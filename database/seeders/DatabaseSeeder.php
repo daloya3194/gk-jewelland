@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleTableSeeder::class);
 
         DB::table('users')->insert([
-            'name' => 'Test User',
+            'firstname' => 'Admin',
+            'lastname' => 'User',
             'email' => 'blackm111@protonmail.ch',
             'role' => 'admin',
             'password' => Hash::make('blackm111@protonmail.ch'),
@@ -29,7 +30,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Test Test',
+            'firstname' => 'Customer',
+            'lastname' => 'User',
             'email' => 'blackm@protonmail.ch',
             'role' => 'customer',
             'password' => Hash::make('blackm@protonmail.ch'),

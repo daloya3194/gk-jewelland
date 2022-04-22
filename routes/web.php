@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -31,6 +33,14 @@ Route::group(['prefix' => '{language}'], function () {
     Route::post('/cart/add/{product_id}', [CartController::class, 'add'])->name('cart.add');
     Route::get('/cart/remove/{product_id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/cart/update-quantity/{product_id}', [CartController::class, 'updateQuantity'])->name('cart.update-quantity');
+
+    Route::get('/login', [AuthController::class, 'loginIndex'])->middleware(['guest'])->name('login-index');
+    Route::post('/login', [AuthController::class, 'login'])->middleware(['guest'])->name('login');
+    Route::get('/register', [AuthController::class, 'registerIndex'])->middleware(['guest'])->name('register-index');
+    Route::post('/register', [AuthController::class, 'register'])->middleware(['guest'])->name('register');
+    Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth'])->name('logout');
+
+    Route::get('/account', [AccountController::class, 'index'])->middleware(['auth'])->name('account');
 
 
     Route::group(['prefix' => 'admin'], function () {

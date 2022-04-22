@@ -78,7 +78,7 @@
     </div>
     <div class="d-flex">
         <p class="lead h3 mt-2">Welcome,</p>
-        <p class="lead h3 fw-bold mt-2 ms-2">{{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+        <p class="lead h3 fw-bold mt-2 ms-2">{{ \Illuminate\Support\Facades\Auth::user()->firstname }}</p>
     </div>
 </div>
 
