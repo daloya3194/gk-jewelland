@@ -53,6 +53,9 @@
                             </div>
                             <p class="text-sm font-medium text-gray-900">{{ $new_product->price }}€</p>
                         </div>
+                        <div class="absolute top-2 left-2 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold">
+                            New
+                        </div>
                     </div>
                 @endforeach
             @endisset

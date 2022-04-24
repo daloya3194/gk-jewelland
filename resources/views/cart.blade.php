@@ -5,7 +5,7 @@
     <div class="bg-gray-100 mb-5 py-3 px-4">
         <div class="max-w-7xl mx-auto font-semibold">
             <a href="/" class="hover:underline">Home</a> /
-            <a href="{{ route('cart', app()->getLocale()) }}" class="hover:underline">Cart</a>
+            <a class="hover:underline">Cart</a>
         </div>
     </div>
 

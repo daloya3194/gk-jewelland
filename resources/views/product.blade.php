@@ -6,7 +6,7 @@
         <div class="max-w-7xl mx-auto font-semibold">
             <a href="/" class="hover:underline">Home</a> /
             <a href="{{ route('show.category', [app()->getLocale(), $product->category->slug]) }}" class="hover:underline">{{ $product->category->name }}</a> /
-            <a href="#" class="hover:underline">{{ $product->name }}</a>
+            <a class="hover:underline">{{ $product->name }}</a>
         </div>
     </div>
 

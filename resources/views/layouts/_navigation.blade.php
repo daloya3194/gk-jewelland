@@ -63,7 +63,7 @@
 <div class="text-center bg-white flex justify-center border-t-2 gap-10 sticky z-10 block top-0 py-2 md:py-4 uppercase font-bold">
     @foreach(\App\Models\Category::all() as $category)
         <a href="{{ route('show.category', [app()->getLocale(), $category->slug]) }}"
-           class="hover:border-b-4 border-yellow-600 pb-1 @if(isset($navigation) && $navigation == $category->slug) border-b-4 @endif"
+           class="border-b-4 border-white hover:border-yellow-600 pb-1 @if(isset($navigation) && $navigation == $category->slug) border-yellow-600 @endif"
         >{{ $category->name }}</a>
     @endforeach
 

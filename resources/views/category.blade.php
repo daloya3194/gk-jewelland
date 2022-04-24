@@ -5,12 +5,12 @@
     <div class="bg-gray-100 mb-5 py-3 px-4">
         <div class="max-w-7xl mx-auto font-semibold">
             <a href="/" class="hover:underline">Home</a> /
-            <a href="#" class="hover:underline">{{ $category->name }}</a>
+            <a class="hover:underline">{{ $category->name }}</a>
         </div>
     </div>
 
     <div class="max-w-7xl mx-auto mb-12">
-        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 text-center">New items</h2>
+        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 text-center">Filters</h2>
 
         <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             @isset($category->products)

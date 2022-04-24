@@ -17,7 +17,7 @@
                         @csrf
 
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email address<span class="text-red-600">*</span></label>
                             <div class="mt-1">
                                 <input id="email" name="email" type="email" value="{{ old('email') }}" autocomplete="on" required maxlength="100"
                                        class="@error('email') border-red-600 ring-red-500 @enderror"
@@ -29,7 +29,7 @@
                         </div>
 
                         <div>
-                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password<span class="text-red-600">*</span></label>
                             <div class="mt-1">
                                 <input id="password" name="password" type="password" required minlength="6"
                                        class="@error('password') border-red-600 ring-red-500 @enderror"
