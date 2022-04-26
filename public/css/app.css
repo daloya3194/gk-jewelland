@@ -4125,9 +4125,6 @@ textarea.form-control.is-invalid {
 .visible {
   visibility: visible;
 }
-.invisible {
-  visibility: hidden;
-}
 .static {
   position: static;
 }
@@ -4150,25 +4147,11 @@ textarea.form-control.is-invalid {
   bottom: 0px;
   left: 0px;
 }
-.inset-x-0 {
-  left: 0px;
-  right: 0px;
+.-bottom-14 {
+  bottom: -3.5rem;
 }
-.inset-x-auto {
-  left: auto;
-  right: auto;
-}
-.inset-x-1\/2 {
-  left: 50%;
-  right: 50%;
-}
-.inset-x-px {
-  left: 1px;
-  right: 1px;
-}
-.inset-x-full {
-  left: 100%;
-  right: 100%;
+.bottom-0 {
+  bottom: 0px;
 }
 .top-0 {
   top: 0px;
@@ -4176,53 +4159,14 @@ textarea.form-control.is-invalid {
 .right-0 {
   right: 0px;
 }
-.bottom-0 {
-  bottom: 0px;
-}
 .left-0 {
   left: 0px;
-}
-.left-2 {
-  left: 0.5rem;
-}
-.bottom-3 {
-  bottom: 0.75rem;
-}
-.-bottom-3 {
-  bottom: -0.75rem;
-}
-.-bottom-10 {
-  bottom: -2.5rem;
-}
-.left-12 {
-  left: 3rem;
-}
-.left-auto {
-  left: auto;
-}
-.left-40 {
-  left: 10rem;
-}
-.-bottom-8 {
-  bottom: -2rem;
-}
-.-bottom-9 {
-  bottom: -2.25rem;
-}
-.-bottom-20 {
-  bottom: -5rem;
-}
-.-bottom-14 {
-  bottom: -3.5rem;
 }
 .top-2 {
   top: 0.5rem;
 }
-.top-1 {
-  top: 0.25rem;
-}
-.left-1 {
-  left: 0.25rem;
+.left-2 {
+  left: 0.5rem;
 }
 .z-10 {
   z-index: 10;
@@ -4317,11 +4261,8 @@ textarea.form-control.is-invalid {
 .mb-8 {
   margin-bottom: 2rem;
 }
-.mt-auto {
-  margin-top: auto;
-}
-.mt-20 {
-  margin-top: 5rem;
+.mr-10 {
+  margin-right: 2.5rem;
 }
 .block {
   display: block;
@@ -4341,17 +4282,20 @@ textarea.form-control.is-invalid {
 .hidden {
   display: none;
 }
+.h-60 {
+  height: 15rem;
+}
 .h-20 {
   height: 5rem;
+}
+.h-10 {
+  height: 2.5rem;
 }
 .h-24 {
   height: 6rem;
 }
 .h-full {
   height: 100%;
-}
-.h-10 {
-  height: 2.5rem;
 }
 .h-6 {
   height: 1.5rem;
@@ -4374,29 +4318,20 @@ textarea.form-control.is-invalid {
 .h-4 {
   height: 1rem;
 }
-.h-80 {
-  height: 20rem;
-}
-.h-60 {
-  height: 15rem;
-}
-.h-3 {
-  height: 0.75rem;
+.h-96 {
+  height: 24rem;
 }
 .min-h-screen {
   min-height: 100vh;
-}
-.w-96 {
-  width: 24rem;
-}
-.w-full {
-  width: 100%;
 }
 .w-24 {
   width: 6rem;
 }
 .w-20 {
   width: 5rem;
+}
+.w-full {
+  width: 100%;
 }
 .w-5\/12 {
   width: 41.666667%;
@@ -4425,8 +4360,11 @@ textarea.form-control.is-invalid {
 .w-4 {
   width: 1rem;
 }
-.w-16 {
-  width: 4rem;
+.w-96 {
+  width: 24rem;
+}
+.w-80 {
+  width: 20rem;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -4520,11 +4458,11 @@ textarea.form-control.is-invalid {
 .gap-3 {
   gap: 0.75rem;
 }
-.gap-10 {
-  gap: 2.5rem;
-}
 .gap-5 {
   gap: 1.25rem;
+}
+.gap-10 {
+  gap: 2.5rem;
 }
 .gap-4 {
   gap: 1rem;
@@ -4532,12 +4470,23 @@ textarea.form-control.is-invalid {
 .gap-1 {
   gap: 0.25rem;
 }
+.gap-20 {
+  gap: 5rem;
+}
 .gap-y-10 {
   row-gap: 2.5rem;
 }
 .gap-x-6 {
   -moz-column-gap: 1.5rem;
        column-gap: 1.5rem;
+}
+.gap-x-20 {
+  -moz-column-gap: 5rem;
+       column-gap: 5rem;
+}
+.gap-x-10 {
+  -moz-column-gap: 2.5rem;
+       column-gap: 2.5rem;
 }
 .space-y-6 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
@@ -4558,20 +4507,20 @@ textarea.form-control.is-invalid {
 .overflow-hidden {
   overflow: hidden;
 }
-.rounded {
-  border-radius: 0.25rem;
+.rounded-full {
+  border-radius: 9999px;
 }
 .rounded-md {
   border-radius: 0.375rem;
 }
-.rounded-lg {
-  border-radius: 0.5rem;
-}
 .rounded-sm {
   border-radius: 0.125rem;
 }
-.rounded-full {
-  border-radius: 9999px;
+.rounded {
+  border-radius: 0.25rem;
+}
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 .border {
   border-width: 1px;
@@ -4579,8 +4528,8 @@ textarea.form-control.is-invalid {
 .border-2 {
   border-width: 2px;
 }
-.border-b {
-  border-bottom-width: 1px;
+.border-r {
+  border-right-width: 1px;
 }
 .border-t-4 {
   border-top-width: 4px;
@@ -4597,18 +4546,11 @@ textarea.form-control.is-invalid {
 .border-t {
   border-top-width: 1px;
 }
-.border-r {
-  border-right-width: 1px;
-}
 .border-solid {
   border-style: solid;
 }
 .border-none {
   border-style: none;
-}
-.border-gray-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 .border-yellow-300 {
   --tw-border-opacity: 1;
@@ -4625,17 +4567,21 @@ textarea.form-control.is-invalid {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
 .border-yellow-600 {
   --tw-border-opacity: 1;
   border-color: rgb(202 138 4 / var(--tw-border-opacity));
 }
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+}
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -4645,6 +4591,10 @@ textarea.form-control.is-invalid {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
 .bg-yellow-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 224 71 / var(--tw-bg-opacity));
@@ -4652,10 +4602,6 @@ textarea.form-control.is-invalid {
 .bg-indigo-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
-}
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .bg-yellow-200 {
   --tw-bg-opacity: 1;
@@ -4668,37 +4614,13 @@ textarea.form-control.is-invalid {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
 }
-.bg-blue-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
-}
-.bg-blue-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
-}
-.bg-yellow-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(202 138 4 / var(--tw-bg-opacity));
-}
-.bg-gray-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-.bg-blue-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
-}
-.bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
-.bg-red-500 {
+.bg-blue-600 {
   --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
@@ -4766,21 +4688,25 @@ textarea.form-control.is-invalid {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 .py-6 {
   padding-top: 1.5rem;
@@ -4809,10 +4735,6 @@ textarea.form-control.is-invalid {
 .py-2\.5 {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
-}
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
 }
 .pt-2 {
   padding-top: 0.5rem;
@@ -4847,14 +4769,8 @@ textarea.form-control.is-invalid {
 .pb-0 {
   padding-bottom: 0px;
 }
-.pt-1 {
-  padding-top: 0.25rem;
-}
 .pt-0 {
   padding-top: 0px;
-}
-.pt-3 {
-  padding-top: 0.75rem;
 }
 .text-center {
   text-align: center;
@@ -4948,9 +4864,9 @@ textarea.form-control.is-invalid {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-.text-gray-900 {
+.text-yellow-600 {
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
+  color: rgb(202 138 4 / var(--tw-text-opacity));
 }
 .text-gray-700 {
   --tw-text-opacity: 1;
@@ -4960,13 +4876,13 @@ textarea.form-control.is-invalid {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
 .text-indigo-600 {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
-}
-.text-yellow-600 {
-  --tw-text-opacity: 1;
-  color: rgb(202 138 4 / var(--tw-text-opacity));
 }
 .text-gray-500 {
   --tw-text-opacity: 1;
@@ -5008,6 +4924,11 @@ textarea.form-control.is-invalid {
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -5016,11 +4937,6 @@ textarea.form-control.is-invalid {
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-.shadow-md {
-  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .shadow-2xl {
@@ -5077,26 +4993,10 @@ textarea.form-control.is-invalid {
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
-.hover\:scale-50:hover {
-  --tw-scale-x: .5;
-  --tw-scale-y: .5;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.hover\:scale-125:hover {
-  --tw-scale-x: 1.25;
-  --tw-scale-y: 1.25;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.hover\:border-b-4:hover {
-  border-bottom-width: 4px;
 }
 
 .hover\:border-b-2:hover {
@@ -5108,9 +5008,9 @@ textarea.form-control.is-invalid {
   border-color: rgb(202 138 4 / var(--tw-border-opacity));
 }
 
-.hover\:bg-blue-600:hover {
+.hover\:bg-white:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-yellow-400:hover {
@@ -5138,28 +5038,18 @@ textarea.form-control.is-invalid {
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-white:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-opacity-5:hover {
   --tw-bg-opacity: 0.05;
-}
-
-.hover\:text-white:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.hover\:text-indigo-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(99 102 241 / var(--tw-text-opacity));
 }
 
 .hover\:text-yellow-600:hover {
   --tw-text-opacity: 1;
   color: rgb(202 138 4 / var(--tw-text-opacity));
+}
+
+.hover\:text-indigo-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(99 102 241 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -5314,14 +5204,6 @@ textarea.form-control.is-invalid {
 
 @media (min-width: 768px) {
 
-  .md\:visible {
-    visibility: visible;
-  }
-
-  .md\:invisible {
-    visibility: hidden;
-  }
-
   .md\:mx-auto {
     margin-left: auto;
     margin-right: auto;
@@ -5342,10 +5224,6 @@ textarea.form-control.is-invalid {
 
   .md\:block {
     display: block;
-  }
-
-  .md\:inline {
-    display: inline;
   }
 
   .md\:flex {
@@ -5380,14 +5258,6 @@ textarea.form-control.is-invalid {
     width: 50%;
   }
 
-  .md\:basis-1\/4 {
-    flex-basis: 25%;
-  }
-
-  .md\:basis-3\/4 {
-    flex-basis: 75%;
-  }
-
   .md\:basis-4\/5 {
     flex-basis: 80%;
   }
@@ -5406,6 +5276,16 @@ textarea.form-control.is-invalid {
 
   .md\:gap-5 {
     gap: 1.25rem;
+  }
+
+  .md\:gap-x-10 {
+    -moz-column-gap: 2.5rem;
+         column-gap: 2.5rem;
+  }
+
+  .md\:gap-x-16 {
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
   }
 
   .md\:-space-y-1 > :not([hidden]) ~ :not([hidden]) {
@@ -5465,6 +5345,16 @@ textarea.form-control.is-invalid {
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:gap-x-16 {
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
+  }
+
+  .lg\:gap-x-20 {
+    -moz-column-gap: 5rem;
+         column-gap: 5rem;
   }
 
   .lg\:px-8 {
