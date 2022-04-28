@@ -45,7 +45,7 @@
                         <small class="mx-auto">Account</small>
                     </div>
                 </a>
-                <a class="text-center text-gray-600 hover:text-yellow-600 md:-space-y-1 @if(isset($navigation) && $navigation == 'cart') text-yellow-600 @endif"
+                <a class="text-center text-gray-600 hover:text-yellow-600 md:-space-y-1 relative @if(isset($navigation) && $navigation == 'cart') text-yellow-600 @endif"
                    href="{{ route('cart', app()->getLocale()) }}">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -55,6 +55,7 @@
                     <div class="hidden md:block">
                         <small class="cursor-pointer">Cart</small>
                     </div>
+                    <small class="bg-red-600 absolute top-0 right-0 rounded-full text-white font-bold px-1 text-xs">{{ session('cart') !== null ? session('cart')->total_quantity : 0 }}</small>
                 </a>
             </div>
         </div>

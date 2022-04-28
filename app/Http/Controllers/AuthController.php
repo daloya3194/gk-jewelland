@@ -87,15 +87,16 @@ class AuthController extends Controller
 
     private function putCartFromDatabaseToSession($cart)
     {
+        \session()->remove('cart');
+
         foreach ($cart->items()->get() as $item) {
 
-            $old_cart = null;
+            $old_cart = Session::has('cart') ? Session::get('cart') : null;
 
             $product = Product::with(['pictures'])->find($item['item']);
 
             $cart = new CartService($old_cart);
             $cart->add($product, $item['item'], $item['quantity']);
-
             Session::put('cart', $cart);
         }
     }
