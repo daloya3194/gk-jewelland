@@ -5,20 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class Invoice extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function items()
+    public function cart()
     {
-        return $this->hasMany(CartItem::class);
-    }
-
-    public function invoice()
-    {
-        return $this->hasOne(Invoice::class);
+        return $this->belongsTo(Cart::class);
     }
 
     public function user()

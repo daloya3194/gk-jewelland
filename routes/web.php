@@ -57,6 +57,11 @@ Route::group(['prefix' => '{language}'], function () {
 
 });
 
+Route::get('/invalidate-session', function () {
+    session()->invalidate();
+})->name('invalidate-session');
+
+
 Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
 
 Route::post('delete', [\App\Http\Controllers\UploadController::class, 'delete']);

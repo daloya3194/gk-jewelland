@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\CartService;
+use App\Models\Cart;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -25,6 +30,10 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
 
             $request->session()->regenerate();
+
+            if(Auth::user()->cart()->first() !== null) {
+                $this->putCartFromDatabaseToSession(Auth::user()->cart()->first());
+            }
 
             return redirect(route('account', $request->language));
         }
@@ -54,7 +63,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        $request->session()->invalidate();
+//        $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
@@ -74,5 +83,20 @@ class AuthController extends Controller
             'email' => 'required|email|max:100|unique:users',
             'password' => 'required|confirmed|string|min:6',
         ]);
+    }
+
+    private function putCartFromDatabaseToSession($cart)
+    {
+        foreach ($cart->items()->get() as $item) {
+
+            $old_cart = null;
+
+            $product = Product::with(['pictures'])->find($item['item']);
+
+            $cart = new CartService($old_cart);
+            $cart->add($product, $item['item'], $item['quantity']);
+
+            Session::put('cart', $cart);
+        }
     }
 }
