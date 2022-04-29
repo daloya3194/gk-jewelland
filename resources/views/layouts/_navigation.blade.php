@@ -12,7 +12,7 @@
                 </form>
             </div>
             <div class="md:text-center">
-                <a href="/">
+                <a href="{{ route('welcome', app()->getLocale()) }}">
                     <img class="h-12 w-12 md:h-24 md:w-24 md:mx-auto" src="/img/gk_logo.png" alt="GK">
                 </a>
             </div>

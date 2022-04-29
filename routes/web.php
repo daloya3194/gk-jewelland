@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Route::group(['prefix' => '{language}'], function () {
     Route::post('/cart/add/{product_id}', [CartController::class, 'add'])->name('cart.add');
     Route::get('/cart/remove/{product_id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/cart/update-quantity/{product_id}', [CartController::class, 'updateQuantity'])->name('cart.update-quantity');
+    Route::get('/cart/checkout', [InvoiceController::class, 'index'])->name('checkout');
 
     Route::get('/login', [AuthController::class, 'loginIndex'])->middleware(['guest'])->name('login-index');
     Route::post('/login', [AuthController::class, 'login'])->middleware(['guest'])->name('login');
@@ -41,6 +43,7 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth'])->name('logout');
 
     Route::get('/account/{section?}', [AccountController::class, 'index'])->middleware(['auth'])->name('account');
+
 
     Route::group(['prefix' => 'admin'], function () {
 
@@ -57,10 +60,9 @@ Route::group(['prefix' => '{language}'], function () {
 
 });
 
-Route::get('/invalidate-session', function () {
+/*Route::get('/invalidate-session', function () {
     session()->invalidate();
-})->name('invalidate-session');
-
+})->name('invalidate-session');*/
 
 Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
 

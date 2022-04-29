@@ -7,9 +7,9 @@
     <meta name="author" content="" />
     <title>GK-Jewelland | Home</title>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
+{{--    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />--}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
@@ -19,6 +19,8 @@
     <!-- Link Swiper's CSS -->
     <link href="{{ asset('css/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/swiper/style.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @livewireStyles
 </head>
@@ -36,6 +38,8 @@
 
     <script type="text/javascript" src="{{ asset('js/swiper/swiper-bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/swiper/script.js') }}"></script>
+
+{{--    <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>--}}
 
 </body>
 </html>

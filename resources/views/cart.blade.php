@@ -4,7 +4,7 @@
 
     <div class="bg-gray-100 mb-5 py-3 px-4">
         <div class="max-w-7xl mx-auto font-semibold">
-            <a href="/" class="hover:underline">Home</a> /
+            <a href="{{ route('welcome', app()->getLocale()) }}" class="hover:underline">Home</a> /
             <a class="hover:underline">Cart</a>
         </div>
     </div>
@@ -95,7 +95,7 @@
                         <div class="basis-4/5 font-bold"></div>
                         <div class="basis-1/5 font-bold"></div>
                         <div class="basis-1/5 text-right font-bold">
-                            <a class="px-10 py-4 bg-yellow-300 cursor-pointer hover:bg-yellow-400">Checkout</a>
+                            <a href="{{ route('checkout', app()->getLocale()) }}" class="px-10 py-4 bg-yellow-300 cursor-pointer hover:bg-yellow-400">Checkout</a>
                         </div>
                     </div>
             @endisset

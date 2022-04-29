@@ -4,7 +4,7 @@
 
     <div class="bg-gray-100 mb-5 py-3 px-4">
         <div class="max-w-7xl mx-auto font-semibold">
-            <a href="/" class="hover:underline">Home</a> /
+            <a href="{{ route('welcome', app()->getLocale()) }}" class="hover:underline">Home</a> /
             <a class="hover:underline">{{ $category->name }}</a>
         </div>
     </div>
