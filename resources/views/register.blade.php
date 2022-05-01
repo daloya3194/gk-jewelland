@@ -20,7 +20,7 @@
                             <div class="basis-1/2">
                                 <label for="firstname" class="block text-sm font-medium text-gray-700">Firstname<span class="text-red-600">*</span></label>
                                 <div class="mt-1">
-                                    <input id="firstname" name="firstname" type="text" value="{{ old('firstname') }}" autocomplete="on" required maxlength="50"
+                                    <input id="firstname" name="firstname" type="text" value="{{ old('firstname') }}" autocomplete="on" required maxlength="100"
                                            class="@error('firstname') border-red-600 ring-red-500 @enderror"
                                     >
                                     @error('firstname')
@@ -31,7 +31,7 @@
                             <div class="basis-1/2">
                                 <label for="lastname" class="block text-sm font-medium text-gray-700 text-right">Lastname<span class="text-red-600">*</span></label>
                                 <div class="mt-1">
-                                    <input id="lastname" name="lastname" type="text" value="{{ old('lastname') }}" autocomplete="on" required maxlength="50"
+                                    <input id="lastname" name="lastname" type="text" value="{{ old('lastname') }}" autocomplete="on" required maxlength="100"
                                            class="@error('lastname') border-red-600 ring-red-500 @enderror"
                                     >
                                     @error('lastname')
@@ -45,7 +45,7 @@
                             <div class="basis-4/6">
                                 <label for="street" class="block text-sm font-medium text-gray-700">Street</label>
                                 <div class="mt-1 ">
-                                    <input id="street" name="street" type="text" value="{{ old('street') }}" autocomplete="on" maxlength="50"
+                                    <input id="street" name="street" type="text" value="{{ old('street') }}" autocomplete="on" maxlength="100"
                                            class="@error('street') border-red-600 ring-red-500 @enderror"
                                     >
                                     @error('street')
@@ -56,7 +56,7 @@
                             <div class="basis-2/6">
                                 <label for="house_number" class="block text-sm font-medium text-gray-700 text-right">Number</label>
                                 <div class="mt-1 ">
-                                    <input id="house_number" name="house_number" type="text" value="{{ old('house_number') }}" autocomplete="on" maxlength="50"
+                                    <input id="house_number" name="house_number" type="text" value="{{ old('house_number') }}" autocomplete="on" maxlength="100"
                                            class="@error('house_number') border-red-600 ring-red-500 @enderror"
                                     >
                                     @error('house_number')
@@ -68,12 +68,12 @@
 
                         <div class="flex gap-1">
                             <div class="basis-2/6">
-                                <label for="postcode" class="block text-sm font-medium text-gray-700">Postcode</label>
+                                <label for="zip_code" class="block text-sm font-medium text-gray-700">Zip code</label>
                                 <div class="mt-1 ">
-                                    <input id="postcode" name="postcode" type="number" value="{{ old('postcode') }}" autocomplete="on" maxlength="50"
-                                           class="@error('postcode') border-red-600 ring-red-500 @enderror"
+                                    <input id="zip_code" name="zip_code" type="number" value="{{ old('zip_code') }}" autocomplete="on" maxlength="100"
+                                           class="@error('zip_code') border-red-600 ring-red-500 @enderror"
                                     >
-                                    @error('postcode')
+                                    @error('zip_code')
                                     <small class="text-red-600">{{ $message }}</small>
                                     @enderror
                                 </div>
@@ -81,7 +81,7 @@
                             <div class="basis-4/6">
                                 <label for="city" class="block text-sm font-medium text-gray-700 text-right">City</label>
                                 <div class="mt-1 ">
-                                    <input id="city" name="city" type="text" value="{{ old('city') }}" autocomplete="on" maxlength="50"
+                                    <input id="city" name="city" type="text" value="{{ old('city') }}" autocomplete="on" maxlength="100"
                                            class="@error('city') border-red-600 ring-red-500 @enderror"
                                     >
                                     @error('city')

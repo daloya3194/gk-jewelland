@@ -18,30 +18,44 @@
                     @auth()
                         <div class="mt-5">
                             <select name="address" class="p-2.5 w-full border-gray-300 rounded shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                <option disabled selected>Please select your address...</option>
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="0" disabled selected>Please select your address...</option>
+                                <option>New address</option>
+                                @isset($addresses)
+                                    @foreach($addresses as $address)
+                                        <option value="{{ $address->id }}" @isset($standard_address) {{ $standard_address->id == $address->id ? 'selected' : '' }} @endisset>{{ $address->user->lastname . ' (' .  $address->street . ' ' . $address->house_number . '...)' }}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </div>
                     @endauth
-                    <input class="mt-5" type="text" placeholder="First Name" name="firstname"
-                           value="{{ Auth::user() !== null ? Auth::user()->firstname : old('firstname') }}"
+                    <input class="mt-5" type="text" placeholder="First Name" name="firstname" id="firstname"
+                           value="{{ $standard_address !== null ? $standard_address->firstname : old('firstname') ?? Auth::user()->firstname }}"
                     >
-                    <input class="mt-4" type="text" placeholder="Last Name" name="lastname"
-                           value="{{ Auth::user() !== null ? Auth::user()->lastname : old('lastname') }}"
+                    <input class="mt-4" type="text" placeholder="Last Name" name="lastname" id="lastname"
+                           value="{{ $standard_address !== null ? $standard_address->lastname : old('lastname') ?? Auth::user()->lastname }}"
                     >
                     @guest()
-                        <input class="mt-4" type="email" placeholder="Email" name="email">
+                        <input class="mt-4" type="email" placeholder="Email" name="email" id="email">
                     @endguest
                     <div class="mt-4 grid grid-cols-3 gap-2">
-                        <input class="col-span-3 md:col-span-2" type="text" placeholder="Street">
-                        <input class="col-span-3 md:col-span-1" type="text" placeholder="House Number">
+                        <input class="col-span-3 md:col-span-2" type="text" placeholder="Street" name="street" id="street"
+                               value="{{ $standard_address !== null ? $standard_address->street : old('street') }}"
+                        >
+                        <input class="col-span-3 md:col-span-1" type="text" placeholder="House Number" name="house_number" id="house_number"
+                               value="{{ $standard_address !== null ? $standard_address->house_number : old('house_number') }}"
+                        >
                     </div>
                     <div class="mt-4 grid grid-cols-3 gap-2">
-                        <input class="col-span-3 md:col-span-1" type="text" placeholder="Post Code">
-                        <input class="col-span-3 md:col-span-2" type="text" placeholder="City">
+                        <input class="col-span-3 md:col-span-1" type="text" placeholder="ZIP Code" name="zip_code" id="zip_code"
+                               value="{{ $standard_address !== null ? $standard_address->zip_code : old('zip_code') }}"
+                        >
+                        <input class="col-span-3 md:col-span-2" type="text" placeholder="City" name="city" id="city"
+                               value="{{ $standard_address !== null ? $standard_address->city : old('city') }}"
+                        >
                     </div>
-                    <input id="country" class="mt-4" type="text" placeholder="Country">
+                    <input class="mt-4" type="text" placeholder="Country" name="country" id="country"
+                           value="{{ $standard_address !== null ? $standard_address->country : old('country') }}"
+                    >
                 </div>
                 <div class="col-span-5 md:col-span-2 py-5 px-10 flex items-center">
                     <div class="w-full">

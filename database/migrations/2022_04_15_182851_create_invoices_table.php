@@ -15,7 +15,6 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cart_id')->nullable()->constrained()->onDelete('no action');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('no action');
             $table->string('invoice_number')->unique();
             $table->date('date');
