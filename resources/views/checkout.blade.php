@@ -28,11 +28,25 @@
                             </select>
                         </div>
                     @endauth
+{{--                    {{ dd($standard_address !== null) }}--}}
                     <input class="mt-5" type="text" placeholder="First Name" name="firstname" id="firstname"
-                           value="{{ $standard_address !== null ? $standard_address->firstname : old('firstname') ?? Auth::user()->firstname }}"
+                            @if($standard_address !== null)
+                                value="{{ $standard_address->firstname }}"
+                            @elseif(Auth::user() !== null)
+                                value="{{ Auth::user()->firstname }}"
+                            @else
+                                value="{{ old('firstname') }}"
+                            @endif
                     >
+
                     <input class="mt-4" type="text" placeholder="Last Name" name="lastname" id="lastname"
-                           value="{{ $standard_address !== null ? $standard_address->lastname : old('lastname') ?? Auth::user()->lastname }}"
+                           @if($standard_address !== null)
+                               value="{{ $standard_address->lastname }}"
+                           @elseif(Auth::user() !== null)
+                               value="{{ Auth::user()->lastname }}"
+                           @else
+                               value="{{ old('lastname') }}"
+                           @endif
                     >
                     @guest()
                         <input class="mt-4" type="email" placeholder="Email" name="email" id="email">

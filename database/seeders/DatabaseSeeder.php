@@ -24,7 +24,21 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'User',
             'email' => 'blackm111@protonmail.ch',
             'role' => 'admin',
+            'standard_address' => 1,
             'password' => Hash::make('blackm111@protonmail.ch'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        DB::table('addresses')->insert([
+            'user_id' => 1,
+            'firstname' => 'Admin',
+            'lastname' => 'User',
+            'street' => 'Hennigfeldstraße',
+            'house_number' => '7',
+            'zip_code' => 44795,
+            'city' => 'Bochum',
+            'country' => 'Deutschland',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

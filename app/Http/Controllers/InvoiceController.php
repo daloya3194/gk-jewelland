@@ -12,8 +12,13 @@ class InvoiceController extends Controller
     public function index()
     {
         $cart = Session::has('cart') ? Session::get('cart') : null;
-        $addresses = Address::with(['user'])->where('user_id', Auth::id())->get();
-        $standard_address = Address::find(Auth::user()->standard_address);
+        $addresses = null;
+        $standard_address = null;
+
+        if (Auth::user() !== null) {
+            $addresses = Address::with(['user'])->where('user_id', Auth::id())->get();
+            $standard_address = Address::find(Auth::user()->standard_address);
+        }
 
         return view('checkout', [
             'cart' => $cart,
