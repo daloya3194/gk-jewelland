@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Invoice;
+use App\Services\AddressService;
+use App\Services\CartDatabaseService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class InvoiceController extends Controller
 {
@@ -25,6 +33,53 @@ class InvoiceController extends Controller
             'addresses' => $addresses,
             'standard_address' => $standard_address,
             'navigation' => 'cart'
+        ]);
+    }
+
+    public function checkout(Request $request)
+    {
+        if (!Session::has('cart')) {
+            return redirect(route('cart', $request->language));
+        }
+
+        $data = $this->validator($request->all())->validate();
+
+        $cart = Session::get('cart');
+
+        if (Auth::check()) {
+            $user = Auth::user();
+        } else {
+            $user = UserService::createUser($data, 'guest');
+        }
+
+        $invoice = Invoice::create([
+            'user_id' => $user->id,
+            'date' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        $invoice->invoice_number = str_pad(((string) $invoice->id), 10, '0', STR_PAD_LEFT);
+        $invoice->save();
+
+        CartDatabaseService::createCart($cart, 'invoice_id', $invoice->id);
+
+        AddressService::createAddress($data, 'invoice_id', $invoice->id);
+
+        dd($invoice);
+    }
+
+    public function validator(array $data)
+    {
+        return Validator::make($data, [
+            'address' => 'nullable|numeric',
+            'firstname' => 'required|string|max:100',
+            'lastname' => 'required|string|max:100',
+            'street' => 'required|string|max:100',
+            'house_number' => 'required|string|max:100',
+            'zip_code' => 'required|numeric',
+            'city' => 'required|string|max:100',
+            'country' => 'required|string|max:100',
+            'email' => ['nullable','email','max:100', Rule::unique('users')->where(function ($query) {
+                return $query->whereIn('role', ['customer', 'admin'])->get();
+            })],
         ]);
     }
 }

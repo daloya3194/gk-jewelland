@@ -11,15 +11,16 @@
     </div>
 
     <div class="max-w-5xl mx-auto mb-12">
-        <form>
+        <form action="{{ route('checkout-submit', app()->getLocale()) }}" method="POST">
+            @csrf
             <div class="grid grid-cols-5">
                 <div class="col-span-5 md:col-span-3 py-5 px-10">
                     <p class="text-xl font-bold">Shipping address</p>
                     @auth()
                         <div class="mt-5">
                             <select name="address" class="p-2.5 w-full border-gray-300 rounded shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                <option value="0" disabled selected>Please select your address...</option>
-                                <option>New address</option>
+                                <option disabled selected>Please select your address...</option>
+                                <option value="0">New address</option>
                                 @isset($addresses)
                                     @foreach($addresses as $address)
                                         <option value="{{ $address->id }}" @isset($standard_address) {{ $standard_address->id == $address->id ? 'selected' : '' }} @endisset>{{ $address->user->lastname . ' (' .  $address->street . ' ' . $address->house_number . '...)' }}</option>
@@ -28,7 +29,6 @@
                             </select>
                         </div>
                     @endauth
-{{--                    {{ dd($standard_address !== null) }}--}}
                     <input class="mt-5" type="text" placeholder="First Name" name="firstname" id="firstname"
                             @if($standard_address !== null)
                                 value="{{ $standard_address->firstname }}"
@@ -77,7 +77,7 @@
                         <hr class="mt-2 mb-4">
                         <div class="flex justify-between">
                             <div class="text-xl font-semibold">Zwischensumme</div>
-                            <div class="text-xl font-semibold">{{ $cart->total_price }}€</div>
+                            <div class="text-xl font-semibold">{{ $cart !== null ? $cart->total_price : 0 }}€</div>
                         </div>
                         <div class="flex justify-between mt-2">
                             <div>Lieferkosten</div>
@@ -86,7 +86,7 @@
                         <hr class="mt-2 mb-4">
                         <div class="flex justify-between">
                             <div class="text-xl font-semibold">Gesammtsumme</div>
-                            <div class="text-xl font-semibold">{{ $cart->total_price }}€</div>
+                            <div class="text-xl font-semibold">{{ $cart !== null ? $cart->total_price : 0 }}€</div>
                         </div>
                         <small>inkl. MwSt.</small>
                         <button type="submit"

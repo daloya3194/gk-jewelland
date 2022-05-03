@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
+use App\Services\CartDatabaseService;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,6 +92,17 @@ class CartController extends Controller
         }
 
         if (isset($cart)) {
+            CartDatabaseService::createCart($cart, 'user_id', Auth::id());
+        }
+    }
+
+    /*private function saveCartToDatabase($cart)
+    {
+        if(Auth::user()->cart()->first() !== null) {
+            Cart::destroy(Auth::user()->cart()->first()->id);
+        }
+
+        if (isset($cart)) {
             $cart_db = Cart::create([
                 'user_id' => Auth::id(),
                 'total_quantity' => $cart->total_quantity,
@@ -106,5 +118,5 @@ class CartController extends Controller
                 ]);
             }
         }
-    }
+    }*/
 }
