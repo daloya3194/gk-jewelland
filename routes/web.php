@@ -34,8 +34,15 @@ Route::group(['prefix' => '{language}'], function () {
     Route::post('/cart/add/{product_id}', [CartController::class, 'add'])->name('cart.add');
     Route::get('/cart/remove/{product_id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/cart/update-quantity/{product_id}', [CartController::class, 'updateQuantity'])->name('cart.update-quantity');
+
     Route::get('/cart/checkout', [InvoiceController::class, 'index'])->name('checkout');
     Route::post('/cart/checkout', [InvoiceController::class, 'checkout'])->name('checkout-submit');
+    Route::get('/cart/process-transaction', [InvoiceController::class, 'processTransaction'])->name('processTransaction');
+    Route::get('/cart/success-transaction', [InvoiceController::class, 'successTransaction'])->name('successTransaction');
+    Route::get('/cart/cancel-transaction', [InvoiceController::class, 'cancelTransaction'])->name('cancelTransaction');
+
+
+
 
     Route::get('/login', [AuthController::class, 'loginIndex'])->middleware(['guest'])->name('login-index');
     Route::post('/login', [AuthController::class, 'login'])->middleware(['guest'])->name('login');

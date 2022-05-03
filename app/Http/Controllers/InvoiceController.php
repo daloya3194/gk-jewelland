@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class InvoiceController extends Controller
 {
@@ -43,6 +44,50 @@ class InvoiceController extends Controller
         }
 
         $data = $this->validator($request->all())->validate();
+        Session::put('data', $data);
+
+        $cart = Session::get('cart');
+
+        $provider = new PayPalClient();
+        $provider->setApiCredentials(config('paypal'));
+        $paypalToken = $provider->getAccessToken();
+
+        $response = $provider->createOrder([
+            "intent" => "CAPTURE",
+            "application_context" => [
+                "return_url" => route('successTransaction', $request->language),
+                "cancel_url" => route('cancelTransaction', $request->language),
+            ],
+            "purchase_units" => [
+                [
+                    "amount" => [
+                        "currency_code" => "EUR",
+                        "value" => $cart->total_price,
+                    ]
+                ]
+            ]
+        ]);
+
+        if (isset($response['id']) && $response['id'] != null) {
+
+            // redirect to approve href
+            foreach ($response['links'] as $links) {
+                if ($links['rel'] == 'approve') {
+                    return redirect()->away($links['href']);
+                }
+            }
+
+            return redirect()
+                ->route('checkout', $request->language)
+                ->with('error', 'Something went wrong.');
+
+        } else {
+            return redirect()
+                ->route('checkout', $request->language)
+                ->with('error', $response['message'] ?? 'Something went wrong.');
+        }
+
+        /*$data = $this->validator($request->all())->validate();
 
         $cart = Session::get('cart');
 
@@ -63,7 +108,60 @@ class InvoiceController extends Controller
 
         AddressService::createAddress($data, 'invoice_id', $invoice->id);
 
-        dd($invoice);
+        dd($invoice);*/
+    }
+
+    public function successTransaction(Request $request)
+    {
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
+        $response = $provider->capturePaymentOrder($request['token']);
+
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            $this->saveInvoice();
+            return redirect()
+                ->route('cart', $request->language)
+                ->with('success', 'Transaction complete.');
+        } else {
+            return redirect()
+                ->route('checkout', $request->language)
+                ->with('error', $response['message'] ?? 'Something went wrong.');
+        }
+    }
+
+    public function cancelTransaction(Request $request)
+    {
+        return redirect()
+            ->route('checkout', $request->language)
+            ->with('error', $response['message'] ?? 'You have canceled the transaction.');
+    }
+
+    private function saveInvoice()
+    {
+        $cart = Session::get('cart');
+        $data = Session::get('data');
+
+        if (Auth::check()) {
+            $user = Auth::user();
+        } else {
+            $user = UserService::createUser($data, 'guest');
+        }
+
+        $invoice = Invoice::create([
+            'user_id' => $user->id,
+            'date' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        $invoice->invoice_number = str_pad(((string) $invoice->id), 10, '0', STR_PAD_LEFT);
+        $invoice->save();
+
+        CartDatabaseService::createCart($cart, 'invoice_id', $invoice->id);
+
+        AddressService::createAddress($data, 'invoice_id', $invoice->id);
+
+        Session::forget('cart');
+
+        Session::forget('data');
     }
 
     public function validator(array $data)

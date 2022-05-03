@@ -29,6 +29,15 @@
     <!-- Navigation-->
     @include('layouts._navigation')
 
+    @if(\Session::has('error'))
+        <div class="border border-red-600">{{ \Session::get('error') }}</div>
+        {{ \Session::forget('error') }}
+    @endif
+    @if(\Session::has('success'))
+        <div class="border border-green-600">{{ \Session::get('success') }}</div>
+        {{ \Session::forget('success') }}
+    @endif
+
     @yield('content')
 
     @include('layouts._footer')
