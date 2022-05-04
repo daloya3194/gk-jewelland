@@ -4402,14 +4402,14 @@ textarea.form-control.is-invalid {
 .basis-1\/5 {
   flex-basis: 20%;
 }
+.basis-auto {
+  flex-basis: auto;
+}
 .basis-4\/6 {
   flex-basis: 66.666667%;
 }
 .basis-2\/6 {
   flex-basis: 33.333333%;
-}
-.basis-auto {
-  flex-basis: auto;
 }
 .border-collapse {
   border-collapse: collapse;

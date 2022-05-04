@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Cart;
 use App\Models\Invoice;
 use App\Services\AddressService;
 use App\Services\CartDatabaseService;
+use App\Services\PaymentService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -86,29 +88,6 @@ class InvoiceController extends Controller
                 ->route('checkout', $request->language)
                 ->with('error', $response['message'] ?? 'Something went wrong.');
         }
-
-        /*$data = $this->validator($request->all())->validate();
-
-        $cart = Session::get('cart');
-
-        if (Auth::check()) {
-            $user = Auth::user();
-        } else {
-            $user = UserService::createUser($data, 'guest');
-        }
-
-        $invoice = Invoice::create([
-            'user_id' => $user->id,
-            'date' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        $invoice->invoice_number = str_pad(((string) $invoice->id), 10, '0', STR_PAD_LEFT);
-        $invoice->save();
-
-        CartDatabaseService::createCart($cart, 'invoice_id', $invoice->id);
-
-        AddressService::createAddress($data, 'invoice_id', $invoice->id);
-
-        dd($invoice);*/
     }
 
     public function successTransaction(Request $request)
@@ -119,7 +98,7 @@ class InvoiceController extends Controller
         $response = $provider->capturePaymentOrder($request['token']);
 
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-            $this->saveInvoice();
+            $this->saveInvoice($response);
             return redirect()
                 ->route('cart', $request->language)
                 ->with('success', 'Transaction complete.');
@@ -137,7 +116,7 @@ class InvoiceController extends Controller
             ->with('error', $response['message'] ?? 'You have canceled the transaction.');
     }
 
-    private function saveInvoice()
+    private function saveInvoice($response)
     {
         $cart = Session::get('cart');
         $data = Session::get('data');
@@ -155,6 +134,8 @@ class InvoiceController extends Controller
         $invoice->invoice_number = str_pad(((string) $invoice->id), 10, '0', STR_PAD_LEFT);
         $invoice->save();
 
+        PaymentService::createPayment($invoice->id, 'paypal', $response);
+
         CartDatabaseService::createCart($cart, 'invoice_id', $invoice->id);
 
         AddressService::createAddress($data, 'invoice_id', $invoice->id);
@@ -162,6 +143,10 @@ class InvoiceController extends Controller
         Session::forget('cart');
 
         Session::forget('data');
+
+        if (Auth::check()) {
+            Cart::where('user_id', Auth::id())->first()->delete();
+        }
     }
 
     public function validator(array $data)
