@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendInvoiceMail;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Invoice;
 use App\Services\AddressService;
 use App\Services\CartDatabaseService;
 use App\Services\PaymentService;
+use App\Services\PDFService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -139,6 +142,10 @@ class InvoiceController extends Controller
         CartDatabaseService::createCart($cart, 'invoice_id', $invoice->id);
 
         AddressService::createAddress($data, 'invoice_id', $invoice->id);
+
+        $invoice_pdf = PDFService::generateInvoicePDF($data, $invoice);
+
+        Mail::to($data['email'])->send(new SendInvoiceMail($data, $invoice, $invoice_pdf));
 
         Session::forget('cart');
 
