@@ -41,9 +41,6 @@ class PDFService
             ->logo(public_path('img/gk_logo.png'))
             ->save('public');
 
-        return [
-            'attach' => $invoice->url(),
-            'download' => $invoice->download(),
-        ];
+        return $invoice->url();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendInvoiceMailJob;
 use App\Mail\SendInvoiceMail;
 use App\Models\Address;
 use App\Models\Cart;
@@ -145,7 +146,9 @@ class InvoiceController extends Controller
 
         $invoice_pdf = PDFService::generateInvoicePDF($user, $data, $invoice);
 
-        Mail::to($user->email)->send(new SendInvoiceMail($user, $invoice, $invoice_pdf));
+//        Mail::to($user->email)->send(new SendInvoiceMail($user, $invoice, $invoice_pdf));
+
+        SendInvoiceMailJob::dispatch($user, $invoice, $invoice_pdf);
 
         Session::forget('cart');
 
