@@ -18,8 +18,8 @@
                     <h2 class="font-semibold text-4xl mb-4">Heading</h2>
                     <h4 class="font-semibold text-xl mb-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, hic.</h4>
                     <a
-                        class="inline-block px-7 py-3 mb-1 border-2 border-gray-200 text-gray-200 font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                        href="#!"
+                        class="inline-block px-7 py-3 mb-1 border-2 text-gray-200 font-medium text-sm leading-snug uppercase rounded bg-bordeaux border-gray-200 hover:text-white hover:bg-opacity-30 hover:border-bordeaux hover:shadow-2xl hover:scale-105"
+                        href="/#new_items"
                         role="button"
                         data-mdb-ripple="true"
                         data-mdb-ripple-color="light"
@@ -31,39 +31,9 @@
     </div>
     <!-- Jumbotron -->
 
-    <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 text-center">New items</h2>
+    <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8" id="new_items">
+        <h2 class="text-2xl font-extrabold tracking-tight text-center">New items</h2>
 
-        <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            @isset($new_products)
-                @foreach($new_products as $new_product)
-                    <div class="group relative">
-                        <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                            <img src="{{ \Illuminate\Support\Facades\Storage::url($new_product->pictures->first()->path) }}" alt="{{ $new_product->pictures->first()->filename }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                        </div>
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-yellow-600">
-                                    <a href="{{ route('show.product', [app()->getLocale(), $new_product->slug]) }}">
-                                        <span aria-hidden="true" class="absolute inset-0"></span>
-                                        {{ $new_product->name }}
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">{{ substr($new_product->description, 0, 30) }}...</p>
-                            </div>
-                            <p class="text-sm font-medium text-gray-900">{{ $new_product->price }}€</p>
-                        </div>
-                        <div class="absolute top-2 left-2 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold">
-                            New
-                        </div>
-                    </div>
-                @endforeach
-            @endisset
-
-        </div>
-
-        <br>
-        <br>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @isset($new_products)
@@ -75,7 +45,7 @@
                                 </div>
                                 <div class="mt-4 flex justify-between">
                                     <div>
-                                        <h3 class="text-sm text-yellow-600">
+                                        <h3 class="text-sm text-bordeaux">
                                             <a href="{{ route('show.product', [app()->getLocale(), $new_product->slug]) }}">
                                                 <span aria-hidden="true" class="absolute inset-0"></span>
                                                 {{ $new_product->name }}
@@ -85,21 +55,22 @@
                                     </div>
                                     <p class="text-sm font-medium text-gray-900">{{ $new_product->price }}€</p>
                                 </div>
-                                <div class="absolute top-2 left-2 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold">
-                                    New
-                                </div>
+                                @if($new_product->label)
+                                    <div class="absolute top-2 left-2 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold">
+                                        {{ $new_product->label->name }}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     @endforeach
                 @endisset
             </div>
-            <div class="swiper-button-next text-yellow-600"></div>
-            <div class="swiper-button-prev text-yellow-600"></div>
+            <div class="swiper-button-next text-bordeaux"></div>
+            <div class="swiper-button-prev text-bordeaux"></div>
         </div>
         <br>
         <br>
-
-        <section class="mb-32 text-gray-800">
+        <section class="mb-32 text-gray-700">
             <div class="flex flex-wrap">
                 <div class="grow-0 shrink-0 basis-auto mb-6 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
                     <h2 class="text-3xl font-bold mb-6">Contact us</h2>
@@ -115,62 +86,20 @@
                 </div>
                 <div class="grow-0 shrink-0 basis-auto mb-12 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
                     <form>
-                        <div class="form-group mb-6">
-                            <input type="text" class="form-control block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding
-              border border-solid border-gray-300
-              rounded
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7"
+                        <div class="form-group mb-3">
+                            <input type="text" class="" id="exampleInput7"
                                    placeholder="Name">
                         </div>
-                        <div class="form-group mb-6">
-                            <input type="email" class="form-control block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding
-              border border-solid border-gray-300
-              rounded
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
+                        <div class="form-group mb-3">
+                            <input type="email" class="" id="exampleInput8"
                                    placeholder="Email address">
                         </div>
-                        <div class="form-group mb-6">
-            <textarea class="
-              form-control
-              block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding
-              border border-solid border-gray-300
-              rounded
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-            " id="exampleFormControlTextarea13" rows="3" placeholder="Message"></textarea>
+                        <div class="form-group mb-3">
+            <textarea class="" id="exampleFormControlTextarea13" rows="3" placeholder="Message"></textarea>
                         </div>
                         <div class="form-group form-check text-center mb-6">
                             <input type="checkbox"
-                                   class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
+                                   class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-red-600 checked:border-red-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
                                    id="exampleCheck87" checked>
                             <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">Send me a copy of this
                                 message</label>
@@ -179,7 +108,7 @@
             w-full
             px-6
             py-2.5
-            bg-blue-600
+            bg-bordeaux
             text-white
             font-medium
             text-xs
@@ -187,9 +116,9 @@
             uppercase
             rounded
             shadow-md
-            hover:bg-blue-700 hover:shadow-lg
-            focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-            active:bg-blue-800 active:shadow-lg
+            hover:bg-red-700 hover:shadow-lg
+            focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0
+            active:bg-red-800 active:shadow-lg
             transition
             duration-150
             ease-in-out">Send</button>

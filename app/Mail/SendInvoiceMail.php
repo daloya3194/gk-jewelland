@@ -16,12 +16,12 @@ class SendInvoiceMail extends Mailable
      *
      * @return void
      */
-    public $data;
+    public $user;
     public $invoice;
     public $invoice_pdf;
-    public function __construct($data, $invoice, $invoice_pdf)
+    public function __construct($user, $invoice, $invoice_pdf)
     {
-        $this->data = $data;
+        $this->user = $user;
         $this->invoice = $invoice;
         $this->invoice_pdf = $invoice_pdf;
     }

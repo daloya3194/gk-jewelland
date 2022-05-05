@@ -11,7 +11,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $new_products = Product::with(['pictures'])->where('label_id', 1)->get();
+        $new_products = Product::with(['pictures', 'label', 'category'])->where('label_id', 1)->get();
 
 //        dd($categories);
 

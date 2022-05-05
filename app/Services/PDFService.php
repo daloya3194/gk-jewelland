@@ -10,12 +10,12 @@ use LaravelDaily\Invoices\Classes\InvoiceItem;
 
 class PDFService
 {
-    public static function generateInvoicePDF($data, $invoice)
+    public static function generateInvoicePDF($user, $data, $invoice)
     {
         $customer = new Buyer([
-            'name'          => $data['firstname'] . ' ' . $data['lastname'],
+            'name'          => $user->firstname . ' ' . $user->lastname,
             'custom_fields' => [
-                'email' => $data['email'],
+                'email' => $user->email,
             ],
         ]);
 

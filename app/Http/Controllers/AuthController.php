@@ -16,7 +16,9 @@ class AuthController extends Controller
 {
     public function loginIndex()
     {
-        return view('login');
+        return view('login',[
+            'navigation' => 'account'
+        ]);
     }
 
     public function login(Request $request)
@@ -46,7 +48,9 @@ class AuthController extends Controller
 
     public function registerIndex()
     {
-        return view('register');
+        return view('register',[
+            'navigation' => 'account'
+        ]);
     }
 
     public function register(Request $request)

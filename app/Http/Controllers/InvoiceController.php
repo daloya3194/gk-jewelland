@@ -143,9 +143,9 @@ class InvoiceController extends Controller
 
         AddressService::createAddress($data, 'invoice_id', $invoice->id);
 
-        $invoice_pdf = PDFService::generateInvoicePDF($data, $invoice);
+        $invoice_pdf = PDFService::generateInvoicePDF($user, $data, $invoice);
 
-        Mail::to($data['email'])->send(new SendInvoiceMail($data, $invoice, $invoice_pdf));
+        Mail::to($user->email)->send(new SendInvoiceMail($user, $invoice, $invoice_pdf));
 
         Session::forget('cart');
 

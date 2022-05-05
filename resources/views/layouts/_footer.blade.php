@@ -1,4 +1,5 @@
-<footer class="bg-yellow-200 bg-opacity-10 border-t-2">
+{{--<footer class="border-t-2" style="background-color: #F8F8F8">--}}
+<footer class="border-t-2 bg-bordeaux bg-opacity-5">
     <div class="container max-w-7xl mx-auto py-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 text-center my-auto">
             <div class="w-full">
@@ -33,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="text-center mt-3 py-4 bg-yellow-200 bg-opacity-20">
+    <div class="text-center mt-3 py-4 bg-bordeaux bg-opacity-10">
         <p class="font-bold">@ GK-Jewlland 20222</p>
     </div>
 </footer>

@@ -11,6 +11,10 @@ module.exports = {
         fontFamily: {
             sans: ['Inter', 'sans-serif'],
         },
+        colors: {
+            // Configure your color palette here
+            'bordeaux':'#C84C44',
+        },
     },
   },
   plugins: [
