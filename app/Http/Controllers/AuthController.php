@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Services\AddressService;
+use App\Services\CartDatabaseService;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,11 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if(Auth::user()->cart()->first() !== null) {
-                $this->putCartFromDatabaseToSession(Auth::user()->cart()->first());
+                CartDatabaseService::putCartFromDatabaseToSession(Auth::user()->cart()->first());
+            }
+
+            if (Session::has('cart') && Auth::user()->cart()->first() == null) {
+                CartDatabaseService::saveCartUserToDatabase(Session::get('cart'));
             }
 
             return redirect(route('account', $request->language));
@@ -73,8 +78,6 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-//        $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');
@@ -95,21 +98,5 @@ class AuthController extends Controller
             })],
             'password' => 'required|confirmed|string|min:6',
         ]);
-    }
-
-    private function putCartFromDatabaseToSession($cart)
-    {
-        \session()->remove('cart');
-
-        foreach ($cart->items()->get() as $item) {
-
-            $old_cart = Session::has('cart') ? Session::get('cart') : null;
-
-            $product = Product::with(['pictures'])->find($item['item']);
-
-            $cart = new CartService($old_cart);
-            $cart->add($product, $item['item'], $item['quantity']);
-            Session::put('cart', $cart);
-        }
     }
 }

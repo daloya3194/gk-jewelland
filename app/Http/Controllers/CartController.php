@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\CartItem;
 use App\Models\Product;
 use App\Services\CartDatabaseService;
 use App\Services\CartService;
@@ -38,7 +36,7 @@ class CartController extends Controller
         Session::put('cart', $cart);
 
         if (Auth::user() !== null) {
-            $this->saveCartToDatabase($cart);
+            CartDatabaseService::saveCartUserToDatabase($cart);
         }
 
         return redirect(route('show.product', [$language, $product->slug]));
@@ -55,7 +53,7 @@ class CartController extends Controller
         Session::put('cart', $cart);
 
         if (Auth::user() !== null) {
-            $this->saveCartToDatabase($cart);
+            CartDatabaseService::saveCartUserToDatabase($cart);
         }
 
         return redirect(route('cart', $language));
@@ -72,7 +70,7 @@ class CartController extends Controller
         Session::put('cart', $cart);
 
         if (Auth::user() !== null) {
-            $this->saveCartToDatabase($cart);
+            CartDatabaseService::saveCartUserToDatabase($cart);
         }
 
         return redirect(route('cart', $language));
@@ -84,39 +82,4 @@ class CartController extends Controller
             'quantity' => 'required|numeric|min:1|max:50',
         ]);
     }
-
-    private function saveCartToDatabase($cart)
-    {
-        if(Auth::user()->cart()->first() !== null) {
-            Cart::destroy(Auth::user()->cart()->first()->id);
-        }
-
-        if (isset($cart)) {
-            CartDatabaseService::createCart($cart, 'user_id', Auth::id());
-        }
-    }
-
-    /*private function saveCartToDatabase($cart)
-    {
-        if(Auth::user()->cart()->first() !== null) {
-            Cart::destroy(Auth::user()->cart()->first()->id);
-        }
-
-        if (isset($cart)) {
-            $cart_db = Cart::create([
-                'user_id' => Auth::id(),
-                'total_quantity' => $cart->total_quantity,
-                'total_price' => $cart->total_price,
-            ]);
-
-            foreach ($cart->items as $item) {
-                CartItem::create([
-                    'cart_id' => $cart_db->id,
-                    'item' => $item['item']['id'],
-                    'quantity' => $item['quantity'],
-                    'price' => $item['price'],
-                ]);
-            }
-        }
-    }*/
 }
