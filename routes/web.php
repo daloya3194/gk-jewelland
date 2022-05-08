@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\AuthController;
@@ -55,14 +57,16 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::group(['prefix' => 'admin'], function () {
 
-        Route::get('/login', [LoginController::class, 'index'])->name('admin');
-        Route::post('/login', [LoginController::class, 'authenticate'])->name('admin.login');
-        Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+        Route::get('/login', [LoginController::class, 'index'])->middleware(['guest'])->name('admin');
+        Route::post('/login', [LoginController::class, 'authenticate'])->middleware(['guest'])->name('admin.login');
+        Route::get('/logout', [LoginController::class, 'logout'])->middleware(['admin'])->name('admin.logout');
 
         Route::get('/', [DashboardController::class, 'dashboard'])->middleware(['admin'])->name('admin.dashboard');
-        Route::get('/products', [DashboardController::class, 'products'])->middleware(['admin'])->name('admin.products');
-        Route::get('/products/create', [ProductController::class, 'create'])->middleware(['admin'])->name('admin.products.create');
-        Route::post('/products/store', [ProductController::class, 'store'])->middleware(['admin'])->name('admin.products.store');
+        Route::get('/products', [AdminProductController::class, 'index'])->middleware(['admin'])->name('admin.products');
+        Route::get('/products/create', [AdminProductController::class, 'create'])->middleware(['admin'])->name('admin.products.create');
+        Route::post('/products/store', [AdminProductController::class, 'store'])->middleware(['admin'])->name('admin.products.store');
+
+        Route::get('/categories', [AdminCategoryController::class, 'index'])->middleware(['admin'])->name('admin.categories');
 
     });
 
