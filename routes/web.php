@@ -67,6 +67,8 @@ Route::group(['prefix' => '{language}'], function () {
         Route::post('/products/store', [AdminProductController::class, 'store'])->middleware(['admin'])->name('admin.products.store');
 
         Route::get('/categories', [AdminCategoryController::class, 'index'])->middleware(['admin'])->name('admin.categories');
+        Route::get('/categories/create', [AdminCategoryController::class, 'create'])->middleware(['admin'])->name('admin.categories.create');
+        Route::post('/categories/store', [AdminCategoryController::class, 'store'])->middleware(['admin'])->name('admin.categories.store');
 
     });
 

@@ -8,7 +8,7 @@
                 <p class="text-4xl font-semibold">Category</p>
             </div>
             <div>
-                <a class="px-10 py-4 md:px-20 bg-indigo-400 text-white hover:bg-indigo-600 rounded" href="{{ route('admin.products.create', app()->getLocale()) }}">Create Category</a>
+                <a class="px-10 py-4 md:px-20 bg-indigo-400 text-white hover:bg-indigo-600 rounded" href="{{ route('admin.categories.create', app()->getLocale()) }}">Create Category</a>
             </div>
         </div>
 

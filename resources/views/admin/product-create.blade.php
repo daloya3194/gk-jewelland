@@ -22,7 +22,7 @@
                             </div>
                             <div class="lg:col-span-1">
                                 <label for="status">Status<span class="text-red-600">*</span></label>
-                                <select name="eyes_problems" id="status"
+                                <select name="status" id="status"
                                         class="" required>
                                     <option value="1" selected>Active</option>
                                     <option value="0">Inactive</option>
