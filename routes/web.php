@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -76,7 +77,6 @@ Route::group(['prefix' => '{language}'], function () {
         Route::post('/labels/store', [AdminLabelController::class, 'store'])->middleware(['admin'])->name('admin.labels.store');
 
     });
-
 });
 
 /*Route::get('/invalidate-session', function () {

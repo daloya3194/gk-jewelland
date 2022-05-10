@@ -16,7 +16,7 @@
     <div class="max-w-7xl mx-auto mb-12">
         <h2 class="text-2xl font-extrabold tracking-tight text-center">Filters</h2>
 
-        <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-5 md:px-0">
             @isset($category->products)
                 @foreach($category->products as $product)
                     <div class="group relative">
@@ -36,7 +36,7 @@
                             <p class="text-sm font-medium text-gray-900">{{ $product->price }}€</p>
                         </div>
                         @if($product->label)
-                            <div class="absolute top-2 left-2 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold">
+                            <div class="absolute top-1 left-1 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold scale-75 md:top-2 md:left-2 md:scale-100">
                                 {{ $product->label->name }}
                             </div>
                         @endif

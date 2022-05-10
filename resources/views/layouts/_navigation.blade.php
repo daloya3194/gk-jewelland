@@ -31,12 +31,19 @@
                         </svg>
                     </div>
                     <div class="mr-2 font-bold md:mr-0 md:font-normal">
-                        <small class="">EN</small>
+                        <small class="">{{ Config::get('languages')[App::getLocale()] }}</small>
                     </div>
                     <div id="userMenu" class="bg-white nunito rounded shadow-md mt-2 absolute mt-12 -top-6  md:top-12 -right-2 min-w-full overflow-auto z-30 invisible">
                         <ul class="list-reset">
-                            <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-bordeaux hover:text-white no-underline hover:no-underline font-semibold md:font-normal text-sm">FR</a></li>
-                            <li><a href="{{ $urlGenerator->toLanguage('de') }}" class="px-4 py-2 block text-gray-900 hover:bg-bordeaux hover:text-white no-underline hover:no-underline font-semibold md:font-normal text-sm">DE</a></li>
+                            @foreach (Config::get('languages') as $lang => $language)
+                                @if ($lang != App::getLocale())
+                                    <li>
+                                        <a href="{{ $urlGenerator->toLanguage($lang) }}"
+                                           class="px-4 py-2 block text-gray-900 hover:bg-bordeaux hover:text-white no-underline hover:no-underline font-semibold md:font-normal text-sm"
+                                        >{{$language}}</a>
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>
