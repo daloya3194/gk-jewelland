@@ -24,7 +24,7 @@
                         <option>DE</option>
                     </select>
                 </form>--}}
-                <a class="text-center text-gray-700 hover:text-bordeaux md:-space-y-1" href="#">
+                <div class="text-center text-gray-700 hover:text-bordeaux md:-space-y-1 relative cursor-pointer" id="userButton">
                     <div class="hidden md:block">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -33,7 +33,13 @@
                     <div class="mr-2 font-bold md:mr-0 md:font-normal">
                         <small class="">EN</small>
                     </div>
-                </a>
+                    <div id="userMenu" class="bg-white nunito rounded shadow-md mt-2 absolute mt-12 -top-6  md:top-12 -right-2 min-w-full overflow-auto z-30 invisible">
+                        <ul class="list-reset">
+                            <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-bordeaux hover:text-white no-underline hover:no-underline font-semibold md:font-normal text-sm">FR</a></li>
+                            <li><a href="{{ $urlGenerator->toLanguage('de') }}" class="px-4 py-2 block text-gray-900 hover:bg-bordeaux hover:text-white no-underline hover:no-underline font-semibold md:font-normal text-sm">DE</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <a class="text-center text-gray-700 hover:text-bordeaux md:-space-y-1 @if(isset($navigation) && $navigation == 'account') text-bordeaux @endif"
                    href="{{ route('account', app()->getLocale()) }}">
                     <div>

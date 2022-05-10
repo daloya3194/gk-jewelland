@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminLabelController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
@@ -69,6 +70,10 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get('/categories', [AdminCategoryController::class, 'index'])->middleware(['admin'])->name('admin.categories');
         Route::get('/categories/create', [AdminCategoryController::class, 'create'])->middleware(['admin'])->name('admin.categories.create');
         Route::post('/categories/store', [AdminCategoryController::class, 'store'])->middleware(['admin'])->name('admin.categories.store');
+
+        Route::get('/labels', [AdminLabelController::class, 'index'])->middleware(['admin'])->name('admin.labels');
+        Route::get('/labels/create', [AdminLabelController::class, 'create'])->middleware(['admin'])->name('admin.labels.create');
+        Route::post('/labels/store', [AdminLabelController::class, 'store'])->middleware(['admin'])->name('admin.labels.store');
 
     });
 

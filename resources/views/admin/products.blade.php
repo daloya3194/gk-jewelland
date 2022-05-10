@@ -34,11 +34,11 @@
                         @foreach($products as $product)
                             <tr>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->description }}</td>
+                                <td>{{ $product->description ?? '' }}</td>
                                 <td>{{ $product->category->name }}</td>
                                 <td>{{ $product->price }}</td>
-                                <td>{{ $product->status }}</td>
-                                <td>{{ $product->label->name }}</td>
+                                <td>{{ $product->status ? 'active' : 'inactive' }}</td>
+                                <td>{{ $product->label->name ?? '' }}</td>
                                 <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="#">Edit</a></td>
                                 <td><a class="text-red-600 hover:text-red-600 hover:underline" href="#">Delete</a></td>
                             </tr>

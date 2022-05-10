@@ -5,10 +5,10 @@
 
         <div class="p-6 md:p-10 lg:p-16 flex justify-between items-center">
             <div>
-                <p class="text-4xl font-semibold">Categories</p>
+                <p class="text-4xl font-semibold">Labels</p>
             </div>
             <div>
-                <a class="px-10 py-4 md:px-20 bg-indigo-400 text-white hover:bg-indigo-600 rounded" href="{{ route('admin.categories.create', app()->getLocale()) }}">Create Category</a>
+                <a class="px-10 py-4 md:px-20 bg-indigo-400 text-white hover:bg-indigo-600 rounded" href="{{ route('admin.labels.create', app()->getLocale()) }}">Create Label</a>
             </div>
         </div>
 
@@ -27,12 +27,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @isset($categories)
-                        @foreach($categories as $category)
+                    @isset($labels)
+                        @foreach($labels as $label)
                             <tr>
-                                <td>{{ $category->id }}</td>
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->slug }}</td>
+                                <td>{{ $label->id }}</td>
+                                <td>{{ $label->name }}</td>
+                                <td>{{ $label->slug }}</td>
                                 <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="#">Edit</a></td>
                                 <td><a class="text-red-600 hover:text-red-600 hover:underline" href="#">Delete</a></td>
                             </tr>

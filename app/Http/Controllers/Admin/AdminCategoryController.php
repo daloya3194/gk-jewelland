@@ -38,7 +38,7 @@ class AdminCategoryController extends Controller
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:256',
+            'name' => 'required|string|unique:categories,name|max:256',
         ]);
     }
 }

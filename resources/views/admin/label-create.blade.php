@@ -5,13 +5,13 @@
 
         <div class="p-6 md:p-10 lg:p-16 flex justify-between items-center">
             <div>
-                <p class="text-4xl font-semibold">Create Category</p>
+                <p class="text-4xl font-semibold">Create Label</p>
             </div>
         </div>
 
         <div class="px-6 md:px-10 lg:px-16">
 
-            <form action="{{ route('admin.categories.store', app()->getLocale()) }}" method="POST">
+            <form action="{{ route('admin.labels.store', app()->getLocale()) }}" method="POST">
                 @csrf
                 <div class="">
                     <div class="border border-gray-200 p-10 shadow-md">
@@ -32,7 +32,7 @@
                 <br>
                 <div class="flex justify-start gap-5">
                     <button class="px-10 py-3 text-white bg-indigo-400 hover:bg-indigo-600 rounded" type="submit">Create</button>
-                    <a class="px-10 py-3 text-white border border-black text-black hover:bg-black hover:text-white rounded" href="{{ route('admin.categories', app()->getLocale()) }}">Cancel</a>
+                    <a class="px-10 py-3 text-white border border-black text-black hover:bg-black hover:text-white rounded" href="{{ route('admin.labels', app()->getLocale()) }}">Cancel</a>
                 </div>
             </form>
 

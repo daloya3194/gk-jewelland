@@ -1,3 +1,5 @@
+@inject('urlGenerator', 'Illuminate\Routing\UrlGenerator')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +49,8 @@
 
     <script type="text/javascript" src="{{ asset('js/swiper/swiper-bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/swiper/script.js') }}"></script>
+
+    <script src="{{ asset('js/dropdown/toggle-dropdown.js') }}"></script>
 
 {{--    <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>--}}
 
