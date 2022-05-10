@@ -52,7 +52,42 @@ class AdminProductController extends Controller
         return redirect(route('admin.products', app()->getLocale()));
     }
 
-    public function validator(array $data)
+    public function edit($language, $slug)
+    {
+        $product = Product::with(['category', 'pictures', 'label'])->where('slug', $slug)->first();
+        $categories = Category::all();
+        $labels = Label::all();
+
+        return view('admin.product-edit', [
+            'product' => $product,
+            'categories' => $categories,
+            'labels' => $labels,
+            'nav' => 'products'
+        ]);
+    }
+
+    public function update(Request $request, $language, Product $product)
+    {
+        $data = $this->validator($request->all())->validate();
+        $product->update($data);
+
+        if (isset($request['avatar']) && $request['avatar'][0] !== null) {
+            foreach ($request['avatar'] as $avatar) {
+                Picture::where('path', $avatar)->update(['product_id'=> $product->id]);
+            }
+        }
+
+        return redirect(route('admin.products', $language));
+    }
+
+    public function delete($language, Product $product)
+    {
+        $product->delete();
+
+        return redirect(route('admin.products', $language));
+    }
+
+    private function validator(array $data)
     {
         return Validator::make($data, [
             'category_id' => 'required|numeric',

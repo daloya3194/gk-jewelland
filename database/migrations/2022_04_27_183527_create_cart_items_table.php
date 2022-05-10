@@ -23,7 +23,7 @@ class CreateCartItemsTable extends Migration
             $table->foreign('item')
                 ->references('id')
                 ->on('products')
-                ->onDelete('no action');
+                ->onDelete('cascade');
         });
     }
 

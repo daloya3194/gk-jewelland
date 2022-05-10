@@ -12,8 +12,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +69,9 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get('/products', [AdminProductController::class, 'index'])->middleware(['admin'])->name('admin.products');
         Route::get('/products/create', [AdminProductController::class, 'create'])->middleware(['admin'])->name('admin.products.create');
         Route::post('/products/store', [AdminProductController::class, 'store'])->middleware(['admin'])->name('admin.products.store');
+        Route::get('/products/edit/{slug}', [AdminProductController::class, 'edit'])->middleware(['admin'])->name('admin.products.edit');
+        Route::post('/products/update/{product}', [AdminProductController::class, 'update'])->middleware(['admin'])->name('admin.products.update');
+        Route::get('/products/delete/{product}', [AdminProductController::class, 'delete'])->middleware(['admin'])->name('admin.products.delete');
 
         Route::get('/categories', [AdminCategoryController::class, 'index'])->middleware(['admin'])->name('admin.categories');
         Route::get('/categories/create', [AdminCategoryController::class, 'create'])->middleware(['admin'])->name('admin.categories.create');
@@ -76,6 +81,8 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get('/labels/create', [AdminLabelController::class, 'create'])->middleware(['admin'])->name('admin.labels.create');
         Route::post('/labels/store', [AdminLabelController::class, 'store'])->middleware(['admin'])->name('admin.labels.store');
 
+        Route::post('/delete-image', [UploadController::class, 'delete_image'])->name('admin.image.delete');
+
     });
 });
 
@@ -83,6 +90,6 @@ Route::group(['prefix' => '{language}'], function () {
     session()->invalidate();
 })->name('invalidate-session');*/
 
-Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
+Route::post('upload', [UploadController::class, 'store']);
 
-Route::post('delete', [\App\Http\Controllers\UploadController::class, 'delete']);
+Route::post('delete', [UploadController::class, 'delete']);

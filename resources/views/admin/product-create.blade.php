@@ -13,6 +13,9 @@
 
             <form action="{{ route('admin.products.store', app()->getLocale()) }}" method="POST">
                 @csrf
+                <input type="hidden" value="{{ 3 }}" id="max_number_of_images">
+                <input type="hidden" value="1" id="image_require">
+
                 <div class="grid lg:grid-cols-3 gap-10">
                     <div class="border border-gray-200 p-10 shadow-md lg:col-span-2">
                         <div class="grid lg:grid-cols-3 gap-3">
@@ -49,7 +52,7 @@
                         </div>
                         <div class="mt-4">
                             <label for="avatar" class="">Media<span class="text-red-600">*</span></label>
-                            <input id="avatar" type="file" name="avatar[]" autocomplete="avatar" multiple required
+                            <input id="avatar" type="file" name="avatar[]" autocomplete="avatar" multiple
                                    class="border border-gray-300 rounded @error('avatar*') border-red-600 ring-red-500 @enderror"
                             >
                             @error('avatar*')

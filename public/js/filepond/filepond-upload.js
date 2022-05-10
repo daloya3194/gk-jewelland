@@ -1,14 +1,23 @@
 // Register the plugin
 FilePond.registerPlugin(FilePondPluginImagePreview);
+FilePond.registerPlugin(FilePondPluginFileValidateType);
 
 // Get a reference to the file input element
 const inputElement = document.querySelector('input[id="avatar"]');
 const csrf_token = document.querySelector('input[name="_token"]').value;
+const max_number_of_images = document.getElementById('max_number_of_images').value;
+const image_require = document.getElementById('image_require').value;
 
 // Create a FilePond instance
-const pond = FilePond.create(inputElement);
+const pond = FilePond.create(inputElement, {
+    acceptedFileTypes: ['image/png', 'image/jpeg'],
+});
+
+console.log(image_require === '1');
 
 FilePond.setOptions({
+    maxFiles: max_number_of_images,
+    required: image_require === '1',
     server: {
         headers: {
             'X-CSRF-TOKEN': csrf_token

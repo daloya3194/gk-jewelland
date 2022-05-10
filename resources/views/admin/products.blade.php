@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-    <div id="main-content" class="w-full flex-1">
+    <div id="main-content" class="w-full">
 
         <div class="p-6 md:p-10 lg:p-16 flex justify-between items-center">
             <div>
@@ -39,8 +39,8 @@
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->status ? 'active' : 'inactive' }}</td>
                                 <td>{{ $product->label->name ?? '' }}</td>
-                                <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="#">Edit</a></td>
-                                <td><a class="text-red-600 hover:text-red-600 hover:underline" href="#">Delete</a></td>
+                                <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="{{ route('admin.products.edit', [app()->getLocale(), $product->slug]) }}">Edit</a></td>
+                                <td><a class="text-red-600 hover:text-red-600 hover:underline" href="{{ route('admin.products.delete', [app()->getLocale(), $product]) }}">Delete</a></td>
                             </tr>
                         @endforeach
                     @endisset

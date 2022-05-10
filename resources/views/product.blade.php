@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto mb-12">
+    <div class="max-w-7xl mx-auto mb-12 px-5 md:px-0">
 
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-20 items-center">
             <div class="swiper myProductSwiper pt-0 pb-0">

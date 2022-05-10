@@ -45,4 +45,21 @@ class UploadController extends Controller
 
         return response('ok', 200);
     }
+
+    public function delete_image(Request $request)
+    {
+        $image = \App\Models\Picture::find($request->get('image_id'));
+
+        if (!isset($image)) {
+            return response('Not Found', 404);
+        }
+
+        if (Storage::disk('public')->delete($image->path)) {
+            rmdir(storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'avatars' . DIRECTORY_SEPARATOR . $image->folder));
+        }
+
+        $image->delete();
+
+        return response('OK', 200);
+    }
 }
