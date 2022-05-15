@@ -39,7 +39,7 @@ class CartController extends Controller
             CartDatabaseService::saveCartUserToDatabase($cart);
         }
 
-        return redirect(route('show.product', [$language, $product->slug]));
+        return redirect(route('show.product', [$language, $product->slug]))->with('success', 'success');
     }
 
     public function remove($language, $product_id) {
@@ -56,7 +56,7 @@ class CartController extends Controller
             CartDatabaseService::saveCartUserToDatabase($cart);
         }
 
-        return redirect(route('cart', $language));
+        return redirect(route('cart', $language))->with('success', 'success');
     }
 
     public function updateQuantity(Request $request, $language, $product_id)

@@ -115,11 +115,9 @@
                 <br>
                 <br>
 
-                <div class="flex flex-row">
-                    <div class="basis-4/5 font-bold"></div>
-                    <div class="basis-1/5 font-bold"></div>
-                    <div class="basis-1/5 text-right font-bold">
-                        <a href="{{ route('checkout', app()->getLocale()) }}" class="px-10 py-4 bg-bordeaux cursor-pointer hover:bg-red-600 text-white">Checkout</a>
+                <div class="flex justify-end">
+                    <div class="text-right font-bold">
+                        <a href="{{ route('checkout', app()->getLocale()) }}" class="px-10 py-4 bg-bordeaux cursor-pointer hover:bg-red-600 text-white">Process to checkout</a>
                     </div>
                 </div>
             @endisset

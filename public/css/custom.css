@@ -1,0 +1,8 @@
+#alert-2 {
+    animation: cssAnimation 0s 4s forwards;
+    visibility: visible;
+}
+
+@keyframes cssAnimation {
+    to   { visibility: hidden; }
+}
