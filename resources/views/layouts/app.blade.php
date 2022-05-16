@@ -8,6 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>GK-Jewelland | Home</title>
+    <link rel="icon" href="{{ asset('img/gk_logo.png') }}">
 
 
 

@@ -73,7 +73,7 @@ class CartController extends Controller
             CartDatabaseService::saveCartUserToDatabase($cart);
         }
 
-        return redirect(route('cart', $language));
+        return redirect(route('cart', $language))->with('success', 'success');
     }
 
     public function validator(array $data)

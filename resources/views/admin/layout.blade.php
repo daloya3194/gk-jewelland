@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tailwind Starter Template - Minimal Admin Template: Tailwind Toolbox</title>
+    <title>GK-Jewelland | Admin</title>
+    <link rel="icon" href="{{ asset('img/gk_logo.png') }}">
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
 
