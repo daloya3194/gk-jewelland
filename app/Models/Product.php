@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->belongsTo(Label::class);
     }
+
+    public function scopeWithAll($query)
+    {
+        $query->with(['pictures', 'category', 'label']);
+    }
 }

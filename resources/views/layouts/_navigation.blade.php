@@ -2,28 +2,35 @@
     <div class="container max-w-7xl mx-auto">
         <div class="py-6 flex justify-between mx-5 md:grid md:grid-cols-3 items-center md:py-8">
             <div class="hidden md:block md:text-left">
-                <form class="flex items-center">
-                    <input id="search" class="border-2 border-gray-700 focus:border-bordeaux focus:ring-bordeaux rounded-md pl-3 pr-11 w-5/12 h-10" type="text" placeholder="Search">
-                    <button type="submit" class=" -ml-9 h-10 rounded-md">
+                <div class="flex items-center" onclick="showElement('modal_search')">
+                    <input id="search" class="cursor-pointer border-2 border-gray-700 hover:border-bordeaux hover:ring-bordeaux rounded-md pl-3 pr-11 w-5/12 h-10" type="text" placeholder="Search" disabled>
+                    <button class=" -ml-9 h-10 rounded-md">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
-                </form>
+                </div>
             </div>
+
+            {{--Modal--}}
+            <div onclick="hideElementByParentClick('modal_search')" class="bg-black bg-opacity-50 absolute inset-0 z-50 flex justify-center hidden" id="modal_search">
+                <div class="bg-gray-200 h-fit w-3/4 mt-40">
+                    <livewire:search />
+                </div>
+            </div>
+
             <div class="md:text-center">
                 <a href="{{ route('welcome', app()->getLocale()) }}">
                     <img class="h-12 w-12 md:h-24 md:w-24 md:mx-auto" src="{{ asset('img/gk_logo.png') }}" alt="GK">
                 </a>
             </div>
+
             <div class="block flex justify-end items-center md:gap-5">
-                {{--<form class="">
-                    <select class="h-10 md:h-full border-none focus:border-none focus:ring-0">
-                        <option>EN</option>
-                        <option>FR</option>
-                        <option>DE</option>
-                    </select>
-                </form>--}}
+                <div class="md:hidden pr-4 hover:text-bordeaux" onclick="showElement('modal_search')">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
                 <div class="text-center text-gray-700 hover:text-bordeaux md:-space-y-1 relative cursor-pointer" id="userButton">
                     <div class="hidden md:block">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

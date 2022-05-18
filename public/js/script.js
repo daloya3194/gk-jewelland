@@ -36,3 +36,19 @@ function deleteImage(image_id, app_url, fallback_url, csrf_token) {
         image_id: image_id,
     }));
 }
+
+function showElement(element_id) {
+    document.getElementById(element_id).classList.remove('hidden');
+}
+
+function hideElement(element_id) {
+    document.getElementById(element_id).classList.add('hidden');
+}
+
+function hideElementByParentClick(element_id) {
+    document.getElementById(element_id).addEventListener('click', e => {
+        if(e.target === e.currentTarget) {
+            document.getElementById(element_id).classList.add('hidden');
+        }
+    });
+}
