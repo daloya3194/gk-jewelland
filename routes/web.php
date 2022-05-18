@@ -59,7 +59,10 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get('/account/{section?}/{section_2?}', [AccountController::class, 'index'])->middleware(['auth'])->name('account');
     Route::post('/account/account/update', [AccountController::class, 'updateAccount'])->middleware(['auth'])->name('account-update');
     Route::post('/account/password/update', [AccountController::class, 'updatePassword'])->middleware(['auth'])->name('password-update');
-    Route::post('/account/address/update', [AccountController::class, 'updateAddress'])->middleware(['auth'])->name('address-update');
+    Route::post('/account/address/add', [AccountController::class, 'addAddress'])->middleware(['auth'])->name('address-add');
+    Route::post('/account/address/update/{address_id}', [AccountController::class, 'updateAddress'])->middleware(['auth'])->name('address-update');
+    Route::get('/account/address/standard/{address_id}', [AccountController::class, 'standardAddress'])->middleware(['auth'])->name('address-standard');
+    Route::get('/account/address/delete/{address_id}', [AccountController::class, 'deleteAddress'])->middleware(['auth'])->name('address-delete');
 
 
     Route::group(['prefix' => 'admin'], function () {

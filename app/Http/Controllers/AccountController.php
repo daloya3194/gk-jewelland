@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,12 @@ class AccountController extends Controller
 {
     public function index($language, $section = 'account', $section_2 = 'personal-information')
     {
+        $standard_address = Address::find(Auth::user()->standard_address);
+        $addresses = Address::where('user_id', Auth::id())->where('id', '!=', Auth::user()->standard_address)->get();
+
         return view('account', [
+            'standard_address' => $standard_address,
+            'addresses' => $addresses,
             'section' => $section,
             'section_2' => $section_2,
             'navigation' => 'account'
@@ -43,12 +49,71 @@ class AccountController extends Controller
         return redirect(route('account', [$request->language, 'account', 'change-password']))->with('success', 'success');
     }
 
-    public function updateAddress(Request $request)
+    public function addAddress(Request $request)
     {
-        dd($request->all());
+        $data = $this->addressValidator($request->all())->validate();
+        $address = Address::create($data);
+        $address->user_id = Auth::id();
+        $address->save();
+
+        if (Auth::user()->standard_address == null) {
+            $this->setStandardAddress($address->id);
+            /*User::find(Auth::id())->update([
+                'standard_address' => $address->id
+            ]);*/
+        }
+
+        return redirect(route('account', [$request->language, 'account', 'addresses']))->with('success', 'success');
     }
 
-    private function updateAccountValidator(array $data) {
+    public function updateAddress(Request $request, $language, $address_id)
+    {
+        $data = $this->addressValidator($request->all())->validate();
+        Address::find($address_id)->update($data);
+
+        return redirect(route('account', [$language, 'account', 'addresses']))->with('success', 'success');
+    }
+
+    public function standardAddress($language, $address_id)
+    {
+        $this->setStandardAddress($address_id);
+        /*User::find(Auth::id())->update([
+            'standard_address' => $address_id
+        ]);*/
+
+        return redirect(route('account', [$language, 'account', 'addresses']))->with('success', 'success');
+    }
+
+    public function deleteAddress($language, $address_id)
+    {
+        Address::destroy($address_id);
+        $address = Address::where('user_id', Auth::id())->first();
+
+        if (Auth::user()->standard_address == $address_id && isset($address)) {
+            $this->setStandardAddress($address->id);
+            /*User::find(Auth::id())->update([
+                'standard_address' => $address->id
+            ]);*/
+        }
+
+        if (Address::find(Auth::user()->standard_address) == null && $address == null) {
+            User::find(Auth::id())->update([
+                'standard_address' => null
+            ]);
+        }
+
+        return redirect(route('account', [$language, 'account', 'addresses']))->with('success', 'success');
+    }
+
+    private function setStandardAddress($address_id)
+    {
+        User::find(Auth::id())->update([
+            'standard_address' => $address_id
+        ]);
+    }
+
+    private function updateAccountValidator(array $data)
+    {
         return Validator::make($data, [
             'firstname' => 'required|string|max:100',
             'lastname' => 'required|string|max:100',
@@ -56,10 +121,24 @@ class AccountController extends Controller
         ]);
     }
 
-    private function updatePasswordValidator(array $data) {
+    private function updatePasswordValidator(array $data)
+    {
         return Validator::make($data, [
             'old_password' => 'required|string',
             'password' => 'required|confirmed|string|min:6',
+        ]);
+    }
+
+    private function addressValidator(array $data)
+    {
+        return Validator::make($data, [
+            'firstname' => 'required|string|max:100',
+            'lastname' => 'required|string|max:100',
+            'street' => 'required|string|max:100',
+            'house_number' => 'required|string|max:100',
+            'zip_code' => 'required|numeric',
+            'city' => 'required|string|max:100',
+            'country' => 'required|string|max:100',
         ]);
     }
 }

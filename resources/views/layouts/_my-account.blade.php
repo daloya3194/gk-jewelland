@@ -15,6 +15,7 @@
              class="py-3 px-5 hover:bg-gray-200 cursor-pointer {{ $section_2 == 'addresses' ? 'bg-gray-100' : ''}}">
             <a>Addresses</a>
         </div>
+        <br>
     </div>
     <div class="col-span-5 md:col-span-4 bg-white p-5">
         @if($section_2 == 'personal-information')
