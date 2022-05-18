@@ -42,7 +42,7 @@ class AuthController extends Controller
                 CartDatabaseService::saveCartUserToDatabase(Session::get('cart'));
             }
 
-            return redirect(route('account', $request->language));
+            return redirect(route('account', [$request->language, 'account']));
         }
 
         return back()->withErrors([

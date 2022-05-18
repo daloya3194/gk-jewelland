@@ -56,7 +56,10 @@ Route::group(['prefix' => '{language}'], function () {
     Route::post('/register', [AuthController::class, 'register'])->middleware(['guest'])->name('register');
     Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth'])->name('logout');
 
-    Route::get('/account/{section?}', [AccountController::class, 'index'])->middleware(['auth'])->name('account');
+    Route::get('/account/{section?}/{section_2?}', [AccountController::class, 'index'])->middleware(['auth'])->name('account');
+    Route::post('/account/account/update', [AccountController::class, 'updateAccount'])->middleware(['auth'])->name('account-update');
+    Route::post('/account/password/update', [AccountController::class, 'updatePassword'])->middleware(['auth'])->name('password-update');
+    Route::post('/account/address/update', [AccountController::class, 'updateAddress'])->middleware(['auth'])->name('address-update');
 
 
     Route::group(['prefix' => 'admin'], function () {
