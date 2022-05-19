@@ -50,6 +50,7 @@ class InvoiceController extends Controller
         }
 
         $data = $this->validator($request->all())->validate();
+
         Session::put('data', $data);
 
         $cart = Session::get('cart');
@@ -127,6 +128,9 @@ class InvoiceController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
+            if ($data['address'] == 0) {
+                AddressService::createAddress($data, 'user_id', Auth::id());
+            }
         } else {
             $user = UserService::createUser($data, 'guest');
         }

@@ -23,7 +23,7 @@
                     @auth()
                         <div class="mt-5">
                             <select onchange="setAddress(this.value)" name="address" class="p-2.5 w-full border-gray-300 rounded shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                <option disabled selected>Please select your address...</option>
+                                <option disabled selected>Please select the shipping address...</option>
                                 <option value="0">New address</option>
                                 @isset($addresses)
                                     @foreach($addresses as $address)
@@ -33,7 +33,7 @@
                             </select>
                         </div>
                     @endauth
-                    <input class="mt-5" type="text" placeholder="First Name" name="firstname" id="firstname"
+                    <input class="mt-5" type="text" placeholder="First Name" name="firstname" id="firstname" required
                             @if($standard_address !== null)
                                 value="{{ $standard_address->firstname }}"
                             @elseif(Auth::user() !== null)
@@ -43,7 +43,7 @@
                             @endif
                     >
 
-                    <input class="mt-4" type="text" placeholder="Last Name" name="lastname" id="lastname"
+                    <input class="mt-4" type="text" placeholder="Last Name" name="lastname" id="lastname" required
                            @if($standard_address !== null)
                                value="{{ $standard_address->lastname }}"
                            @elseif(Auth::user() !== null)
@@ -53,27 +53,33 @@
                            @endif
                     >
                     @guest()
-                        <input class="mt-4" type="email" placeholder="Email" name="email" id="email">
+                        <input class="mt-4" type="email" placeholder="Email" name="email" id="email" required>
                     @endguest
                     <div class="mt-4 grid grid-cols-3 gap-2">
-                        <input class="col-span-3 md:col-span-2" type="text" placeholder="Street" name="street" id="street"
+                        <input class="col-span-3 md:col-span-2" type="text" placeholder="Street" name="street" id="street" required
                                value="{{ $standard_address !== null ? $standard_address->street : old('street') }}"
                         >
-                        <input class="col-span-3 md:col-span-1" type="text" placeholder="House Number" name="house_number" id="house_number"
+                        <input class="col-span-3 md:col-span-1" type="text" placeholder="House Number" name="house_number" id="house_number" required
                                value="{{ $standard_address !== null ? $standard_address->house_number : old('house_number') }}"
                         >
                     </div>
                     <div class="mt-4 grid grid-cols-3 gap-2">
-                        <input class="col-span-3 md:col-span-1" type="text" placeholder="ZIP Code" name="zip_code" id="zip_code"
+                        <input class="col-span-3 md:col-span-1" type="text" placeholder="ZIP Code" name="zip_code" id="zip_code" required
                                value="{{ $standard_address !== null ? $standard_address->zip_code : old('zip_code') }}"
                         >
-                        <input class="col-span-3 md:col-span-2" type="text" placeholder="City" name="city" id="city"
+                        <input class="col-span-3 md:col-span-2" type="text" placeholder="City" name="city" id="city" required
                                value="{{ $standard_address !== null ? $standard_address->city : old('city') }}"
                         >
                     </div>
-                    <input class="mt-4" type="text" placeholder="Country" name="country" id="country"
+                    <input class="mt-4" type="text" placeholder="Country" name="country" id="country" required
                            value="{{ $standard_address !== null ? $standard_address->country : old('country') }}"
                     >
+                    <div class="mt-4">
+                        <label for="terms-and-privacy" class="block text-sm text-gray-900">
+                            Already have an account?
+                            <a href="{{ route('login-index', app()->getLocale()) }}" class="text-bordeaux hover:text-red-600 hover:underline">Sign in</a>
+                        </label>
+                    </div>
                 </div>
                 <div class="col-span-5 md:col-span-2 py-5 px-10 flex items-center">
                     <div class="w-full">
