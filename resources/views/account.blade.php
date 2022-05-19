@@ -10,6 +10,7 @@
                 </svg>
             </a> /
             <a class="hover:underline">Account</a>
+        </div>
     </div>
 
     <div class="max-w-7xl mx-auto mb-12">

@@ -52,3 +52,33 @@ function hideElementByParentClick(element_id) {
         }
     });
 }
+
+function setAddress(address_id) {
+    const firstname = document.getElementById('firstname');
+    const lastname = document.getElementById('lastname');
+    const street = document.getElementById('street');
+    const house_number = document.getElementById('house_number');
+    const zip_code = document.getElementById('zip_code');
+    const city = document.getElementById('city');
+    const country = document.getElementById('country');
+
+    if (parseInt(address_id) === 0) {
+        firstname.value = null;
+        lastname.value = null;
+        street.value = null;
+        house_number.value = null;
+        zip_code.value = null;
+        city.value = null;
+        country.value = null;
+    } else {
+        const select_address = document.getElementById('select_address' + address_id);
+        const complete_address = JSON.parse(select_address.getAttribute('data-address'));
+        firstname.value = complete_address['firstname'];
+        lastname.value = complete_address['lastname'];
+        street.value = complete_address['street'];
+        house_number.value = complete_address['house_number'];
+        zip_code.value = complete_address['zip_code'];
+        city.value = complete_address['city'];
+        country.value = complete_address['country'];
+    }
+}

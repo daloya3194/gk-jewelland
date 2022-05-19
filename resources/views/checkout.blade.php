@@ -22,12 +22,12 @@
                     <p class="text-xl font-bold">Shipping address</p>
                     @auth()
                         <div class="mt-5">
-                            <select name="address" class="p-2.5 w-full border-gray-300 rounded shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select onchange="setAddress(this.value)" name="address" class="p-2.5 w-full border-gray-300 rounded shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 <option disabled selected>Please select your address...</option>
                                 <option value="0">New address</option>
                                 @isset($addresses)
                                     @foreach($addresses as $address)
-                                        <option value="{{ $address->id }}" @isset($standard_address) {{ $standard_address->id == $address->id ? 'selected' : '' }} @endisset>{{ $address->user->lastname . ' (' .  $address->street . ' ' . $address->house_number . '...)' }}</option>
+                                        <option value="{{ $address->id }}" id="select_address{{$address->id}}" data-address="{{ \App\Models\Address::find($address->id) }}" @isset($standard_address) {{ $standard_address->id == $address->id ? 'selected' : '' }} @endisset>{{ $address->lastname . ' (' .  $address->street . ' ' . $address->house_number . '...)' }}</option>
                                     @endforeach
                                 @endisset
                             </select>

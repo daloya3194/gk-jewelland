@@ -13,8 +13,8 @@
             </div>
 
             {{--Modal--}}
-            <div onclick="hideElementByParentClick('modal_search')" class="bg-black bg-opacity-50 absolute inset-0 z-50 flex justify-center hidden" id="modal_search">
-                <div class="bg-gray-200 h-fit w-3/4 mt-40">
+            <div onclick="hideElementByParentClick('modal_search')" class="bg-black bg-opacity-50 fixed overflow-y-auto inset-0 z-50 flex justify-center hidden" id="modal_search">
+                <div class="bg-gray-200 h-fit w-3/4 mt-40 rounded">
                     <livewire:search />
                 </div>
             </div>

@@ -5,13 +5,13 @@
 </div>
 
 {{--Modal--}}
-<div onclick="hideElementByParentClick('modal_add_address')" class="bg-black bg-opacity-50 absolute inset-0 z-50 flex justify-center hidden" id="modal_add_address">
+<div onclick="hideElementByParentClick('modal_add_address')" class="bg-black bg-opacity-50 fixed overflow-y-auto inset-0 z-50 flex justify-center hidden" id="modal_add_address">
     <div class="bg-white h-fit w-5/6 xl:w-1/2 mt-40 p-10">
         <div class="flex justify-between items-center">
             <div class="text-2xl font-bold">Add Address</div>
             <br>
             <div onclick="hideElement('modal_add_address')" class="cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hover:text-bordeaux" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hover:text-bordeaux hover:scale-110" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
             </div>
@@ -148,13 +148,13 @@
         </div>
 
         {{--Modal--}}
-        <div onclick="hideElementByParentClick('modal_add_address{{ $standard_address->id }}')" class="bg-black bg-opacity-50 absolute inset-0 z-50 flex justify-center hidden" id="modal_add_address{{ $standard_address->id }}">
+        <div onclick="hideElementByParentClick('modal_add_address{{ $standard_address->id }}')" class="bg-black bg-opacity-50 fixed overflow-y-auto inset-0 z-50 flex justify-center hidden" id="modal_add_address{{ $standard_address->id }}">
             <div class="bg-white h-fit w-5/6 xl:w-1/2 mt-40 p-10">
                 <div class="flex justify-between items-center">
-                    <div class="text-2xl font-bold">Add Address</div>
+                    <div class="text-2xl font-bold">Edit Address</div>
                     <br>
                     <div onclick="hideElement('modal_add_address{{ $standard_address->id }}')" class="cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hover:text-bordeaux" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hover:text-bordeaux hover:scale-110" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </div>
@@ -294,13 +294,13 @@
         </div>
 
         {{--Modal--}}
-        <div onclick="hideElementByParentClick('modal_add_address{{ $address->id }}')" class="bg-black bg-opacity-50 absolute inset-0 z-50 flex justify-center hidden" id="modal_add_address{{ $address->id }}">
+        <div onclick="hideElementByParentClick('modal_add_address{{ $address->id }}')" class="bg-black bg-opacity-50 fixed overflow-y-auto inset-0 z-50 flex justify-center hidden" id="modal_add_address{{ $address->id }}">
             <div class="bg-white h-fit w-5/6 xl:w-1/2 mt-40 p-10">
                 <div class="flex justify-between items-center">
-                    <div class="text-2xl font-bold">Add Address</div>
+                    <div class="text-2xl font-bold">Edit Address</div>
                     <br>
                     <div onclick="hideElement('modal_add_address{{ $address->id }}')" class="cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hover:text-bordeaux" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hover:text-bordeaux hover:scale-110" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </div>

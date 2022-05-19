@@ -32,7 +32,7 @@
     <!-- Jumbotron -->
 
     <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8" id="new_items">
-        <h2 class="text-2xl font-extrabold tracking-tight text-center">New items</h2>
+        <h2 class="text-4xl font-extrabold tracking-tight text-center">New items</h2>
 
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
@@ -69,8 +69,9 @@
             <div class="swiper-button-prev text-bordeaux"></div>
         </div>
         <br>
+        <hr>
         <br>
-        <section class="mb-32 text-gray-700">
+        <section class="text-gray-700">
             <div class="flex flex-wrap">
                 <div class="grow-0 shrink-0 basis-auto mb-6 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
                     <h2 class="text-3xl font-bold mb-6">Contact us</h2>
@@ -127,64 +128,5 @@
             </div>
         </section>
     </div>
-
-
-
-
-
-
-
-    {{--<div class="mt-8 mb-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
-                <form class="mb-0 space-y-6" action="#" method="POST">
-
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-                        <div class="mt-1">
-                            <input id="email" name="email" type="email" autocomplete="email" required
-                            class="">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                        <div class="mt-1">
-                            <input id="password" name="password" type="password" autocomplete="password" required
-                                   class="">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="company-size" class="block text-sm font-medium text-gray-700">Company size</label>
-                        <div class="mt-1">
-                            <select name="company-size" id="company-size"
-                                    class="">
-                                <option>Please Select</option>
-                                <option>1 to 10 employees</option>
-                                <option>11 to 50 employees</option>
-                                <option>50+ employees</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center">
-                        <input id="terms-and-privacy" name="terms-and-privacy" type="checkbox"
-                               class="">
-                        <label for="terms-and-privacy" class="ml-2 block text-sm text-gray-900">
-                            I agree to the
-                            <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms</a>
-                            and
-                            <a href="#" class="text-indigo-600 hover:text-indigo-500">Privacy Policy</a>
-                        </label>
-                    </div>
-                </form>
-            </div>
-        </div>--}}
-
-
-
-
-
-
 
 @endsection
