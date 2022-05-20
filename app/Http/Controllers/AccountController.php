@@ -58,9 +58,6 @@ class AccountController extends Controller
 
         if (Auth::user()->standard_address == null) {
             $this->setStandardAddress($address->id);
-            /*User::find(Auth::id())->update([
-                'standard_address' => $address->id
-            ]);*/
         }
 
         return redirect(route('account', [$request->language, 'account', 'addresses']))->with('success', 'success');
@@ -77,9 +74,6 @@ class AccountController extends Controller
     public function standardAddress($language, $address_id)
     {
         $this->setStandardAddress($address_id);
-        /*User::find(Auth::id())->update([
-            'standard_address' => $address_id
-        ]);*/
 
         return redirect(route('account', [$language, 'account', 'addresses']))->with('success', 'success');
     }
@@ -91,9 +85,6 @@ class AccountController extends Controller
 
         if (Auth::user()->standard_address == $address_id && isset($address)) {
             $this->setStandardAddress($address->id);
-            /*User::find(Auth::id())->update([
-                'standard_address' => $address->id
-            ]);*/
         }
 
         if (Address::find(Auth::user()->standard_address) == null && $address == null) {

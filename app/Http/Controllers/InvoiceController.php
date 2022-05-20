@@ -166,7 +166,7 @@ class InvoiceController extends Controller
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'address' => 'nullable|numeric',
+            'address' => 'required|numeric',
             'firstname' => 'required|string|max:100',
             'lastname' => 'required|string|max:100',
             'street' => 'required|string|max:100',

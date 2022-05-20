@@ -72,7 +72,7 @@
 
     <div class="max-w-7xl mx-auto mb-12 px-5 md:px-0">
         <div class="grid grid-cols-1">
-            @isset($cart)
+            @if(isset($cart))
 
                 <div class="flex flex-row p-4 bg-bordeaux">
                     <div class="basis-1/2 md:basis-4/5 font-bold text-white">Product</div>
@@ -120,8 +120,11 @@
                         <a href="{{ route('checkout', app()->getLocale()) }}" class="px-10 py-4 bg-bordeaux cursor-pointer hover:bg-red-600 text-white">Process to checkout</a>
                     </div>
                 </div>
-            @endisset
-
+            @else
+                <div class="flex justify-center items-center mt-7 lg:mt-24">
+                    <p class="text-xl font-semibold">Your cart ist empty &#x1F615;</p>
+                </div>
+            @endif
         </div>
     </div>
 

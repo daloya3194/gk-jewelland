@@ -54,8 +54,11 @@
                         </ul>
                     </div>
                 </div>
-                <a class="text-center text-gray-700 hover:text-bordeaux md:-space-y-1 @if(isset($navigation) && $navigation == 'account') text-bordeaux @endif"
-                   href="{{ route('account', [app()->getLocale(), 'account']) }}">
+                <div class="relative text-center text-gray-700 hover:text-bordeaux md:-space-y-1 cursor-pointer @if(isset($navigation) && $navigation == 'account') text-bordeaux @endif"
+                     onclick="window.location.href='{{ route('account', [app()->getLocale(), 'account']) }}'"
+                     onmouseenter="showElement('account_menu')"
+                     onmouseleave="hideElement('account_menu')"
+                >
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -64,7 +67,20 @@
                     <div class="hidden md:block">
                         <small class="mx-auto">{{ Auth::check() ? 'Account' : 'Login' }}</small>
                     </div>
-                </a>
+                    @auth()
+                        <div class="hidden flex flex-col absolute mt-12 -top-6  md:top-12 -right-6 bg-white rounded shadow-md z-30 overflow-hidden" id="account_menu">
+                            <a href="{{ route('account', [app()->getLocale(), 'account']) }}"
+                               class="text-gray-700 hover:bg-gray-200 px-4 py-2">Account</a>
+                            <a href="{{ route('account', [app()->getLocale(), 'order']) }}"
+                               class="text-gray-700 hover:bg-gray-200 px-4 py-2">Order</a>
+                            <a href="{{ route('account', [app()->getLocale(), 'wishlist']) }}"
+                               class="text-gray-700 hover:bg-gray-200 px-4 py-2">Wishlist</a>
+                            <hr>
+                            <a href="{{ route('logout', app()->getLocale()) }}"
+                               class="hover:bg-red-600 hover:text-white px-4 py-2">Logout</a>
+                        </div>
+                    @endauth
+                </div>
                 <a class="text-center text-gray-700 hover:text-bordeaux md:-space-y-1 relative @if(isset($navigation) && $navigation == 'cart') text-bordeaux @endif"
                    href="{{ route('cart', app()->getLocale()) }}">
                     <div class="">
