@@ -154,6 +154,9 @@ class InvoiceController extends Controller
 
         SendInvoiceMailJob::dispatch($user, $invoice, $invoice_pdf);
 
+        $invoice->invoice_pdf = $invoice_pdf;
+        $invoice->save();
+
         Session::forget('cart');
 
         Session::forget('data');

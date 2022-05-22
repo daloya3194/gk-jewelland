@@ -3,7 +3,7 @@
         <br>
         <div class="py-2 px-5 font-bold">My Account</div>
         <hr class="mx-auto">
-        <div onclick="window.location.href='{{ route('account', [app()->getLocale(), 'account', 'personal-information']) }}'"
+        <div onclick="window.location.href='{{ route('account', [app()->getLocale(), 'order']) }}'"
              class="py-3 px-5 hover:bg-gray-200 cursor-pointer {{ $section_2 == 'personal-information' ? 'bg-gray-100' : ''}}">
             <a>Orders</a>
         </div>

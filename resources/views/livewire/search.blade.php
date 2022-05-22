@@ -19,7 +19,7 @@
     <br>
 
     @if(strlen($query) > 1 && isset($products[0]))
-        <div class="text-center text-gray-700 text-2xl">Search Results for <span class="font-semibold">"{{ $query }}"</span></div>
+        <div class="text-center text-gray-700 text-xl">Search Results for <span class="font-semibold">"{{ $query }}"</span></div>
     <br>
         <div class="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-5 md:px-0">
             @foreach($products as $product)
@@ -48,7 +48,12 @@
             @endforeach
         </div>
     @else
-        <div class="text-center">No Result @if(strlen($query) > 1) for <span class="font-semibold">"{{ $query }}"</span> @endif</div>
+        @if(strlen($query) > 1)
+            <div class="text-center">No Result for <span class="font-semibold">"{{ $query }}"</span></div>
+        @else
+            <div class="text-center">Type something (min 2 characters)</div>
+        @endif
+
     @endif
 
 </div>

@@ -19,6 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_number')->nullable()->unique();
             $table->dateTime('date');
             $table->string('notes')->nullable();
+            $table->string('invoice_pdf')->nullable();
             $table->timestamps();
         });
     }
