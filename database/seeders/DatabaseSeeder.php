@@ -54,22 +54,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'One',
-            'slug' => 'one',
+            'name' => 'Chain',
+            'slug' => 'chain',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'Two',
-            'slug' => 'two',
+            'name' => 'Ring',
+            'slug' => 'ring',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'Three',
-            'slug' => 'three',
+            'name' => 'Bracelet',
+            'slug' => 'bracelet',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
