@@ -29,7 +29,7 @@
     <div>
         <label for="email" class="block text-sm font-medium text-gray-700">Email address<span class="text-red-600">*</span></label>
         <div class="mt-1">
-            <input id="email" name="email" type="email" value="{{ old('email') ?? Auth::user()->email }}" autocomplete="on" required maxlength="100"
+            <input id="email" name="email" type="email" value="{{ old('email') ?? Auth::user()->email }}" autocomplete="on" required maxlength="100" readonly
                    class="@error('email') border-red-600 ring-red-500 @enderror"
             >
             @error('email')

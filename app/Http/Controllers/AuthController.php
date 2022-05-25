@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Product;
 use App\Models\User;
 use App\Services\AddressService;
@@ -65,7 +66,9 @@ class AuthController extends Controller
         $user = User::create($data);
 
         if (isset($data['street'])) {
-            $address = AddressService::createAddress($data, 'user_id', $user->id);
+            $address = Address::create($data);
+            $address->user_id = $user->id;
+            $address->save();
             $user->standard_address = $address->id;
             $user->save();
         }

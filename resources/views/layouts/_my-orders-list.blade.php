@@ -1,10 +1,10 @@
-@if(!isset($orders))
+@if(!isset($orders[0]))
     <div class="h-full flex justify-center items-center">
         <p class="text-xl font-semibold">You don't have any orders yet &#x1F615;</p>
     </div>
 @endif
 
-@isset($orders)
+@isset($orders[0])
     @foreach($orders as $order)
         <div class="border border-1 shadow-md p-5">
             <div class="flex justify-between items-center text-xl font-semibold">
