@@ -74,12 +74,14 @@
                     <input class="mt-4" type="text" placeholder="Country" name="country" id="country" required
                            value="{{ $standard_address !== null ? $standard_address->country : old('country') }}"
                     >
-                    <div class="mt-4">
-                        <label for="terms-and-privacy" class="block text-sm text-gray-900">
-                            Already have an account?
-                            <a href="{{ route('login-index', app()->getLocale()) }}" class="text-bordeaux hover:text-red-600 hover:underline">Sign in</a>
-                        </label>
-                    </div>
+                    @guest()
+                        <div class="mt-4">
+                            <label for="terms-and-privacy" class="block text-sm text-gray-900">
+                                Already have an account?
+                                <a href="{{ route('login-index', app()->getLocale()) }}" class="text-bordeaux hover:text-red-600 hover:underline">Sign in</a>
+                            </label>
+                        </div>
+                    @endguest
                 </div>
                 <div class="col-span-5 md:col-span-2 py-5 px-10 flex items-center">
                     <div class="w-full">
