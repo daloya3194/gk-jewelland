@@ -82,10 +82,16 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get('/categories', [AdminCategoryController::class, 'index'])->middleware(['admin'])->name('admin.categories');
         Route::get('/categories/create', [AdminCategoryController::class, 'create'])->middleware(['admin'])->name('admin.categories.create');
         Route::post('/categories/store', [AdminCategoryController::class, 'store'])->middleware(['admin'])->name('admin.categories.store');
+        Route::get('/categories/edit/{slug}', [AdminCategoryController::class, 'edit'])->middleware(['admin'])->name('admin.categories.edit');
+        Route::post('/categories/update/{category}', [AdminCategoryController::class, 'update'])->middleware(['admin'])->name('admin.categories.update');
+        Route::get('/categories/delete/{category}', [AdminCategoryController::class, 'delete'])->middleware(['admin'])->name('admin.categories.delete');
 
         Route::get('/labels', [AdminLabelController::class, 'index'])->middleware(['admin'])->name('admin.labels');
         Route::get('/labels/create', [AdminLabelController::class, 'create'])->middleware(['admin'])->name('admin.labels.create');
         Route::post('/labels/store', [AdminLabelController::class, 'store'])->middleware(['admin'])->name('admin.labels.store');
+        Route::get('/labels/edit/{slug}', [AdminLabelController::class, 'edit'])->middleware(['admin'])->name('admin.labels.edit');
+        Route::post('/labels/update/{label}', [AdminLabelController::class, 'update'])->middleware(['admin'])->name('admin.labels.update');
+        Route::get('/labels/delete/{label}', [AdminLabelController::class, 'delete'])->middleware(['admin'])->name('admin.labels.delete');
 
         Route::post('/delete-image', [UploadController::class, 'delete_image'])->name('admin.image.delete');
 

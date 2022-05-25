@@ -35,6 +35,31 @@ class AdminCategoryController extends Controller
         return redirect(route('admin.categories', $request->language));
     }
 
+    public function edit($language, $slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+
+        return view('admin.category-edit', [
+            'category' => $category,
+            'nav' => 'categories'
+        ]);
+    }
+
+    public function update(Request $request, $language, Category $category)
+    {
+        $data = $this->validator($request->all())->validate();
+        $category->update($data);
+
+        return redirect(route('admin.categories', $language));
+    }
+
+    public function delete($language, Category $category)
+    {
+        $category->delete();
+
+        return redirect(route('admin.categories', $language));
+    }
+
     public function validator(array $data)
     {
         return Validator::make($data, [

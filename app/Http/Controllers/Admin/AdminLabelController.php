@@ -35,6 +35,31 @@ class AdminLabelController extends Controller
         return redirect(route('admin.labels', $request->language));
     }
 
+    public function edit($language, $slug)
+    {
+        $label = Label::where('slug', $slug)->first();
+
+        return view('admin.label-edit', [
+            'label' => $label,
+            'nav' => 'labels'
+        ]);
+    }
+
+    public function update(Request $request, $language, Label $label)
+    {
+        $data = $this->validator($request->all())->validate();
+        $label->update($data);
+
+        return redirect(route('admin.labels', $language));
+    }
+
+    public function delete($language, Label $label)
+    {
+        $label->delete();
+
+        return redirect(route('admin.labels', $language));
+    }
+
     public function validator(array $data)
     {
         return Validator::make($data, [
