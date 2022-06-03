@@ -18,7 +18,7 @@ return [
         /*
          * Sequence will be padded accordingly, for ex. 00001
          */
-        'sequence_padding' => 5,
+        'sequence_padding' => 10,
         'delimiter'        => '.',
         /*
          * Supported tags {SERIES}, {DELIMITER}, {SEQUENCE}
@@ -78,8 +78,8 @@ return [
          * Default attributes for Seller::class
          */
         'attributes' => [
-            'name'          => 'Towne, Smith and Ebert',
-            'address'       => '89982 Pfeffer Falls Damianstad, CO 66972-8160',
+            'name'          => 'GK Jewelland',
+            'address'       => 'Teststr 4, 44444 Bochum Deutschland',
             'code'          => '41-1985581',
             'vat'           => '123456789',
             'phone'         => '760-355-3930',

@@ -34,7 +34,7 @@
     @include('layouts._navigation')
 
     @if(\Session::has('error'))
-        <div id="alert-2" class="flex px-4 py-3 bg-red-100 dark:bg-red-200 absolute top-0 w-full" role="alert">
+        <div id="alert-2" class="flex px-4 py-3 bg-red-100 dark:bg-red-200 absolute top-0 w-full z-50" role="alert">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="flex-shrink-0 w-5 h-5 text-red-700 dark:text-red-800" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
             </svg>
@@ -49,7 +49,7 @@
     @endif
 
     @if(\Session::has('success'))
-        <div id="alert-2" class="flex px-4 py-3 bg-green-100 dark:bg-green-200 absolute top-0 w-full" role="alert">
+        <div id="alert-2" class="flex px-4 py-3 bg-green-100 dark:bg-green-200 absolute top-0 w-full z-50" role="alert">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
             </svg>

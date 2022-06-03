@@ -35,4 +35,9 @@ return [
     'shipping'               => 'Versand',
     'paid'                   => 'Bezahlt',
     'due'                    => 'Fällig',
+    'address_name'           => 'Name des Anschrifts',
+    'street'                 => 'Straße',
+    'city'                   => 'Ort',
+    'country'                => 'Land',
+    'email'                  => 'E-Mail',
 ];

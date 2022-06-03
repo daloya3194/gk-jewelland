@@ -23,7 +23,6 @@
                     @auth()
                         <div class="mt-5">
                             <select onchange="setAddress(this.value)" name="address" class="p-2.5 w-full border-gray-300 rounded shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-{{--                                <option disabled selected>Please select the shipping address...</option>--}}
                                 <option value="0" selected>New address</option>
                                 @isset($addresses)
                                     @foreach($addresses as $address)
@@ -31,6 +30,9 @@
                                     @endforeach
                                 @endisset
                             </select>
+                            @error('address')
+                                <small class="text-red-600">{{ $message }}</small>
+                            @enderror
                         </div>
                     @endauth
                     <input class="mt-5" type="text" placeholder="First Name" name="firstname" id="firstname" required
@@ -42,6 +44,9 @@
                                 value="{{ old('firstname') }}"
                             @endif
                     >
+                    @error('firstname')
+                        <small class="text-red-600">{{ $message }}</small>
+                    @enderror
 
                     <input class="mt-4" type="text" placeholder="Last Name" name="lastname" id="lastname" required
                            @if($standard_address !== null)
@@ -52,28 +57,49 @@
                                value="{{ old('lastname') }}"
                            @endif
                     >
+                    @error('lastname')
+                        <small class="text-red-600">{{ $message }}</small>
+                    @enderror
                     @guest()
-                        <input class="mt-4" type="email" placeholder="Email" name="email" id="email" required>
+                        <input class="mt-4 @error('email') border-red-600 @enderror" type="email" placeholder="Email" name="email" id="email" value="{{ old('email') }}" required>
+                        @error('email')
+                            <small class="text-red-600">{{ $message }}</small>
+                        @enderror
                     @endguest
                     <div class="mt-4 grid grid-cols-3 gap-2">
                         <input class="col-span-3 md:col-span-2" type="text" placeholder="Street" name="street" id="street" required
                                value="{{ $standard_address !== null ? $standard_address->street : old('street') }}"
                         >
+                        @error('street')
+                            <small class="text-red-600">{{ $message }}</small>
+                        @enderror
                         <input class="col-span-3 md:col-span-1" type="text" placeholder="House Number" name="house_number" id="house_number" required
                                value="{{ $standard_address !== null ? $standard_address->house_number : old('house_number') }}"
                         >
+                        @error('house_number')
+                            <small class="text-red-600">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="mt-4 grid grid-cols-3 gap-2">
                         <input class="col-span-3 md:col-span-1" type="text" placeholder="ZIP Code" name="zip_code" id="zip_code" required
                                value="{{ $standard_address !== null ? $standard_address->zip_code : old('zip_code') }}"
                         >
+                        @error('zip_code')
+                            <small class="text-red-600">{{ $message }}</small>
+                        @enderror
                         <input class="col-span-3 md:col-span-2" type="text" placeholder="City" name="city" id="city" required
                                value="{{ $standard_address !== null ? $standard_address->city : old('city') }}"
                         >
+                        @error('city')
+                            <small class="text-red-600">{{ $message }}</small>
+                        @enderror
                     </div>
                     <input class="mt-4" type="text" placeholder="Country" name="country" id="country" required
                            value="{{ $standard_address !== null ? $standard_address->country : old('country') }}"
                     >
+                    @error('country')
+                            <small class="text-red-600">{{ $message }}</small>
+                        @enderror
                     @guest()
                         <div class="mt-4">
                             <label for="terms-and-privacy" class="block text-sm text-gray-900">
@@ -107,12 +133,6 @@
                                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png"
                                  alt="paypal">
                         </button>
-                        {{--<button type="submit"
-                                class="md:px-10 lg:px-20 py-3 bg-bordeaux rounded-md shadow-md hover:bg-red-600 w-full flex justify-center mt-4">
-                            <img class="h-6 object-fill"
-                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png"
-                                 alt="paypal">
-                        </button>--}}
                     </div>
                 </div>
             </div>

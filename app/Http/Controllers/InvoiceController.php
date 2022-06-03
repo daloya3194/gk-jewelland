@@ -12,6 +12,7 @@ use App\Services\CartDatabaseService;
 use App\Services\PaymentService;
 use App\Services\PDFService;
 use App\Services\UserService;
+use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -59,17 +60,50 @@ class InvoiceController extends Controller
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
 
+        $items = null;
+        foreach ($cart->items as $item) {
+            $items[] = [
+                "name" => $item['item']->name,
+                "quantity" => $item['quantity'],
+                "unit_amount" => [
+                    "value" => $item['item']->price,
+                    "currency_code" => "EUR"
+                ]
+            ];
+        }
+
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             "application_context" => [
+                "shipping_preference" => "SET_PROVIDED_ADDRESS",
                 "return_url" => route('successTransaction', $request->language),
                 "cancel_url" => route('cancelTransaction', $request->language),
             ],
             "purchase_units" => [
                 [
+                    "description" => "Description",
+                    "items" => $items,
                     "amount" => [
                         "currency_code" => "EUR",
                         "value" => $cart->total_price,
+                        "breakdown" => [
+                            "item_total" => [
+                                "currency_code" => "EUR",
+                                "value" => $cart->total_price
+                            ]
+                        ]
+                    ],
+                    "shipping" => [
+                        "name" => [
+                            "full_name" => $data['firstname'] . " " . $data['lastname'],
+                        ],
+                        "address" => [
+                            "address_line_1" => $data['street'] . " " . $data['house_number'],
+                            "postal_code" => $data['zip_code'],
+                            "admin_area_2" => $data['city'],
+                            "admin_area_1" => $data['country'],
+                            "country_code" => "DE",
+                        ]
                     ]
                 ]
             ]
@@ -150,8 +184,6 @@ class InvoiceController extends Controller
 
         $invoice_pdf = PDFService::generateInvoicePDF($user, $data, $invoice);
 
-//        Mail::to($user->email)->send(new SendInvoiceMail($user, $invoice, $invoice_pdf));
-
         SendInvoiceMailJob::dispatch($user, $invoice, $invoice_pdf);
 
         $invoice->invoice_pdf = $invoice_pdf;
@@ -169,7 +201,7 @@ class InvoiceController extends Controller
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'address' => 'required|numeric',
+            'address' => Auth::check() ? 'required|numeric' : 'nullable|numeric',
             'firstname' => 'required|string|max:100',
             'lastname' => 'required|string|max:100',
             'street' => 'required|string|max:100',

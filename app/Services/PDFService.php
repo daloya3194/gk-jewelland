@@ -15,7 +15,11 @@ class PDFService
         $customer = new Buyer([
             'name'          => $user->firstname . ' ' . $user->lastname,
             'custom_fields' => [
-                'email' => $user->email,
+                trans('invoices::invoice.address_name') => $data['firstname'] . ' ' . $data['lastname'],
+                trans('invoices::invoice.street')       => $data['street'] . ' ' . $data['house_number'],
+                trans('invoices::invoice.zip_code')     => $data['zip_code'] . ' ' . $data['city'],
+                trans('invoices::invoice.country')      => $data['country'],
+                trans('invoices::invoice.email')        => $user->email,
             ],
         ]);
 
@@ -35,8 +39,12 @@ class PDFService
         $invoice = \LaravelDaily\Invoices\Invoice::make()
             ->buyer($customer)
             ->status(__('invoices::invoice.paid'))
+            ->sequence((int) $invoice->invoice_number)
+            ->serialNumberFormat('{SEQUENCE}')
+            ->dateFormat('d.m.Y')
             ->currencySymbol('€')
             ->currencyCode('EUR')
+            ->filename('Invoice_' . $invoice->invoice_number . '_' . $user->lastname)
             ->addItems($items)
             ->logo(public_path('img/gk_logo.png'))
             ->save('public');
