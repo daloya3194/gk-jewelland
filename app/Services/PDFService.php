@@ -17,7 +17,7 @@ class PDFService
             'custom_fields' => [
                 trans('invoices::invoice.address_name') => $data['firstname'] . ' ' . $data['lastname'],
                 trans('invoices::invoice.street')       => $data['street'] . ' ' . $data['house_number'],
-                trans('invoices::invoice.zip_code')     => $data['zip_code'] . ' ' . $data['city'],
+                trans('invoices::invoice.city')         => $data['zip_code'] . ' ' . $data['city'],
                 trans('invoices::invoice.country')      => $data['country'],
                 trans('invoices::invoice.email')        => $user->email,
             ],
