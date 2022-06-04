@@ -36,7 +36,11 @@ class SendInvoiceMail extends Mailable
 
         return $this->subject('Your Invoice')
                     ->markdown('emails.invoice-mail')
-                    ->with('data', ['pdf_url' => $this->invoice_pdf])
+                    ->with('data', [
+                        'pdf_url' => $this->invoice_pdf,
+                        'firstname' => $this->user->firstname,
+                        'lastname' => $this->user->lastname
+                        ])
                     ->attach($this->invoice_pdf);
     }
 }
