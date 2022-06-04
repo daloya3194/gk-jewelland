@@ -21,7 +21,7 @@
     @if(strlen($query) > 1 && isset($products[0]))
         <div class="text-center text-gray-700 text-xl">Search Results for <span class="font-semibold">"{{ $query }}"</span></div>
     <br>
-        <div class="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-5 md:px-0">
+        <div class="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-5 xl:px-0">
             @foreach($products as $product)
                 <div class="group relative scale-90">
                     <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
@@ -40,7 +40,7 @@
                         <p class="text-sm font-medium text-gray-900">{{ $product->price }}€</p>
                     </div>
                     @if($product->label)
-                        <div class="absolute top-1 left-1 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold scale-75 md:top-2 md:left-2 md:scale-100">
+                        <div class="absolute top-1 left-0 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold scale-75 md:top-2 md:left-2 md:scale-100">
                             {{ $product->label->{'name_' . app()->getLocale()} ?? $product->label->name_en }}
                         </div>
                     @endif

@@ -97,10 +97,10 @@
         </div>
     </div>
 </nav>
-<div class="text-center bg-white flex justify-center border-t-2 gap-3 md:gap-5 lg:gap-7 xl:gap-10 sticky z-10 block top-0 py-2 md:py-4 uppercase font-bold">
+<div class="text-center bg-white grid-rows-1 justify-center border-t-2 gap-3 md:gap-5 lg:gap-7 xl:gap-10 sticky z-10 block top-0 py-2 md:py-4 uppercase font-bold">
     @foreach(\App\Models\Category::all() as $category)
         <a href="{{ route('show.category', [app()->getLocale(), $category->slug]) }}"
-           class="border-b-4 hover:border-bordeaux pb-1 text-gray-700 @if(isset($navigation) && $navigation == $category->slug) border-bordeaux @endif"
+           class="border-b-4 hover:border-bordeaux pb-1 text-gray-700 mr-2 sm:mr-4 leading-10 @if(isset($navigation) && $navigation == $category->slug) border-bordeaux @endif @if($loop->last) mr-0 @endif"
         >{{ $category->{'name_' . app()->getLocale()} ?? $category->name_en }}</a>
     @endforeach
 
