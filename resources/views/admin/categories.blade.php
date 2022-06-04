@@ -20,10 +20,12 @@
                     <thead>
                     <tr class="text-left">
                         <th data-priority="1">Id</th>
-                        <th data-priority="2">Name</th>
-                        <th data-priority="3">Slug</th>
-                        <th data-priority="4">Edit</th>
-                        <th data-priority="5">Delete</th>
+                        <th data-priority="2">Name EN</th>
+                        <th data-priority="3">Name FR</th>
+                        <th data-priority="4">Name DE</th>
+                        <th data-priority="5">Slug</th>
+                        <th data-priority="6">Edit</th>
+                        <th data-priority="7">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,7 +33,9 @@
                         @foreach($categories as $category)
                             <tr>
                                 <td>{{ $category->id }}</td>
-                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->name_en }}</td>
+                                <td>{{ $category->name_fr }}</td>
+                                <td>{{ $category->name_de }}</td>
                                 <td>{{ $category->slug }}</td>
                                 <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="{{ route('admin.categories.edit', [app()->getLocale(), $category->slug]) }}">Edit</a></td>
                                 <td><a class="text-red-600 hover:text-red-600 hover:underline" href="{{ route('admin.categories.delete', [app()->getLocale(), $category]) }}">Delete</a></td>

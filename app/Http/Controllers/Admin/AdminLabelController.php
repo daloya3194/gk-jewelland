@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AdminLabelController extends Controller
 {
@@ -47,7 +48,7 @@ class AdminLabelController extends Controller
 
     public function update(Request $request, $language, Label $label)
     {
-        $data = $this->validator($request->all())->validate();
+        $data = $this->validator($request->all(), $label)->validate();
         $label->update($data);
 
         return redirect(route('admin.labels', $language));
@@ -60,10 +61,12 @@ class AdminLabelController extends Controller
         return redirect(route('admin.labels', $language));
     }
 
-    public function validator(array $data)
+    public function validator(array $data, $label = null)
     {
         return Validator::make($data, [
-            'name' => 'required|string|unique:labels,name|max:256',
+            'name_en' => ['required', 'string', 'max:256', Rule::unique('labels', 'name_en')->ignore($label->id ?? '')],
+            'name_fr' => 'nullable|string|max:256',
+            'name_de' => 'nullable|string|max:256',
         ]);
     }
 }

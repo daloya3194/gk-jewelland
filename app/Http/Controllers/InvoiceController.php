@@ -63,7 +63,7 @@ class InvoiceController extends Controller
         $items = null;
         foreach ($cart->items as $item) {
             $items[] = [
-                "name" => $item['item']->name,
+                "name" => $item['item']->{'name_' . $request->language} ?? $item['item']->name_en,
                 "quantity" => $item['quantity'],
                 "unit_amount" => [
                     "value" => $item['item']->price,

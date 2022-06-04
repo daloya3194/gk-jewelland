@@ -20,10 +20,12 @@
                     <thead>
                     <tr class="text-left">
                         <th data-priority="1">Id</th>
-                        <th data-priority="2">Name</th>
-                        <th data-priority="3">Slug</th>
-                        <th data-priority="4">Edit</th>
-                        <th data-priority="5">Delete</th>
+                        <th data-priority="2">Name EN</th>
+                        <th data-priority="3">Name FR</th>
+                        <th data-priority="4">Name DE</th>
+                        <th data-priority="5">Slug</th>
+                        <th data-priority="6">Edit</th>
+                        <th data-priority="7">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,7 +33,9 @@
                         @foreach($labels as $label)
                             <tr>
                                 <td>{{ $label->id }}</td>
-                                <td>{{ $label->name }}</td>
+                                <td>{{ $label->name_en }}</td>
+                                <td>{{ $label->name_fr }}</td>
+                                <td>{{ $label->name_de }}</td>
                                 <td>{{ $label->slug }}</td>
                                 <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="{{ route('admin.labels.edit', [app()->getLocale(), $label->slug]) }}">Edit</a></td>
                                 <td><a class="text-red-600 hover:text-red-600 hover:underline" href="{{ route('admin.labels.delete', [app()->getLocale(), $label]) }}">Delete</a></td>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AdminCategoryController extends Controller
 {
@@ -47,7 +48,7 @@ class AdminCategoryController extends Controller
 
     public function update(Request $request, $language, Category $category)
     {
-        $data = $this->validator($request->all())->validate();
+        $data = $this->validator($request->all(), $category)->validate();
         $category->update($data);
 
         return redirect(route('admin.categories', $language));
@@ -60,10 +61,12 @@ class AdminCategoryController extends Controller
         return redirect(route('admin.categories', $language));
     }
 
-    public function validator(array $data)
+    public function validator(array $data, $category = null)
     {
         return Validator::make($data, [
-            'name' => 'required|string|unique:categories,name|max:256',
+            'name_en' => ['required', 'string', 'max:256', Rule::unique('categories', 'name_en')->ignore($category->id ?? '')],
+            'name_fr' => 'nullable|string|max:256',
+            'name_de' => 'nullable|string|max:256',
         ]);
     }
 }

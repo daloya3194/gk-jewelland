@@ -30,8 +30,8 @@ class PDFService
         foreach ($cart_items as $cart_item) {
             $product = Product::find($cart_item->item);
             $items [] = (new InvoiceItem())
-                ->title($product->name)
-                ->description($product->description)
+                ->title($product->{'name_' . app()->getLocale()} ?? $product->name_en)
+                ->description($product->{'description_' . app()->getLocale()} ?? $product->description_en)
                 ->pricePerUnit($product->price)
                 ->quantity($cart_item->quantity);
         }

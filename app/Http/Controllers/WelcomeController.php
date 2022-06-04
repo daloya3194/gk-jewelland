@@ -13,8 +13,6 @@ class WelcomeController extends Controller
         $categories = Category::all();
         $new_products = Product::with(['pictures', 'label', 'category'])->where('label_id', 1)->get();
 
-//        dd($categories);
-
         return view('welcome', [
             'new_products' => $new_products,
             'categories' => $categories,

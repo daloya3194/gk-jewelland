@@ -101,7 +101,7 @@
     @foreach(\App\Models\Category::all() as $category)
         <a href="{{ route('show.category', [app()->getLocale(), $category->slug]) }}"
            class="border-b-4 hover:border-bordeaux pb-1 text-gray-700 @if(isset($navigation) && $navigation == $category->slug) border-bordeaux @endif"
-        >{{ $category->name }}</a>
+        >{{ $category->{'name_' . app()->getLocale()} ?? $category->name_en }}</a>
     @endforeach
 
     {{--<a class="hover:border-b-2 border-yellow-600">Wristbands</a>

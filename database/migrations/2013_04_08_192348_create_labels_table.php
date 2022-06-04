@@ -15,7 +15,9 @@ class CreateLabelsTable extends Migration
     {
         Schema::create('labels', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name_en')->unique();
+            $table->string('name_fr')->nullable();
+            $table->string('name_de')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });

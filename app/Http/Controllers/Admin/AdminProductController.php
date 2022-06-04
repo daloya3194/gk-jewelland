@@ -10,6 +10,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class AdminProductController extends Controller
 {
@@ -40,8 +41,8 @@ class AdminProductController extends Controller
         $data = $this->validator($request->all())->validate();
 
         $product = Product::create($data);
-        $product->slug = Str::slug($data['name']);
-        $product->save();
+//        $product->slug = Str::slug($data['name_de']);
+//        $product->save();
 
         if (isset($request['avatar']) && $request['avatar'][0] !== null) {
             foreach ($request['avatar'] as $avatar) {
@@ -68,7 +69,7 @@ class AdminProductController extends Controller
 
     public function update(Request $request, $language, Product $product)
     {
-        $data = $this->validator($request->all())->validate();
+        $data = $this->validator($request->all(), $product)->validate();
         $product->update($data);
 
         if (isset($request['avatar']) && $request['avatar'][0] !== null) {
@@ -87,13 +88,18 @@ class AdminProductController extends Controller
         return redirect(route('admin.products', $language));
     }
 
-    private function validator(array $data)
+    private function validator(array $data, $product = null)
     {
         return Validator::make($data, [
             'category_id' => 'required|numeric',
             'label_id' => 'nullable|numeric',
-            'name' => 'required|string|max:256',
-            'description' => 'nullable|string|max:256',
+            'name_en' => ['required', 'string', 'max:256', Rule::unique('products', 'name_en')->ignore($product->id ?? '')],
+//            'name_en' => 'required|string|max:256',
+            'name_fr' => 'nullable|string|max:256',
+            'name_de' => 'nullable|string|max:256',
+            'description_en' => 'nullable|string|max:256',
+            'description_fr' => 'nullable|string|max:256',
+            'description_de' => 'nullable|string|max:256',
             'status' => 'required|numeric',
             'price' => 'required|numeric',
         ]);

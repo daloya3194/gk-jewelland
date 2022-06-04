@@ -16,10 +16,10 @@ class Search extends Component
 
         if (strlen($this->query) > 1) {
             $this->products = Product::withAll()
-                ->where('name', 'like', $search)
-                ->orWhere('description', 'like', $search)
+                ->where('name_' . app()->getLocale(), 'like', $search)
+                ->orWhere('description_' . app()->getLocale(), 'like', $search)
                 ->orWhereHas('category', function ($query) use ($search) {
-                    $query->where('name', 'like', $search);
+                    $query->where('name_' . app()->getLocale(), 'like', $search);
                 })
                 ->get();
         }

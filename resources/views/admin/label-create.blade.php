@@ -17,13 +17,21 @@
                     <div class="border border-gray-200 p-10 shadow-md">
                         <div class="">
                             <div class="">
-                                <label for="name">Name<span class="text-red-600">*</span></label>
-                                <input type="text" id="name" name="name" value="{{ old('name') }}" required
-                                       class="@error('name') border-red-600 ring-red-500 @enderror"
+                                <label for="name_en">Name EN<span class="text-red-600">*</span></label>
+                                <input type="text" id="name_en" name="name_en" value="{{ old('name_en') }}" required
+                                       class="@error('name_en') border-red-600 ring-red-500 @enderror"
                                 >
-                                @error('name')
-                                    <small class="text-red-600">{{ $message }}</small>
+                                @error('name_en')
+                                <small class="text-red-600">{{ $message }}</small>
                                 @enderror
+                            </div>
+                            <div class="mt-4">
+                                <label for="name_fr">Name FR</label>
+                                <input type="text" id="name_fr" name="name_fr" value="{{ old('name_fr') }}">
+                            </div>
+                            <div class="mt-4">
+                                <label for="name_de">Name DE</label>
+                                <input type="text" id="name_de" name="name_de" value="{{ old('name_de') }}">
                             </div>
                         </div>
                     </div>

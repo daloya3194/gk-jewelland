@@ -17,9 +17,13 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('label_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('name')->unique();
-            $table->string('slug')->unique()->default(Str::random());
-            $table->text('description')->nullable();
+            $table->string('name_en')->unique();
+            $table->string('name_fr')->nullable();
+            $table->string('name_de')->nullable();
+            $table->string('slug')->unique();
+            $table->text('description_en')->nullable();
+            $table->text('description_fr')->nullable();
+            $table->text('description_de')->nullable();
             $table->boolean('status')->default(0);
             $table->double('price');
             $table->timestamps();

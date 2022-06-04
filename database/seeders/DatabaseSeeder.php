@@ -54,28 +54,36 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'Chain',
+            'name_en' => 'Chain',
+            'name_fr' => 'Chaîne',
+            'name_de' => 'Kette',
             'slug' => 'chain',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'Ring',
+            'name_en' => 'Ring',
+            'name_fr' => 'Bague',
+            'name_de' => 'Ring',
             'slug' => 'ring',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'Bracelet',
+            'name_en' => 'Bracelet',
+            'name_fr' => 'Bracelet',
+            'name_de' => 'Armband',
             'slug' => 'bracelet',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('labels')->insert([
-            'name' => 'New',
+            'name_en' => 'New',
+            'name_fr' => 'Nouveau',
+            'name_de' => 'Neu',
             'slug' => 'new',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

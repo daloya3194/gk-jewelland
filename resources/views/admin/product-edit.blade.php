@@ -19,11 +19,11 @@
                     <div class="border border-gray-200 p-10 shadow-md lg:col-span-2 " style="height: fit-content">
                         <div class="grid lg:grid-cols-3 gap-3">
                             <div class="lg:col-span-2">
-                                <label for="name">Name<span class="text-red-600">*</span></label>
-                                <input type="text" id="name" name="name" value="{{ old('name') ?? $product->name }}" required
-                                       class="@error('name') border-red-600 ring-red-500 @enderror"
+                                <label for="name_en">Name EN<span class="text-red-600">*</span></label>
+                                <input type="text" id="name_en" name="name_en" value="{{ old('name_en') ?? $product->name_en }}" required
+                                       class="@error('name_en') border-red-600 ring-red-500 @enderror"
                                 >
-                                @error('name')
+                                @error('name_en')
                                 <small class="text-red-600">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -41,14 +41,34 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <label for="description">Description<span class="text-red-600">*</span></label>
-                            <textarea type="text" id="description" name="description" rows="3" required
-                                      class="@error('description') border-red-600 ring-red-500 @enderror"
-                            >{{ old('description') ?? $product->description }}</textarea>
-                            @error('description')
+                            <label for="name_fr">Name FR</label>
+                            <input type="text" id="name_fr" name="name_fr" value="{{ old('name_fr') ?? $product->name_fr }}">
+                        </div>
+                        <div class="mt-4">
+                            <label for="name_de">Name DE</label>
+                            <input type="text" id="name_de" name="name_de" value="{{ old('name_de') ?? $product->name_de }}">
+                        </div>
+
+                        <div class="mt-4">
+                            <label for="description_en">Description EN<span class="text-red-600">*</span></label>
+                            <textarea type="text" id="description_en" name="description_en" rows="3" required
+                                      class="@error('description_en') border-red-600 ring-red-500 @enderror"
+                            >{{ old('description_en') ?? $product->description_en }}</textarea>
+                            @error('description_en')
                             <small class="text-red-600">{{ $message }}</small>
                             @enderror
                         </div>
+                        <div class="mt-4">
+                            <label for="description_fr">Description FR</label>
+                            <textarea type="text" id="description_fr" name="description_fr" rows="3"
+                            >{{ old('description_fr') ?? $product->description_fr }}</textarea>
+                        </div>
+                        <div class="mt-4">
+                            <label for="description_de">Description DE</label>
+                            <textarea type="text" id="description_de" name="description_de" rows="3"
+                            >{{ old('description_de') ?? $product->description_de }}</textarea>
+                        </div>
+
                         <div class="mt-4">
                             <label for="avatar" class="">Media<span class="text-red-600">*</span>(Max {{ isset($product->pictures) ? 3 - sizeof($product->pictures) : 3 }} Pictures)</label>
                             <input id="avatar" type="file" name="avatar[]" autocomplete="avatar" multiple required
@@ -79,7 +99,7 @@
                                     <option disabled selected>Please Select...</option>
                                     @isset($categories)
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" @if(old('category_id') == $category->id || $product->category->id == $category->id) selected @endif>{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" @if(old('category_id') == $category->id || $product->category->id == $category->id) selected @endif>{{ $category->name_en }}</option>
                                         @endforeach
                                     @endisset
                                 </select>
@@ -95,7 +115,7 @@
                                     <option value="{{ null }}" selected>Please Select...</option>
                                     @isset($labels)
                                         @foreach($labels as $label)
-                                            <option value="{{ $label->id }}" @if(old('label_id') == $label->id) selected @elseif(isset($product->label->id) && $product->label->id == $label->id) selected @endif>{{ $label->name }}</option>
+                                            <option value="{{ $label->id }}" @if(old('label_id') == $label->id) selected @elseif(isset($product->label->id) && $product->label->id == $label->id) selected @endif>{{ $label->name_en }}</option>
                                         @endforeach
                                     @endisset
                                 </select>

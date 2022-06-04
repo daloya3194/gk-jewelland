@@ -87,7 +87,7 @@
                                 <img class="h-24 w-24 object-cover" src="{{ Storage::url($item['item']->pictures->first()->path) }}" alt="dfsf">
                             </div>
                             <div>
-                                <div class="text-xl font-bold hidden md:block">{{ $item['item']['name'] }}</div>
+                                <div class="text-xl font-bold hidden md:block">{{ $item['item']['name_' . app()->getLocale()] ?? $item['item']['name_en'] }}</div>
                                 <div class="font-semibold opacity-70">Price: {{ $item['item']['price'] }}€</div>
                                 <div onclick="window.location.href='{{ route('cart.remove', [app()->getLocale(), $item['item']['id']]) }}'">
                                     <small class="text-red-600 font-semibold cursor-pointer hover:underline">Remove</small>

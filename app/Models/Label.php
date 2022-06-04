@@ -21,11 +21,11 @@ class Label extends Model
         parent::boot();
 
         static::creating(function ($label) {
-            $label->slug = Str::slug($label->name);
+            $label->slug = Str::slug($label->name_en);
         });
 
         static::updating(function ($label) {
-            $label->slug = Str::slug($label->name);
+            $label->slug = Str::slug($label->name_en);
         });
 
     }

@@ -32,16 +32,16 @@
                             <h3 class="text-sm text-bordeaux">
                                 <a href="{{ route('show.product', [app()->getLocale(), $product->slug]) }}">
                                     <span aria-hidden="true" class="absolute inset-0"></span>
-                                    {{ $product->name }}
+                                    {{ $product->{'name_' . app()->getLocale()} ?? $product->name_en }}
                                 </a>
                             </h3>
-                            <p class="mt-1 text-sm text-gray-500">{{ substr($product->description, 0, 30) }}...</p>
+                            <p class="mt-1 text-sm text-gray-500">{{ substr($product->{'description_' . app()->getLocale()} ?? $product->description_en, 0, 30) }}...</p>
                         </div>
                         <p class="text-sm font-medium text-gray-900">{{ $product->price }}€</p>
                     </div>
                     @if($product->label)
                         <div class="absolute top-1 left-1 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold scale-75 md:top-2 md:left-2 md:scale-100">
-                            {{ $product->label->name }}
+                            {{ $product->label->{'name_' . app()->getLocale()} ?? $product->label->name_en }}
                         </div>
                     @endif
                 </div>
