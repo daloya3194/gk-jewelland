@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\SendInvoiceMail;
+use App\Mail\SendInvoiceMailToAdmin;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -39,5 +40,7 @@ class SendInvoiceMailJob implements ShouldQueue
     public function handle()
     {
         Mail::to($this->user->email)->send(new SendInvoiceMail($this->user, $this->invoice, $this->invoice_pdf));
+
+        Mail::to('service@gk-jewelland.com')->send(new SendInvoiceMailToAdmin($this->user, $this->invoice, $this->invoice_pdf));
     }
 }

@@ -43,7 +43,7 @@ class AuthController extends Controller
                 CartDatabaseService::saveCartUserToDatabase(Session::get('cart'));
             }
 
-            return redirect(route('account', [$request->language, 'account']));
+            return redirect(route('account', [Auth::user()->language ?? $request->language, 'account']));
         }
 
         return back()->withErrors([
@@ -64,6 +64,8 @@ class AuthController extends Controller
 
         $data = $this->registerValidator($request->all())->validate();
         $user = User::create($data);
+        $user->language = $request->language;
+        $user->save();
 
         if (isset($data['street'])) {
             $address = Address::create($data);
@@ -79,6 +81,10 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        User::find(Auth::id())->update([
+            'language' => $request->language
+        ]);
+
         Auth::logout();
 
         $request->session()->regenerateToken();

@@ -10,11 +10,7 @@ class CategoryController extends Controller
 {
     public function show($language, $slug)
     {
-        $category = Category::with(['products.pictures'])->where('slug', $slug)->first();
-//        $products = Product::with(['pictures'])->where('category', $category->id)->get();
-//        $products = $category->products()->with(['pictures'])->get();
-
-//        dd($category->products, $products);
+        $category = Category::with(['active_products.pictures'])->where('slug', $slug)->first();
 
         return view('category', [
             'category' => $category,

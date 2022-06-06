@@ -17,8 +17,8 @@
         <h2 class="text-2xl font-extrabold tracking-tight text-center">Filters</h2>
 
         <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-5 xl:px-0">
-            @isset($category->products)
-                @foreach($category->products as $product)
+            @isset($category->active_products)
+                @foreach($category->active_products as $product)
                     <div class="group relative">
                         <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                             <img src="{{ \Illuminate\Support\Facades\Storage::url($product->pictures->first()->path) }}" alt="{{ $product->pictures->first()->filename }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">

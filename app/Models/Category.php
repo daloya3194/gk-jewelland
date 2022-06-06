@@ -17,6 +17,11 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function active_products()
+    {
+        return $this->products()->where('status', '=', 1);
+    }
+
     protected static function boot() {
         parent::boot();
 
