@@ -87,20 +87,33 @@
                     <p class="text-gray-500 mb-2">info@gmail.com</p>
                 </div>
                 <div class="grow-0 shrink-0 basis-auto mb-12 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
-                    <form>
+                    <form action="{{ route('send-contact-us-message', app()->getLocale()) }}" method="POST">
+                        @csrf
+
                         <div class="form-group mb-3">
-                            <input type="text" class="" id="exampleInput7"
-                                   placeholder="Name">
+                            <input type="text" class="@error('name') border-red-600 ring-red-500 @enderror" id="exampleInput7"
+                                   placeholder="Name" name="name" maxlength="100" required>
+                            @error('name')
+                            <small class="text-red-600">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <input type="email" class="" id="exampleInput8"
-                                   placeholder="Email address">
+                            <input type="email" class="@error('email') border-red-600 ring-red-500 @enderror" id="exampleInput8"
+                                   placeholder="Email address" name="email" required>
+                            @error('email')
+                            <small class="text-red-600">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
-            <textarea class="" id="exampleFormControlTextarea13" rows="3" placeholder="Message"></textarea>
+            <textarea class="@error('message') border-red-600 ring-red-500 @enderror" id="exampleFormControlTextarea13" rows="3" placeholder="Message" name="message" maxlength="600"></textarea>
+                            @error('message')
+                            <small class="text-red-600">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group form-check text-center mb-6">
                             <input type="checkbox"
+                                   name="send_copy"
+                                   value="1"
                                    class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-red-600 checked:border-red-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
                                    id="exampleCheck87" checked>
                             <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">Send me a copy of this

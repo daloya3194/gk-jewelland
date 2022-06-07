@@ -16,8 +16,8 @@ class PictureFactory extends Factory
         return [
             'folder' => $this->faker->name(),
             'filename' => $this->faker->name(),
-            'path' => 'https://picsum.photos/300',
-            'complete_path' => 'https://picsum.photos/300',
+            'path' => 'test',
+            'complete_path' => 'https://picsum.photos/seed/' . $this->faker->firstName . '/800',
         ];
     }
 }

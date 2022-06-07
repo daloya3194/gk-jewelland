@@ -33,6 +33,7 @@ Route::redirect('/', 'en');
 Route::group(['prefix' => '{language}'], function () {
 
     Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+    Route::post('/', [WelcomeController::class, 'sendContactUsMessage'])->name('send-contact-us-message');
     Route::get('/product/{slug}', [ProductController::class, 'show'])->name('show.product');
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('show.category');
 

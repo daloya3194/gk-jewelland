@@ -23,7 +23,7 @@ class ProductFactory extends Factory
             'description_fr' => $this->faker->sentence(),
             'description_de' => $this->faker->sentence(),
             'status' => $this->faker->boolean(90),
-            'price' => $this->faker->numberBetween(10, 1000),
+            'price' => $this->faker->numberBetween(5, 50),
         ];
     }
 }

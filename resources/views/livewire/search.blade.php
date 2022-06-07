@@ -1,10 +1,29 @@
 <div class="p-5">
     <div class="flex justify-between items-center md:px-10">
-        <div class="relative basis-4/5">
-            <input type="text" class="" placeholder="Search a product" wire:model="query">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute top-0 right-0 mt-2 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+        <div class="basis-4/5 grid grid-cols-1 md:grid-cols-3 gap-1">
+            <div class="relative">
+                <input type="text" class="" placeholder="Search a product" wire:model="query">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute top-0 right-0 mt-2 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+
+            <div>
+                <select wire:model="price_range_key">
+                    <option value="0">Price range</option>
+                    <option value="1">Price under 25€</option>
+                    <option value="2">25€ to 100€</option>
+                    <option value="3">100€ to 500€</option>
+                    <option value="4">500€ and above</option>
+                </select>
+            </div>
+
+            <div>
+                <select wire:model="sort_direction">
+                    <option value="asc">Price asc</option>
+                    <option value="desc">Price desc</option>
+                </select>
+            </div>
         </div>
 
         <div class="cursor-pointer" onclick="hideElement('modal_search')">
