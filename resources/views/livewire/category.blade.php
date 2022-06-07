@@ -1,29 +1,41 @@
-<div class="p-5">
-    <div class="flex justify-between items-center md:px-10">
-        <div class="relative basis-4/5">
-            <input type="text" class="" placeholder="Search a product" wire:model="query">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute top-0 right-0 mt-2 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+<div class="">
+    <div class="flex justify-between items-end px-4 xl:px-0">
+
+        <div>
+            <select wire:model="price_range_key">
+                <option value="0">Price range</option>
+                <option value="1">Price under 25€</option>
+                <option value="2">25€ to 100€</option>
+                <option value="3">100€ to 500€</option>
+                <option value="4">500€ and above</option>
+            </select>
         </div>
 
-        <div class="cursor-pointer" onclick="hideElement('modal_search')">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hover:scale-110 hover:text-bordeaux" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+        {{--<div class="flex gap-x-2">
+            <div class="w-24">
+                <label for="from_price">From:</label>
+                <input type="number" wire:model="from_price" id="from_price">
+            </div>
+            <div class="w-24">
+                <label for="to_price">To:</label>
+                <input type="number" wire:model="to_price" id="to_price">
+            </div>
+        </div>--}}
+
+        <div>
+            <select wire:model="sort_direction">
+                <option value="asc">Price asc</option>
+                <option value="desc">Price desc</option>
+            </select>
         </div>
     </div>
 
     <br>
-    <hr class="border-gray-400">
-    <br>
 
-    @if(strlen($query) > 1 && isset($products[0]))
-        <div class="text-center text-gray-700 text-xl">Search Results for <span class="font-semibold">"{{ $query }}"</span></div>
-    <br>
-        <div class="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-5 xl:px-0">
-            @foreach($products as $product)
-                <div class="group relative scale-90">
+    <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-5 xl:px-0">
+        @isset($category_filtered)
+            @foreach($category_filtered as $product)
+                <div class="group relative">
                     <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
 {{--                        <img src="{{ \Illuminate\Support\Facades\Storage::url($product->pictures->first()->path) }}" alt="{{ $product->pictures->first()->filename }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">--}}
                         <img src="{{ $product->pictures->first()->complete_path }}" alt="{{ $product->pictures->first()->filename }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
@@ -41,20 +53,18 @@
                         <p class="text-sm font-medium text-gray-900">{{ $product->price }}€</p>
                     </div>
                     @if($product->label)
-                        <div class="absolute top-1 left-0 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold scale-75 md:top-2 md:left-2 md:scale-100">
+                        <div class="absolute top-1 left-0 scale-75 md:top-2 md:left-2 md:scale-100 bg-red-600 px-4 py-1 rounded-lg shadow-2xl text-white font-bold">
                             {{ $product->label->{'name_' . app()->getLocale()} ?? $product->label->name_en }}
                         </div>
                     @endif
                 </div>
             @endforeach
-        </div>
-    @else
-        @if(strlen($query) > 1)
-            <div class="text-center">No Result for <span class="font-semibold">"{{ $query }}"</span></div>
-        @else
-            <div class="text-center">Type something (min 2 characters)</div>
-        @endif
-
+        @endisset
+    </div>
+    @if($number_of_taking_products < $number_of_products)
+        <br>
+    <div class="px-0 sm:px-4 xl:px-0">
+        <div wire:click="load" class="cursor-pointer px-5 py-2 bg-bordeaux text-white font-semibold rounded-md w-fit scale-75 sm:scale-100 hover:bg-red-700">Load more...</div>
+    </div>
     @endif
-
 </div>

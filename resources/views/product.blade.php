@@ -22,8 +22,12 @@
                     @isset($product->pictures)
                         @foreach($product->pictures as $picture)
                             <div class="swiper-slide h-full mr-10">
-                                <img src="{{ \Illuminate\Support\Facades\Storage::url($picture->path) }}"
-                                     alt="{{ \Illuminate\Support\Facades\Storage::url($picture->filename) }}"
+{{--                                <img src="{{ \Illuminate\Support\Facades\Storage::url($picture->path) }}"--}}
+{{--                                     alt="{{ \Illuminate\Support\Facades\Storage::url($picture->filename) }}"--}}
+{{--                                     class="object-cover w-full h-full"--}}
+{{--                                >--}}
+                                <img src="{{ $picture->complete_path }}"
+                                     alt="{{ $picture->filename }}"
                                      class="object-cover w-full h-full"
                                 >
                             </div>

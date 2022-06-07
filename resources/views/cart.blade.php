@@ -84,7 +84,8 @@
                     <div class="flex flex-row p-2 mt-2">
                         <div class="basis-1/2 md:basis-4/5 grid grid-cols-1 md:flex gap-3 items-center">
                             <div>
-                                <img class="h-24 w-24 object-cover" src="{{ Storage::url($item['item']->pictures->first()->path) }}" alt="dfsf">
+{{--                                <img class="h-24 w-24 object-cover" src="{{ Storage::url($item['item']->pictures->first()->path) }}" alt="dfsf">--}}
+                                <img class="h-24 w-24 object-cover" src="{{ $item['item']->pictures->first()->complete_path }}" alt="dfsf">
                             </div>
                             <div>
                                 <div class="text-xl font-bold hidden md:block">{{ $item['item']['name_' . app()->getLocale()] ?? $item['item']['name_en'] }}</div>

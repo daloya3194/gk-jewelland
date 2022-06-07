@@ -19,6 +19,7 @@ class CreatePicturesTable extends Migration
             $table->string('folder');
             $table->string('filename');
             $table->string('path');
+            $table->string('complete_path');
             $table->timestamps();
         });
     }
