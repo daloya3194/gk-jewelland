@@ -23,8 +23,7 @@
                         role="button"
                         data-mdb-ripple="true"
                         data-mdb-ripple-color="light"
-                    >Shop now</a
-                    >
+                    >Shop now</a>
                 </div>
             </div>
         </div>
