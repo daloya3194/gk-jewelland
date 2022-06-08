@@ -19,7 +19,7 @@
                     <h4 class="font-semibold text-xl mb-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, hic.</h4>
                     <a
                         class="inline-block px-7 py-3 mb-1 border-2 text-gray-200 font-medium text-sm leading-snug uppercase rounded bg-bordeaux border-gray-200 hover:text-white hover:bg-opacity-30 hover:border-bordeaux hover:shadow-2xl hover:scale-105"
-                        href="/#new_items"
+                        href="{{ route('welcome', app()->getLocale()) }}/#new_items"
                         role="button"
                         data-mdb-ripple="true"
                         data-mdb-ripple-color="light"
