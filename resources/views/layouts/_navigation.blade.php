@@ -14,7 +14,7 @@
 
             {{--Modal--}}
             <div onclick="hideElementByParentClick('modal_search')" class="bg-black bg-opacity-50 fixed overflow-y-auto inset-0 z-50 flex justify-center hidden" id="modal_search">
-                <div class="bg-gray-200 h-fit w-3/4 mt-40 rounded">
+                <div class="bg-gray-200 h-fit w-full md:w-3/4 mt-40 rounded">
                     <livewire:search />
                 </div>
             </div>
@@ -68,18 +68,27 @@
                         <small class="mx-auto">{{ Auth::check() ? 'Account' : 'Login' }}</small>
                     </div>
                     @auth()
-                        <div class="hidden flex flex-col absolute mt-12 -top-6  md:top-12 -right-6 bg-white rounded shadow-md z-30 overflow-hidden" id="account_menu">
+                        <div class="hidden flex flex-col absolute mt-12 -top-6  md:top-12 -right-12 bg-white rounded shadow-md z-30 overflow-hidden" id="account_menu">
                             <a href="{{ route('account', [app()->getLocale(), 'account']) }}"
-                               class="text-gray-700 hover:bg-gray-200 px-4 py-2">Account</a>
+                               class="text-gray-700 hover:bg-gray-200 px-10 py-2">Account</a>
                             <a href="{{ route('account', [app()->getLocale(), 'order']) }}"
-                               class="text-gray-700 hover:bg-gray-200 px-4 py-2">Order</a>
+                               class="text-gray-700 hover:bg-gray-200 px-10 py-2">Order</a>
                             <a href="{{ route('account', [app()->getLocale(), 'wishlist']) }}"
-                               class="text-gray-700 hover:bg-gray-200 px-4 py-2">Wishlist</a>
+                               class="text-gray-700 hover:bg-gray-200 px-10 py-2">Wishlist</a>
                             <hr>
                             <a href="{{ route('logout', app()->getLocale()) }}"
-                               class="hover:bg-red-600 hover:text-white px-4 py-2">Logout</a>
+                               class="hover:bg-red-600 hover:text-white px-10 py-2">Logout</a>
                         </div>
                     @endauth
+
+                    @guest()
+                        <div class="hidden flex flex-col absolute mt-12 -top-6  md:top-12 -right-12 bg-white rounded shadow-md z-30 overflow-hidden" id="account_menu">
+                            <a href="{{ route('login-index', app()->getLocale()) }}"
+                               class="text-gray-700 hover:bg-gray-200 px-10 py-2">Login</a>
+                            <a href="{{ route('register-index', app()->getLocale()) }}"
+                               class="text-gray-700 hover:bg-gray-200 px-10 py-2">Register</a>
+                        </div>
+                    @endguest
                 </div>
                 <a class="text-center text-gray-700 hover:text-bordeaux md:-space-y-1 relative @if(isset($navigation) && $navigation == 'cart') text-bordeaux @endif"
                    href="{{ route('cart', app()->getLocale()) }}">

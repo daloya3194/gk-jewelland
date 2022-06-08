@@ -39,6 +39,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getWishlistAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    public function setWishlistAttribute($value)
+    {
+        $this->attributes['wishlist'] = json_encode($value);
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);

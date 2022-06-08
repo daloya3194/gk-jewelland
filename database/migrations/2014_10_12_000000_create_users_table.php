@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->bigInteger('standard_address')->nullable();
             $table->string('language')->nullable();
+            $table->longText('wishlist')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

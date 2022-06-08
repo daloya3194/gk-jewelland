@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center md:px-10">
         <div class="basis-4/5 grid grid-cols-1 md:grid-cols-3 gap-1">
             <div class="relative">
-                <input type="text" class="" placeholder="Search a product" wire:model="query">
+                <input type="text" class="" placeholder="Search a product" wire:model="query" autofocus>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute top-0 right-0 mt-2 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -40,7 +40,7 @@
     @if(strlen($query) > 1 && isset($products[0]))
         <div class="text-center text-gray-700 text-xl">Search Results for <span class="font-semibold">"{{ $query }}"</span></div>
     <br>
-        <div class="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-5 xl:px-0">
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-4 px-0">
             @foreach($products as $product)
                 <div class="group relative scale-90">
                     <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">

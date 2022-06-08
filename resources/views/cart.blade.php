@@ -118,7 +118,7 @@
 
                 <div class="flex justify-end">
                     <div class="text-right font-bold">
-                        <a href="{{ route('checkout', app()->getLocale()) }}" class="px-10 py-4 bg-bordeaux cursor-pointer hover:bg-red-600 text-white">Process to checkout</a>
+                        <a href="{{ route('checkout', app()->getLocale()) }}" class="px-10 py-4 rounded-sm bg-bordeaux cursor-pointer hover:bg-red-600 text-white">Process to checkout</a>
                     </div>
                 </div>
             @else

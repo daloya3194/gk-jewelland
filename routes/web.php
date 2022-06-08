@@ -65,6 +65,9 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get('/account/address/standard/{address_id}', [AccountController::class, 'standardAddress'])->middleware(['auth'])->name('address-standard');
     Route::get('/account/address/delete/{address_id}', [AccountController::class, 'deleteAddress'])->middleware(['auth'])->name('address-delete');
 
+    Route::get('/product/wishlist/add/{slug}', [ProductController::class, 'addToWishlist'])->middleware(['auth'])->name('add-to-wishlist');
+    Route::get('/product/wishlist/remove/{slug}', [ProductController::class, 'removeToWishlist'])->middleware(['auth'])->name('remove-to-wishlist');
+
 
     Route::group(['prefix' => 'admin'], function () {
 
