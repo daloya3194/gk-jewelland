@@ -11,17 +11,6 @@
             </select>
         </div>
 
-        {{--<div class="flex gap-x-2">
-            <div class="w-24">
-                <label for="from_price">From:</label>
-                <input type="number" wire:model="from_price" id="from_price">
-            </div>
-            <div class="w-24">
-                <label for="to_price">To:</label>
-                <input type="number" wire:model="to_price" id="to_price">
-            </div>
-        </div>--}}
-
         <div>
             <select wire:model="sort_direction">
                 <option value="asc">Price asc</option>
@@ -37,7 +26,6 @@
             @foreach($category_filtered as $product)
                 <div class="group relative">
                     <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-{{--                        <img src="{{ \Illuminate\Support\Facades\Storage::url($product->pictures->first()->path) }}" alt="{{ $product->pictures->first()->filename }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">--}}
                         <img src="{{ $product->pictures->first()->complete_path }}" alt="{{ $product->pictures->first()->filename }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
                     </div>
                     <div class="mt-4 flex justify-between">

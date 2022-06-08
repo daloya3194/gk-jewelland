@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Invoice;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,21 @@ class AccountController extends Controller
     {
         $standard_address = Address::find(Auth::user()->standard_address);
         $addresses = Address::where('user_id', Auth::id())->where('id', '!=', Auth::user()->standard_address)->get();
-        $orders = Invoice::with(['cart'])->where('user_id', Auth::id())->latest()->get();
+
+        $orders = null;
+        $wishlist = null;
+        $products = null;
+
+        if ($section == 'order')
+        {
+            $orders = Invoice::with(['cart'])->where('user_id', Auth::id())->latest()->get();
+        }
+
+        if ($section == 'wishlist')
+        {
+            $wishlist = Auth::user()->wishlist;
+            $products = Product::with(['pictures', 'category'])->whereIn('id', $wishlist)->get();
+        }
 
         return view('account', [
             'standard_address' => $standard_address,
@@ -25,6 +40,8 @@ class AccountController extends Controller
             'section' => $section,
             'section_2' => $section_2,
             'orders' => $orders,
+            'wishlist' => $wishlist,
+            'products' => $products,
             'navigation' => 'account'
         ]);
     }

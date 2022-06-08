@@ -22,10 +22,6 @@
                     @isset($product->pictures)
                         @foreach($product->pictures as $picture)
                             <div class="swiper-slide h-full mr-10">
-                                {{--                                <img src="{{ \Illuminate\Support\Facades\Storage::url($picture->path) }}"--}}
-                                {{--                                     alt="{{ \Illuminate\Support\Facades\Storage::url($picture->filename) }}"--}}
-                                {{--                                     class="object-cover w-full h-full"--}}
-                                {{--                                >--}}
                                 <img src="{{ $picture->complete_path }}"
                                      alt="{{ $picture->filename }}"
                                      class="object-cover w-full h-full"
@@ -56,9 +52,7 @@
                                 type="submit"
                         >Add To Card</button>
 
-{{--                        {{ dd(in_array($product->id, $wishlist)) }}--}}
-
-                        @if(in_array($product->id, auth()->user()->wishlist))
+                        @if(isset(auth()->user()->wishlist) && in_array($product->id, auth()->user()->wishlist))
                             <div onclick="window.location.href='{{ route('remove-to-wishlist', [app()->getLocale(), $product->slug]) }}'"
                                  class="border bottom-2 py-2 sm:py-4 px-6 rounded-lg border-bordeaux cursor-pointer text-bordeaux hover:border-gray-600 hover:text-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
