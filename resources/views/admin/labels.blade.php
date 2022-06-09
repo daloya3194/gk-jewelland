@@ -38,7 +38,10 @@
                                 <td>{{ $label->name_de }}</td>
                                 <td>{{ $label->slug }}</td>
                                 <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="{{ route('admin.labels.edit', [app()->getLocale(), $label->slug]) }}">Edit</a></td>
-                                <td><a class="text-red-600 hover:text-red-600 hover:underline" href="{{ route('admin.labels.delete', [app()->getLocale(), $label]) }}">Delete</a></td>
+                                <td><a class="text-red-600 hover:text-red-600 hover:underline"
+                                       href="{{ route('admin.labels.delete', [app()->getLocale(), $label]) }}"
+                                       onclick="return confirm('delete ?')"
+                                    >Delete</a></td>
                             </tr>
                         @endforeach
                     @endisset

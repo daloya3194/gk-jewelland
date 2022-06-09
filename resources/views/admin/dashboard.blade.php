@@ -10,8 +10,8 @@
                     <div class="flex-shrink pr-4">
                         <div class="rounded-full p-3 bg-gray-300"><i class="fa fa-wallet fa-fw fa-inverse text-indigo-500"></i></div>
                     </div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-3xl">$3249 <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
+                    <div class="flex-1 text-center">
+                        <h3 class="font-bold text-3xl">{{ $total_revenue }} <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
                         <h5 class="font-bold text-gray-500">Total Revenue</h5>
                     </div>
                 </div>
@@ -24,9 +24,9 @@
                     <div class="flex-shrink pr-4">
                         <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-users fa-fw fa-inverse text-indigo-500"></i></div>
                     </div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-3xl">249 <span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span></h3>
-                        <h5 class="font-bold text-gray-500">Total Users</h5>
+                    <div class="flex-1 text-center">
+                        <h3 class="font-bold text-3xl">{{ $total_users ?? 0 }} <span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span></h3>
+                        <h5 class="font-bold text-gray-500">Users With Account</h5>
                     </div>
                 </div>
             </div>
@@ -38,9 +38,9 @@
                     <div class="flex-shrink pr-4">
                         <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-user-plus fa-fw fa-inverse text-indigo-500"></i></div>
                     </div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-3xl">2 <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
-                        <h5 class="font-bold text-gray-500">New Users</h5>
+                    <div class="flex-1 text-center">
+                        <h3 class="font-bold text-3xl">{{ $total_users_guests ?? 0 }} <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
+                        <h5 class="font-bold text-gray-500">Users Without Account</h5>
                     </div>
                 </div>
             </div>

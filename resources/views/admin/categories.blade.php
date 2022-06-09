@@ -38,7 +38,10 @@
                                 <td>{{ $category->name_de }}</td>
                                 <td>{{ $category->slug }}</td>
                                 <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="{{ route('admin.categories.edit', [app()->getLocale(), $category->slug]) }}">Edit</a></td>
-                                <td><a class="text-red-600 hover:text-red-600 hover:underline" href="{{ route('admin.categories.delete', [app()->getLocale(), $category]) }}">Delete</a></td>
+                                <td><a class="text-red-600 hover:text-red-600 hover:underline"
+                                       href="{{ route('admin.categories.delete', [app()->getLocale(), $category]) }}"
+                                       onclick="return confirm('delete ?')"
+                                    >Delete</a></td>
                             </tr>
                         @endforeach
                     @endisset

@@ -76,6 +76,7 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get('/logout', [LoginController::class, 'logout'])->middleware(['admin'])->name('admin.logout');
 
         Route::get('/', [DashboardController::class, 'dashboard'])->middleware(['admin'])->name('admin.dashboard');
+
         Route::get('/products', [AdminProductController::class, 'index'])->middleware(['admin'])->name('admin.products');
         Route::get('/products/create', [AdminProductController::class, 'create'])->middleware(['admin'])->name('admin.products.create');
         Route::post('/products/store', [AdminProductController::class, 'store'])->middleware(['admin'])->name('admin.products.store');
@@ -97,7 +98,7 @@ Route::group(['prefix' => '{language}'], function () {
         Route::post('/labels/update/{label}', [AdminLabelController::class, 'update'])->middleware(['admin'])->name('admin.labels.update');
         Route::get('/labels/delete/{label}', [AdminLabelController::class, 'delete'])->middleware(['admin'])->name('admin.labels.delete');
 
-        Route::post('/delete-image', [UploadController::class, 'delete_image'])->name('admin.image.delete');
+        Route::post('/delete-image', [UploadController::class, 'delete_image'])->middleware(['admin'])->name('admin.image.delete');
 
     });
 });

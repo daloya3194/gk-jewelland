@@ -19,6 +19,7 @@
                 <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                     <thead>
                     <tr class="text-left">
+                        <th data-priority="1">ID</th>
                         <th data-priority="1">Name EN</th>
                         <th data-priority="2">Description EN</th>
                         <th data-priority="3">Category</th>
@@ -33,6 +34,7 @@
                     @isset($products)
                         @foreach($products as $product)
                             <tr>
+                                <td>{{ $product->id }}</td>
                                 <td>{{ $product->name_en }}</td>
                                 <td>{{ $product->description_en ?? '' }}</td>
                                 <td>{{ $product->category->name_en }}</td>
@@ -40,7 +42,10 @@
                                 <td>{{ $product->status ? 'active' : 'inactive' }}</td>
                                 <td>{{ $product->label->name_en ?? '' }}</td>
                                 <td><a class="text-blue-600 hover:text-blue-600 hover:underline" href="{{ route('admin.products.edit', [app()->getLocale(), $product->slug]) }}">Edit</a></td>
-                                <td><a class="text-red-600 hover:text-red-600 hover:underline" href="{{ route('admin.products.delete', [app()->getLocale(), $product]) }}">Delete</a></td>
+                                <td><a href="{{ route('admin.products.delete', [app()->getLocale(), $product]) }}"
+                                       onclick="return confirm('delete ?')"
+                                       class="text-red-600 hover:text-red-600 hover:underline"
+                                    >Delete</a></td>
                             </tr>
                         @endforeach
                     @endisset

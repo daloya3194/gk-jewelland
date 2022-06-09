@@ -16,7 +16,7 @@ class AdminProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['pictures', 'category', 'label'])->get()->all();
+        $products = Product::with(['pictures', 'category', 'label'])->get();
 
         return view('admin.products', [
             'products' => $products,
