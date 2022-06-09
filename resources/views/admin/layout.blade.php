@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 
     <!--Regular Datatables CSS-->
@@ -47,7 +47,7 @@
 
 </div>
 
-<script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ mix('js/script.js') }}"></script>
 
 @isset($nav)
     @if(in_array($nav, ['dashboard']))
