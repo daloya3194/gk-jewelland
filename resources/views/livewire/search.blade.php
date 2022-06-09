@@ -10,7 +10,7 @@
 
             <div>
                 <select wire:model="price_range_key">
-                    <option value="0">Price range</option>
+                    <option value="0">All prices</option>
                     <option value="1">Price under 25€</option>
                     <option value="2">25€ to 100€</option>
                     <option value="3">100€ to 500€</option>
@@ -19,9 +19,10 @@
             </div>
 
             <div>
-                <select wire:model="sort_direction">
-                    <option value="asc">Price asc</option>
-                    <option value="desc">Price desc</option>
+                <select wire:model="sort">
+                    <option value="price.asc">Price: ascending</option>
+                    <option value="price.desc">Price descending</option>
+                    <option value="label_id.desc">New products first</option>
                 </select>
             </div>
         </div>
@@ -44,7 +45,6 @@
             @foreach($products as $product)
                 <div class="group relative scale-90">
                     <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-{{--                        <img src="{{ \Illuminate\Support\Facades\Storage::url($product->pictures->first()->path) }}" alt="{{ $product->pictures->first()->filename }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">--}}
                         <img src="{{ $product->pictures->first()->complete_path }}" alt="{{ $product->pictures->first()->filename }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
                     </div>
                     <div class="mt-4 flex justify-between">
@@ -76,4 +76,10 @@
 
     @endif
 
+    @if($number_of_taking_products < $number_of_products)
+        <br>
+        <div class="px-0 sm:px-4 xl:px-0">
+            <div wire:click="$set('number_of_taking_products', {{ $number_of_taking_products += 8 }})" class="cursor-pointer px-5 py-2 bg-bordeaux text-white font-semibold rounded-md w-fit scale-75 sm:scale-100 hover:bg-red-700">Load more...</div>
+        </div>
+    @endif
 </div>

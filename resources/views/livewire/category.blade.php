@@ -3,7 +3,7 @@
 
         <div>
             <select wire:model="price_range_key">
-                <option value="0">Price range</option>
+                <option value="0">All prices</option>
                 <option value="1">Price under 25€</option>
                 <option value="2">25€ to 100€</option>
                 <option value="3">100€ to 500€</option>
@@ -12,9 +12,10 @@
         </div>
 
         <div>
-            <select wire:model="sort_direction">
-                <option value="asc">Price asc</option>
-                <option value="desc">Price desc</option>
+            <select wire:model="sort">
+                <option value="price.asc">Price: ascending</option>
+                <option value="price.desc">Price: descending</option>
+                <option value="label_id.desc">New products first</option>
             </select>
         </div>
     </div>
@@ -50,6 +51,7 @@
         @endisset
     </div>
     @if($number_of_taking_products < $number_of_products)
+        <br>
         <br>
     <div class="px-0 sm:px-4 xl:px-0">
         <div wire:click="load" class="cursor-pointer px-5 py-2 bg-bordeaux text-white font-semibold rounded-md w-fit scale-75 sm:scale-100 hover:bg-red-700">Load more...</div>

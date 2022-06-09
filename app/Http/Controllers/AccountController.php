@@ -30,7 +30,7 @@ class AccountController extends Controller
 
         if ($section == 'wishlist')
         {
-            $wishlist = Auth::user()->wishlist;
+            $wishlist = Auth::user()->wishlist ?? [];
             $products = Product::with(['pictures', 'category'])->whereIn('id', $wishlist)->get();
         }
 
