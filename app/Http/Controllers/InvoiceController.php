@@ -140,7 +140,7 @@ class InvoiceController extends Controller
             $this->saveInvoice($response);
             return redirect()
                 ->route('cart', $request->language)
-                ->with('success', 'Transaction complete.');
+                ->with('success', 'Transaction complete. You will receive an Email');
         } else {
             return redirect()
                 ->route('checkout', $request->language)

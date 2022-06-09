@@ -35,6 +35,6 @@
         </div>
     </div>
     <div class="text-center mt-3 py-4 bg-bordeaux bg-opacity-10">
-        <p class="font-bold">@ GK-Jewlland 2022</p>
+        <p class="font-bold">@ GK-Jewelland 2022</p>
     </div>
 </footer>
