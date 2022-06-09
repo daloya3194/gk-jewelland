@@ -28,7 +28,7 @@
 
     @livewireStyles
 </head>
-<body class="text-gray-700 relative flex flex-col h-screen justify-between">
+<body class="text-gray-700 relative flex flex-col justify-between">
 
     <!-- Navigation-->
     @include('layouts._navigation')

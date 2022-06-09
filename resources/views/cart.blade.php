@@ -122,7 +122,7 @@
                     </div>
                 </div>
             @else
-                <div class="flex justify-center items-center mt-7 lg:mt-24">
+                <div class="flex justify-center items-center mt-7 lg:mt-24 lg:mb-32">
                     <p class="text-xl font-semibold">Your cart ist empty &#x1F615;</p>
                 </div>
             @endif
