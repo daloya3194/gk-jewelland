@@ -41,6 +41,6 @@ class SendInvoiceMailJob implements ShouldQueue
     {
         Mail::to($this->user->email)->send(new SendInvoiceMail($this->user, $this->invoice, $this->invoice_pdf));
 
-        Mail::to('service@gk-jewelland.com')->send(new SendInvoiceMailToAdmin($this->user, $this->invoice, $this->invoice_pdf));
+        Mail::to('shop@gk-jewelland.daloya.com')->send(new SendInvoiceMailToAdmin($this->user, $this->invoice, $this->invoice_pdf));
     }
 }

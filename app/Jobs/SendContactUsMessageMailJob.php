@@ -39,7 +39,7 @@ class SendContactUsMessageMailJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('service@gk-jewelland.com')->when(isset($this->send_copy), function ($query) {
+        Mail::to('shop@gk-jewelland.daloya.com')->when(isset($this->send_copy), function ($query) {
             $query->cc($this->email);
         })->send(new SendContactUsMessageMail($this->name, $this->email, $this->message));
     }
