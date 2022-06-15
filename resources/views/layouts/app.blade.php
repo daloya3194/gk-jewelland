@@ -23,12 +23,12 @@
     <link href="{{ asset('css/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/swiper/style.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     @livewireStyles
 </head>
-<body class="text-gray-700 relative flex flex-col h-screen justify-between">
+<body class="text-gray-700 relative flex flex-col justify-between">
 
     <!-- Navigation-->
     @include('layouts._navigation')
@@ -77,6 +77,7 @@
 
     <script src="{{ asset('js/dropdown/toggle-dropdown.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 
 {{--    <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>--}}
 

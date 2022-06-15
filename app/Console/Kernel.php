@@ -15,7 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('queue:work')->everyMinute()->withoutOverlapping();
+        $schedule->command('queue:work', [
+            '--max-time' => 300
+        ])->withoutOverlapping();
     }
 
     /**
