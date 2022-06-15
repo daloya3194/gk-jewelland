@@ -12,12 +12,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
-    public function loginIndex()
+    public function loginIndex(Request $request)
     {
+        if (!in_array(url()->previous(), [route('welcome', $request->language), route('login', $request->language)])) {
+            \session(['url.intended' => url()->previous()]);
+        }
+
         return view('login',[
             'navigation' => 'account'
         ]);
@@ -25,7 +30,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'min:6'],
@@ -33,14 +37,25 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
 
-            $request->session()->regenerate();
-
             if(Auth::user()->cart()->first() !== null) {
                 CartDatabaseService::putCartFromDatabaseToSession(Auth::user()->cart()->first());
             }
 
             if (Session::has('cart') && Auth::user()->cart()->first() == null) {
                 CartDatabaseService::saveCartUserToDatabase(Session::get('cart'));
+            }
+
+            $redirect_to = null;
+
+            if (\session()->has('url.intended')) {
+                $redirect_to = \session()->get('url.intended');
+                \session()->forget('url.intended');
+            }
+
+            $request->session()->regenerate();
+
+            if ($redirect_to !== null) {
+                return redirect($redirect_to);
             }
 
             return redirect(route('account', [Auth::user()->language ?? $request->language, 'account']));
