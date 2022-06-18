@@ -37,7 +37,7 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
 
-            if(Auth::user()->cart()->first() !== null) {
+            if(Auth::user()->cart()->first() !== null && \session('url.intended') !== route('checkout', $request->language)) {
                 CartDatabaseService::putCartFromDatabaseToSession(Auth::user()->cart()->first());
             }
 
