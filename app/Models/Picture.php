@@ -17,7 +17,7 @@ class Picture extends Model
         return $this->belongsTo(Product::class);
     }
 
-    /*protected static function boot() {
+    protected static function boot() {
         parent::boot();
 
         static::creating(function ($picture) {
@@ -28,5 +28,5 @@ class Picture extends Model
             $picture->complete_path = Storage::url($picture->path);
         });
 
-    }*/
+    }
 }

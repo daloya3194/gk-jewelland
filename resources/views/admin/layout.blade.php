@@ -47,7 +47,8 @@
 
 </div>
 
-<script src="{{ mix('js/script.js') }}"></script>
+{{--<script src="{{ asset('js/script.js') }}"></script>--}}
+{{--<script src="{{ mix('js/app.js') }}"></script>--}}
 
 @isset($nav)
     @if(in_array($nav, ['dashboard']))

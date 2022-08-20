@@ -13,7 +13,7 @@ const pond = FilePond.create(inputElement, {
     acceptedFileTypes: ['image/png', 'image/jpeg'],
 });
 
-console.log(image_require === '1');
+// console.log(image_require === '1', csrf_token);
 
 FilePond.setOptions({
     maxFiles: max_number_of_images,
@@ -23,7 +23,7 @@ FilePond.setOptions({
             'X-CSRF-TOKEN': csrf_token
         },
         process: {
-            url: '/upload',
+            url: '/en/upload',
             method: 'POST',
             onload: function (responce) {
                 // console.log(responce)
@@ -33,7 +33,7 @@ FilePond.setOptions({
         revert: (uniqueFileId) => {
             // window.href = '/delete/' + uniqueFileId
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", '/delete', true);
+            xhr.open("POST", '/en/delete', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.setRequestHeader('X-CSRF-TOKEN', csrf_token);
             xhr.send(JSON.stringify({

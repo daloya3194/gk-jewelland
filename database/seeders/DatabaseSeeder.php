@@ -89,6 +89,6 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon::now()
         ]);
 
-        $this->call(ProductSeeder::class);
+//        $this->call(ProductSeeder::class);
     }
 }

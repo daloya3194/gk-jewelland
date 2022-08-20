@@ -29,7 +29,7 @@ class UploadController extends Controller
             }
         }
 
-        return '';
+        return response('OK', 200);
     }
 
     public function delete(Request $request)
