@@ -21,11 +21,11 @@ class Picture extends Model
         parent::boot();
 
         static::creating(function ($picture) {
-            $picture->complete_path = Storage::url($picture->path);
+            $picture->complete_path ?? Storage::url($picture->path);
         });
 
         static::updating(function ($picture) {
-            $picture->complete_path = Storage::url($picture->path);
+            $picture->complete_path ?? Storage::url($picture->path);
         });
 
     }

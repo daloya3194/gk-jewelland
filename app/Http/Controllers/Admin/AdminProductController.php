@@ -41,8 +41,6 @@ class AdminProductController extends Controller
         $data = $this->validator($request->all())->validate();
 
         $product = Product::create($data);
-//        $product->slug = Str::slug($data['name_de']);
-//        $product->save();
 
         if (isset($request['avatar']) && $request['avatar'][0] !== null) {
             foreach ($request['avatar'] as $avatar) {
@@ -94,7 +92,6 @@ class AdminProductController extends Controller
             'category_id' => 'required|numeric',
             'label_id' => 'nullable|numeric',
             'name_en' => ['required', 'string', 'max:256', Rule::unique('products', 'name_en')->ignore($product->id ?? '')],
-//            'name_en' => 'required|string|max:256',
             'name_fr' => 'nullable|string|max:256',
             'name_de' => 'nullable|string|max:256',
             'description_en' => 'nullable|string|max:256',

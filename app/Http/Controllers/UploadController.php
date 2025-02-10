@@ -23,6 +23,7 @@ class UploadController extends Controller
                     'folder' => $folder,
                     'filename' => $filename,
                     'path' => $path,
+                    'complete_path' => Storage::url($path),
                 ]);
 
                 return $path;
